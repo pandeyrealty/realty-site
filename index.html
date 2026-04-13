@@ -353,6 +353,86 @@
       line-height: 1;
     }
 
+    /* HubSpot form styling */
+    #hubspot-form .hs-form,
+    #hubspot-form form {
+      display: flex !important;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #hubspot-form .hs-form-field {
+      margin-bottom: 0 !important;
+    }
+
+    #hubspot-form label {
+      display: block;
+      margin-bottom: 6px;
+      color: #f5f5f5 !important;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    #hubspot-form input,
+    #hubspot-form textarea,
+    #hubspot-form select {
+      width: 100% !important;
+      padding: 14px !important;
+      border-radius: 8px !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      background: #111214 !important;
+      color: #ffffff !important;
+      font-size: 15px !important;
+      outline: none !important;
+      margin-bottom: 0 !important;
+    }
+
+    #hubspot-form input::placeholder,
+    #hubspot-form textarea::placeholder {
+      color: #9da3ae !important;
+    }
+
+    #hubspot-form textarea {
+      min-height: 120px !important;
+      resize: vertical !important;
+    }
+
+    #hubspot-form .hs-button,
+    #hubspot-form button {
+      background: #d4af37 !important;
+      color: #111 !important;
+      padding: 14px 24px !important;
+      border-radius: 10px !important;
+      font-weight: 700 !important;
+      border: none !important;
+      cursor: pointer !important;
+      font-size: 15px !important;
+      width: 100% !important;
+    }
+
+    #hubspot-form .hs-button:hover,
+    #hubspot-form button:hover {
+      opacity: 0.92;
+    }
+
+    #hubspot-form .hs-error-msg,
+    #hubspot-form .hs-main-font-element,
+    #hubspot-form .submitted-message,
+    #hubspot-form .hs-richtext,
+    #hubspot-form .hs-form-booleancheckbox-display span {
+      color: #f5f5f5 !important;
+    }
+
+    #hubspot-form ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    #hubspot-form iframe {
+      width: 100% !important;
+    }
+
     @media (max-width: 900px) {
       .cards,
       .split,
@@ -474,41 +554,10 @@
         <p class="section-subtext">
           Fill this out and I’ll follow up to discuss your real estate or mortgage needs.
         </p>
-        <p style="color:#bdbdbd;">
-          This form is set up to email submissions to you after you confirm the form service.
-        </p>
       </div>
 
       <div class="contact-box">
-        <form action="https://formsubmit.co/realtypandey7@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New Lead from Pandey Realty Website">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="https://pandey.realty/#contact">
-
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Full Name" required />
-          </div>
-          <div class="form-group">
-            <input type="tel" name="phone" placeholder="Phone Number" required />
-          </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Email Address" required />
-          </div>
-          <div class="form-group">
-            <select name="service" required>
-              <option value="">I need help with...</option>
-              <option>Buying a home</option>
-              <option>Selling a home</option>
-              <option>Mortgage / Refinance</option>
-              <option>Investment property</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="Tell me a little about what you need"></textarea>
-          </div>
-          <button class="btn btn-primary" type="submit">Submit Inquiry</button>
-        </form>
+        <div id="hubspot-form"></div>
       </div>
     </div>
   </section>
@@ -561,6 +610,16 @@
   </footer>
 
   <a href="tel:4694075853" class="floating-call" aria-label="Call Pandey Realty">📞</a>
+
+  <script charset="utf-8" type="text/javascript" src="//js-na2.hsforms.net/forms/embed/v2.js"></script>
+  <script>
+    hbspt.forms.create({
+      portalId: "245896375",
+      formId: "ffa005d4-4942-4212-9865-cd8e4a78081d",
+      region: "na2",
+      target: "#hubspot-form"
+    });
+  </script>
 
 </body>
 </html>
