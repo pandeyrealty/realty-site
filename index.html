@@ -4,12 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pandey Realty</title>
-  <meta name="description" content="Pandey Realty - Buy, Sell, and Finance with confidence." />
+  <meta
+    name="description"
+    content="Pandey Realty - Buy, Sell, and Finance with confidence."
+  />
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -21,6 +28,7 @@
 
     a {
       text-decoration: none;
+      color: inherit;
     }
 
     .container {
@@ -33,6 +41,10 @@
       padding: 20px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       background: rgba(15,15,16,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
     }
 
     .nav {
@@ -47,6 +59,7 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 1px;
+      color: #fff;
     }
 
     .brand span {
@@ -57,11 +70,22 @@
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .nav-links a {
       color: #ddd;
       font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .phone-link {
+      font-weight: 700;
+      color: #d4af37 !important;
     }
 
     .hero {
@@ -69,13 +93,14 @@
       display: flex;
       align-items: center;
       background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
-        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.68)),
+        url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80')
+        center/cover no-repeat;
     }
 
     .hero-content {
-      max-width: 700px;
-      padding: 80px 0;
+      max-width: 760px;
+      padding: 90px 0;
     }
 
     .eyebrow {
@@ -87,8 +112,8 @@
     }
 
     .hero h1 {
-      font-size: 54px;
-      line-height: 1.1;
+      font-size: 56px;
+      line-height: 1.08;
       margin-bottom: 20px;
     }
 
@@ -96,7 +121,7 @@
       font-size: 20px;
       color: #e5e5e5;
       margin-bottom: 30px;
-      max-width: 620px;
+      max-width: 680px;
     }
 
     .btn-group {
@@ -108,9 +133,12 @@
     .btn {
       display: inline-block;
       padding: 14px 24px;
-      border-radius: 8px;
-      font-weight: 600;
+      border-radius: 10px;
+      font-weight: 700;
       transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
     }
 
     .btn-primary {
@@ -119,12 +147,14 @@
     }
 
     .btn-primary:hover {
-      opacity: 0.9;
+      opacity: 0.92;
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
       border: 1px solid rgba(255,255,255,0.25);
       color: #fff;
+      background: transparent;
     }
 
     .btn-secondary:hover {
@@ -146,7 +176,7 @@
 
     .section-subtext {
       color: #bdbdbd;
-      max-width: 700px;
+      max-width: 720px;
       margin-bottom: 35px;
     }
 
@@ -193,6 +223,10 @@
       color: #d8d8d8;
     }
 
+    .contact-box strong {
+      color: #fff;
+    }
+
     .form-group {
       margin-bottom: 16px;
     }
@@ -207,22 +241,122 @@
       font-size: 15px;
     }
 
+    input::placeholder,
+    textarea::placeholder {
+      color: #9da3ae;
+    }
+
     textarea {
       min-height: 120px;
       resize: vertical;
     }
 
-    .footer {
+    .footer-premium {
+      background: #08152f;
+      color: #d9e1ee;
+      margin-top: 0;
       border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 26px 0;
-      color: #aaa;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding: 70px 0 45px;
+    }
+
+    .footer-premium h3 {
+      font-size: 42px;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    .footer-premium h4 {
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    .footer-premium p,
+    .footer-premium li,
+    .footer-premium a {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #aeb9cc;
+    }
+
+    .footer-premium a:hover {
+      color: #ffffff;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-list li {
+      margin-bottom: 10px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: #c7d2e5;
+      transition: 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-2px);
+    }
+
+    .footer-highlight {
+      margin-top: 10px;
+      color: #cfd8e6;
+    }
+
+    .footer-accent {
+      color: #5ea3ff !important;
+      font-weight: 700;
+    }
+
+    .footer-bottom {
       text-align: center;
-      font-size: 14px;
+      padding: 22px 15px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #7f8da7;
+      font-size: 15px;
+    }
+
+    .floating-call {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #d4af37;
+      color: #111;
+      font-size: 22px;
+      padding: 16px;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 999;
+      text-align: center;
+      line-height: 1;
     }
 
     @media (max-width: 900px) {
       .cards,
-      .split {
+      .split,
+      .footer-grid {
         grid-template-columns: 1fr;
       }
 
@@ -232,6 +366,10 @@
 
       .hero p {
         font-size: 18px;
+      }
+
+      .footer-premium h3 {
+        font-size: 32px;
       }
     }
 
@@ -243,138 +381,20 @@
       .brand {
         font-size: 22px;
       }
-      .footer-premium {
-  background: #08152f;
-  color: #d9e1ee;
-  margin-top: 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  gap: 50px;
-  padding: 70px 0 45px;
-}
-
-.footer-premium h3 {
-  font-size: 42px;
-  margin-bottom: 18px;
-  color: #fff;
-}
-
-.footer-premium h4 {
-  font-size: 18px;
-  margin-bottom: 18px;
-  color: #fff;
-}
-
-.footer-premium p,
-.footer-premium li,
-.footer-premium a {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #aeb9cc;
-}
-
-.footer-premium a:hover {
-  color: #ffffff;
-}
-
-.footer-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-list li {
-  margin-bottom: 10px;
-}
-
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.social-links a {
-  display: inline-block;
-  padding: 8px 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
-  color: #c7d2e5;
-}
-
-.footer-highlight {
-  margin-top: 10px;
-  color: #cfd8e6;
-}
-
-.footer-accent {
-  color: #5ea3ff !important;
-  font-weight: 600;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding: 22px 15px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  color: #7f8da7;
-  font-size: 15px;
-}
-
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-
-  .footer-premium h3 {
-    font-size: 32px;
-  }
-}
-
-@media (max-width: 640px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
     }
   </style>
 </head>
-  <a href="tel:4694075853" class="floating-call">
-  📞
-</a>
-
-<style>
-.floating-call {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #d4af37;
-  color: black;
-  font-size: 22px;
-  padding: 16px;
-  border-radius: 50%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  z-index: 999;
-  text-align: center;
-}
-</style>
 <body>
 
   <header class="topbar">
     <div class="container nav">
       <div class="brand">Pandey<span>.Realty</span></div>
-     <nav class="nav-links">
-  <a href="#services">Services</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-  <a href="tel:4694075853" style="font-weight:600; color:#d4af37;">
-    📞 469-407-5853
-  </a>
-</nav>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:4694075853" class="phone-link">📞 469-407-5853</a>
+      </nav>
     </div>
   </header>
 
@@ -389,9 +409,7 @@
         </p>
         <div class="btn-group">
           <a class="btn btn-primary" href="#contact">Request a Consultation</a>
-          <a class="btn btn-secondary" href="tel:4694075853">
-  📞 Call Now: 469-407-5853
-</a>
+          <a class="btn btn-secondary" href="tel:4694075853">📞 Call Now: 469-407-5853</a>
         </div>
       </div>
     </div>
@@ -435,16 +453,16 @@
           Built to give clients one polished place to connect for real estate and mortgage support.
           The goal is simple: make the process feel clear, smooth, and well-guided.
         </p>
-        <p style="color:#d8d8d8; margin-bottom: 10px;">Nayan Pandey</p>
-        <p style="color:#bdbdbd; margin-bottom: 10px;">Realtor | Mortgage Loan Officer</p>
+        <p style="color:#d8d8d8; margin-bottom:10px;"><strong>Nayan Pandey</strong></p>
+        <p style="color:#bdbdbd; margin-bottom:10px;">Realtor | Mortgage Loan Officer</p>
         <p style="color:#bdbdbd;">Serving clients with a practical, relationship-based approach.</p>
       </div>
 
       <div class="contact-box">
         <h2 style="font-size: 28px; margin-bottom: 20px;">Quick Contact</h2>
-        <p>Phone: 469-407-5853</p>
-        <p>Email: realtypandey7@gmail.com</p>
-        <p>Website: pandey.realty</p>
+        <p><strong>Phone:</strong> <a href="tel:4694075853">469-407-5853</a></p>
+        <p><strong>Email:</strong> <a href="mailto:realtypandey7@gmail.com">realtypandey7@gmail.com</a></p>
+        <p><strong>Website:</strong> <a href="https://pandey.realty">pandey.realty</a></p>
       </div>
     </div>
   </section>
@@ -456,10 +474,18 @@
         <p class="section-subtext">
           Fill this out and I’ll follow up to discuss your real estate or mortgage needs.
         </p>
+        <p style="color:#bdbdbd;">
+          This form is set up to email submissions to you after you confirm the form service.
+        </p>
       </div>
 
       <div class="contact-box">
-        <form action="https://formspree.io/f/yourformid" method="POST">
+        <form action="https://formsubmit.co/realtypandey7@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Lead from Pandey Realty Website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://pandey.realty/#contact">
+
           <div class="form-group">
             <input type="text" name="name" placeholder="Full Name" required />
           </div>
@@ -470,7 +496,7 @@
             <input type="email" name="email" placeholder="Email Address" required />
           </div>
           <div class="form-group">
-            <select name="service">
+            <select name="service" required>
               <option value="">I need help with...</option>
               <option>Buying a home</option>
               <option>Selling a home</option>
@@ -481,60 +507,60 @@
           <div class="form-group">
             <textarea name="message" placeholder="Tell me a little about what you need"></textarea>
           </div>
-          <button class="btn btn-primary" type="submit" style="border:none; cursor:pointer;">
-            Submit Inquiry
-          </button>
+          <button class="btn btn-primary" type="submit">Submit Inquiry</button>
         </form>
       </div>
     </div>
   </section>
 
   <footer class="footer-premium">
-  <div class="container footer-grid">
-    <div>
-      <h3>Pandey Realty</h3>
-      <p>
-        Your trusted partner in real estate and mortgage guidance, helping buyers,
-        sellers, and borrowers move forward with confidence.
-      </p>
-    </div>
-
-    <div>
-      <h4>Contact Us</h4>
-      <ul class="footer-list">
-        <li>📍 Bay Area, California</li>
-        <li>📞 <a href="tel:4694075853">469-407-5853</a></li>
-        <li>✉️ <a href="mailto:realtypandey7@gmail.com">realtypandey7@gmail.com</a></li>
-        <li>🌐 <a href="https://pandey.realty">pandey.realty</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Quick Links</h4>
-      <ul class="footer-list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="tel:4694075853">Call Now</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Follow / Connect</h4>
-      <div class="social-links">
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    <div class="container footer-grid">
+      <div>
+        <h3>Pandey Realty</h3>
+        <p>
+          Your trusted partner in real estate and mortgage guidance, helping buyers,
+          sellers, and borrowers move forward with confidence.
+        </p>
       </div>
-      <p class="footer-highlight">Available 7 days a week</p>
-      <p class="footer-accent">Fast Response</p>
-    </div>
-  </div>
 
-  <div class="footer-bottom">
-    © 2026 Pandey Realty. All rights reserved.
-  </div>
-</footer>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-list">
+          <li>📍 Bay Area, California</li>
+          <li>📞 <a href="tel:4694075853">469-407-5853</a></li>
+          <li>✉️ <a href="mailto:realtypandey7@gmail.com">realtypandey7@gmail.com</a></li>
+          <li>🌐 <a href="https://pandey.realty">pandey.realty</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="tel:4694075853">Call Now</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow / Connect</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/realtypandey" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://www.instagram.com/pandey_realty_mortgage/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.linkedin.com/in/nayanpandey/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p class="footer-highlight">Available 7 days a week</p>
+        <p class="footer-accent">Fast Response</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Pandey Realty. All rights reserved.
+    </div>
+  </footer>
+
+  <a href="tel:4694075853" class="floating-call" aria-label="Call Pandey Realty">📞</a>
 
 </body>
 </html>
