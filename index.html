@@ -1,155 +1,376 @@
-export default function PandeyRealtyHomepage() {
-  const features = [
-    { title: 'Buy', desc: 'Strategic guidance for first-time buyers, move-up buyers, and investors.' },
-    { title: 'Sell', desc: 'Sharp pricing, clean marketing, and smooth transaction management.' },
-    { title: 'Finance', desc: 'Mortgage guidance to help clients compare options and close with clarity.' },
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pandey Realty</title>
+  <meta name="description" content="Pandey Realty - Buy, Sell, and Finance with confidence." />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  const trustPoints = [
-    'Bay Area real estate guidance',
-    'Realtor + Mortgage support in one place',
-    'Fast follow-up and consult scheduling',
-    'Simple intake form for buyer, seller, or loan leads',
-  ];
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f10;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
 
-  return (
-    <div className="min-h-screen bg-neutral-950 text-white">
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_35%)]" />
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-12">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <div className="mb-4 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/70">
-                Pandey Realty
-              </div>
-              <h1 className="max-w-2xl text-5xl font-semibold leading-tight md:text-6xl">
-                Luxury feel. Local trust. Smarter real estate and mortgage guidance.
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
-                A polished landing page for buyers, sellers, and borrowers who want one clear place to connect, book, and start the conversation.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="#lead-form"
-                  className="rounded-2xl bg-white px-6 py-3 text-sm font-medium text-neutral-950 shadow-lg transition hover:translate-y-[-1px]"
-                >
-                  Get Started
-                </a>
-                <a
-                  href="tel:4694075853"
-                  className="rounded-2xl border border-white/20 px-6 py-3 text-sm font-medium text-white/90 transition hover:bg-white/5"
-                >
-                  Call 469-407-5853
-                </a>
-              </div>
-              <div className="mt-10 grid gap-3 sm:grid-cols-2">
-                {trustPoints.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/80 backdrop-blur">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
+    a {
+      text-decoration: none;
+    }
 
-            <div className="lg:pl-8">
-              <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl">
-                <div className="mb-6 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.25em] text-white/50">Featured Positioning</p>
-                    <h2 className="mt-2 text-2xl font-semibold">Buy • Sell • Loan</h2>
-                  </div>
-                  <div className="rounded-full border border-white/15 px-4 py-2 text-xs text-white/60">Bay Area</div>
-                </div>
-                <div className="space-y-4">
-                  {features.map((item) => (
-                    <div key={item.title} className="rounded-2xl border border-white/10 bg-neutral-900/60 p-5">
-                      <h3 className="text-lg font-medium">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-7 text-white/65">{item.desc}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-200/10 p-5">
-                  <p className="text-sm uppercase tracking-[0.22em] text-amber-100/70">Lead Flow</p>
-                  <p className="mt-2 text-sm leading-7 text-white/80">
-                    Form submissions can be routed to your email now, then into a free CRM later for follow-up pipelines, reminders, and contact tracking.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-      <section className="mx-auto max-w-7xl px-6 py-18 md:px-10 lg:px-12">
-        <div className="grid gap-6 md:grid-cols-3">
-          {[
-            'For Buyers',
-            'For Sellers',
-            'For Borrowers',
-          ].map((title, i) => (
-            <div key={title} className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-7">
-              <div className="mb-5 text-xs uppercase tracking-[0.24em] text-white/45">0{i + 1}</div>
-              <h3 className="text-2xl font-semibold">{title}</h3>
-              <p className="mt-3 text-sm leading-7 text-white/65">
-                Clear next steps, strong presentation, and organized communication from first contact to closing.
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+    .topbar {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(15,15,16,0.95);
+    }
 
-      <section id="lead-form" className="border-t border-white/10 bg-white/[0.02]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-18 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-12">
-          <div>
-            <p className="text-sm uppercase tracking-[0.26em] text-white/45">Contact</p>
-            <h2 className="mt-3 text-4xl font-semibold">Let’s talk about your next move.</h2>
-            <p className="mt-5 max-w-lg text-base leading-8 text-white/65">
-              This form is designed for a simple luxury-style landing page. It can be connected to Formspree, HubSpot, or another free intake workflow.
-            </p>
-            <div className="mt-8 space-y-4 text-sm text-white/70">
-              <p>Phone: 469-407-5853</p>
-              <p>Email: realtypandey7@gmail.com</p>
-              <p>Suggested CTA: Book a buyer consult, seller strategy call, or mortgage review.</p>
-            </div>
-          </div>
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-          <form className="rounded-[2rem] border border-white/10 bg-neutral-900/70 p-6 shadow-2xl">
-            <div className="grid gap-5 md:grid-cols-2">
-              <label className="block">
-                <span className="mb-2 block text-sm text-white/70">Full Name</span>
-                <input className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none ring-0 placeholder:text-white/25" placeholder="Your name" />
-              </label>
-              <label className="block">
-                <span className="mb-2 block text-sm text-white/70">Phone</span>
-                <input className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none ring-0 placeholder:text-white/25" placeholder="Best number" />
-              </label>
-              <label className="block md:col-span-2">
-                <span className="mb-2 block text-sm text-white/70">Email</span>
-                <input className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none ring-0 placeholder:text-white/25" placeholder="you@example.com" />
-              </label>
-              <label className="block md:col-span-2">
-                <span className="mb-2 block text-sm text-white/70">I need help with</span>
-                <select className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 outline-none">
-                  <option>Buying a home</option>
-                  <option>Selling a home</option>
-                  <option>Mortgage / refinance</option>
-                  <option>Investment property</option>
-                </select>
-              </label>
-              <label className="block md:col-span-2">
-                <span className="mb-2 block text-sm text-white/70">Message</span>
-                <textarea rows={5} className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none placeholder:text-white/25" placeholder="Tell me what you're looking for" />
-              </label>
-            </div>
-            <button type="button" className="mt-6 w-full rounded-2xl bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition hover:translate-y-[-1px]">
-              Submit Inquiry
-            </button>
-            <p className="mt-4 text-xs leading-6 text-white/40">
-              Replace this form action with your free form endpoint or HubSpot embed when deploying.
-            </p>
-          </form>
-        </div>
-      </section>
+    .brand {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: #d4af37;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ddd;
+      font-size: 15px;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #e5e5e5;
+      margin-bottom: 30px;
+      max-width: 620px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #d4af37;
+      color: #111;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-light {
+      background: #171719;
+    }
+
+    .section h2 {
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
+
+    .section-subtext {
+      color: #bdbdbd;
+      max-width: 700px;
+      margin-bottom: 35px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: #1d1d20;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 26px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .card p {
+      color: #cfcfcf;
+      font-size: 15px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-box {
+      background: #1d1d20;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .contact-box p {
+      margin-bottom: 12px;
+      color: #d8d8d8;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #111214;
+      color: white;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 26px 0;
+      color: #aaa;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .cards,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .brand {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">Pandey<span>.Realty</span></div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  );
-}
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Bay Area Real Estate & Mortgage Guidance</div>
+        <h1>Luxury presentation. Local trust. Real estate done smoothly.</h1>
+        <p>
+          Helping buyers, sellers, and borrowers move forward with confidence through
+          smart strategy, strong communication, and financing guidance in one place.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#contact">Request a Consultation</a>
+          <a class="btn btn-secondary" href="tel:4694075853">Call 469-407-5853</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light" id="services">
+    <div class="container">
+      <h2>What I Help With</h2>
+      <p class="section-subtext">
+        A clean starting point for clients who want support with buying, selling, or financing.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Buy</h3>
+          <p>
+            Guidance for first-time buyers, repeat buyers, and investors looking for the right opportunity.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Sell</h3>
+          <p>
+            Property positioning, pricing strategy, negotiation, and transaction support from listing to close.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Finance</h3>
+          <p>
+            Mortgage guidance for purchase, refinance, and loan scenario planning with a practical approach.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container split">
+      <div>
+        <h2>About Pandey Realty</h2>
+        <p class="section-subtext">
+          Built to give clients one polished place to connect for real estate and mortgage support.
+          The goal is simple: make the process feel clear, smooth, and well-guided.
+        </p>
+        <p style="color:#d8d8d8; margin-bottom: 10px;">Nayan Pandey</p>
+        <p style="color:#bdbdbd; margin-bottom: 10px;">Realtor | Mortgage Loan Officer</p>
+        <p style="color:#bdbdbd;">Serving clients with a practical, relationship-based approach.</p>
+      </div>
+
+      <div class="contact-box">
+        <h2 style="font-size: 28px; margin-bottom: 20px;">Quick Contact</h2>
+        <p>Phone: 469-407-5853</p>
+        <p>Email: realtypandey7@gmail.com</p>
+        <p>Website: pandey.realty</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light" id="contact">
+    <div class="container split">
+      <div>
+        <h2>Request a Consultation</h2>
+        <p class="section-subtext">
+          Fill this out and I’ll follow up to discuss your real estate or mortgage needs.
+        </p>
+      </div>
+
+      <div class="contact-box">
+        <form action="https://formspree.io/f/yourformid" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Full Name" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address" required />
+          </div>
+          <div class="form-group">
+            <select name="service">
+              <option value="">I need help with...</option>
+              <option>Buying a home</option>
+              <option>Selling a home</option>
+              <option>Mortgage / Refinance</option>
+              <option>Investment property</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Tell me a little about what you need"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" style="border:none; cursor:pointer;">
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Pandey Realty. All rights reserved.
+  </footer>
+
+</body>
+</html>
