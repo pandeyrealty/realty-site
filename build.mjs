@@ -147,7 +147,8 @@ for (const L of listings) {
 // ---------- Homepage ----------
 const active = listings.filter((l) => l.status !== "sold");
 const feat = active[0];
-const HERO_FEATURE = feat
+const SHOW_FEATURED = false; // homepage hero shows the logo, not a featured listing
+const HERO_FEATURE = SHOW_FEATURED && feat
   ? `<a class="feature" href="${feat.url}"><img class="fimg" src="${feat.url}/photos/${esc(feat.cardPhoto || "01.jpg")}" alt="${esc(feat.address)}" fetchpriority="high"><span class="ftag">Featured listing</span><span class="fcard">${feat.showPrice !== false && feat.price ? `<b>${usd(feat.price)}</b>` : ""}<span>${esc(feat.address)}, ${esc(feat.city)}</span><i>View this home →</i></span></a>`
   : `<div class="feature logo"><img src="/assets/logo.png" alt="Pandey Realty" style="width:100%;height:auto"></div>`;
 const LISTING_CARDS = active.length
