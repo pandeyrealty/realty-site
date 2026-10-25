@@ -16,11 +16,33 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "767lemos.com"
+        }
+      ],
+      "destination": "https://www.pandey.realty/active-listing/767-lemos",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "767lemos.com"
+        }
+      ],
+      "destination": "https://www.pandey.realty/active-listing/767-lemos",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.767lemos.com"
         }
       ],
       "destination": "https://www.pandey.realty/active-listing/767-lemos",
