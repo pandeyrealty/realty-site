@@ -1,6 +1,6 @@
 {
   "slug": "767-lemos",
-  "status": "draft",
+  "status": "active",
   "order": 1,
   "address": "767 Lemos Avenue",
   "shortAddress": "767 Lemos Ave",
@@ -18,7 +18,7 @@
   "yearBuilt": "1957",
   "agent": "nayan-pandey",
   "cardPhoto": "01.jpg",
-  "summary": "Three-bedroom, two-bath home in South Salinas with a pool, a fireplace, and a well-equipped kitchen.",
+  "summary": "Updated three-bedroom, two-bath home in South Salinas with a pool, a covered patio room, and a built-in BBQ island.",
   "stats": [
     [
       "Price",
@@ -47,47 +47,54 @@
   ],
   "hero": [
     [
+      46,
+      "Pool and back yard"
+    ],
+    [
       1,
       "Front of the home"
     ],
     [
-      2,
-      "Living room"
+      7,
+      "Living room with brick fireplace"
     ],
     [
-      3,
-      "Kitchen"
+      17,
+      "Updated kitchen"
     ],
     [
-      4,
-      "Back yard and pool"
+      38,
+      "Covered patio room"
     ],
     [
-      5,
-      "Pool"
+      20,
+      "Bedroom"
     ]
   ],
   "about": {
-    "title": "A South Salinas home with a pool",
-    "lead": "A three-bedroom, two-bath single-family home in the College Manor neighborhood of South Salinas, with a private pool in the back yard.",
+    "title": "Updated inside, made for the back yard",
+    "lead": "A single-level, three-bedroom, two-bath home in the College Manor neighborhood of South Salinas, with a pool, a covered patio room, and a built-in BBQ island out back.",
     "paragraphs": [
-      "The living room is spacious and centered on a fireplace. The kitchen has a built-in oven, a built-in microwave, an electric cooktop, and plenty of counter space and cabinet storage."
+      "Inside, hardwood floors and recessed lighting run through an open living and dining area. The living room is anchored by a brick fireplace, and the dining area has room for a home-office desk."
     ],
     "more": [
-      "There are three bedrooms and two full bathrooms, including a hall bath with a tub and shower.",
-      "Out back, the pool makes the yard a place to spend warm afternoons and evenings."
+      "The updated kitchen has white shaker cabinets, light quartz counters, a stainless gas range with a vent hood, a dishwasher, a built-in microwave, and a side-by-side refrigerator.",
+      "There are three bedrooms and two updated bathrooms: one with a glass-enclosed shower, and one with a long single-sink vanity and a tub with sliding glass doors.",
+      "Out back, the pool has a safety fence and a wide concrete deck. A covered patio room with a translucent roof and glass panels looks out over the pool, and a built-in BBQ island with stainless storage sits nearby. The garage has a laundry area with a utility sink and wall cabinets."
     ],
     "highlights": [
-      "Private pool",
-      "Living room with fireplace",
-      "Built-in oven and microwave",
-      "Plenty of counter and storage space",
-      "3 bedrooms, 2 full baths",
-      "College Manor, South Salinas"
+      "Pool with safety fence",
+      "Covered patio room facing the pool",
+      "Built-in BBQ island",
+      "Updated kitchen with gas range",
+      "Hardwood floors throughout",
+      "Brick fireplace",
+      "2 updated bathrooms",
+      "Garage laundry with utility sink"
     ]
   },
   "video": "https://www.youtube.com/watch?v=LjkyHnqCnKE",
-  "videoPoster": 1,
+  "videoPoster": 46,
   "photos": [
     [
       "Exterior",
@@ -95,24 +102,279 @@
       1
     ],
     [
+      "Exterior",
+      "Front of the home",
+      2
+    ],
+    [
+      "Exterior",
+      "Front yard",
+      3
+    ],
+    [
+      "Exterior",
+      "Driveway and garage",
+      4
+    ],
+    [
       "Interior",
       "Living room",
-      2
+      5
+    ],
+    [
+      "Interior",
+      "Living room",
+      6
+    ],
+    [
+      "Interior",
+      "Living room with fireplace",
+      7
+    ],
+    [
+      "Interior",
+      "Living room",
+      8
+    ],
+    [
+      "Interior",
+      "Living room toward fireplace",
+      9
+    ],
+    [
+      "Interior",
+      "Living room",
+      10
+    ],
+    [
+      "Interior",
+      "Living room toward dining area",
+      11
+    ],
+    [
+      "Interior",
+      "Dining area",
+      12
+    ],
+    [
+      "Interior",
+      "Dining area",
+      13
+    ],
+    [
+      "Interior",
+      "Dining area and office nook",
+      14
+    ],
+    [
+      "Interior",
+      "Dining area",
+      15
     ],
     [
       "Interior",
       "Kitchen",
-      3
+      16
     ],
     [
-      "Yard",
-      "Back yard and pool",
-      4
+      "Interior",
+      "Kitchen",
+      17
     ],
     [
-      "Yard",
+      "Interior",
+      "Kitchen with gas range",
+      18
+    ],
+    [
+      "Interior",
+      "Kitchen",
+      19
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      20
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom with mirrored closet",
+      21
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      22
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom",
+      23
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom shower",
+      24
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom",
+      25
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      26
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      27
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      28
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      29
+    ],
+    [
+      "Bedrooms & baths",
+      "Bedroom",
+      30
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom",
+      31
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom",
+      32
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom",
+      33
+    ],
+    [
+      "Bedrooms & baths",
+      "Bathroom vanity",
+      34
+    ],
+    [
+      "Garage",
+      "Laundry area in garage",
+      35
+    ],
+    [
+      "Garage",
+      "Garage",
+      36
+    ],
+    [
+      "Patio room",
+      "Covered patio room",
+      37
+    ],
+    [
+      "Patio room",
+      "Covered patio room",
+      38
+    ],
+    [
+      "Patio room",
+      "Patio room toward pool",
+      39
+    ],
+    [
+      "Patio room",
+      "Patio room toward pool",
+      40
+    ],
+    [
+      "Patio room",
+      "Patio room",
+      41
+    ],
+    [
+      "Patio room",
+      "Patio room",
+      42
+    ],
+    [
+      "Pool & yard",
       "Pool",
-      5
+      43
+    ],
+    [
+      "Pool & yard",
+      "Pool",
+      44
+    ],
+    [
+      "Pool & yard",
+      "Pool",
+      45
+    ],
+    [
+      "Pool & yard",
+      "Pool",
+      46
+    ],
+    [
+      "Pool & yard",
+      "Pool deck",
+      47
+    ],
+    [
+      "Pool & yard",
+      "Pool and back of the home",
+      48
+    ],
+    [
+      "Pool & yard",
+      "BBQ island and pool",
+      49
+    ],
+    [
+      "Pool & yard",
+      "BBQ island",
+      50
+    ],
+    [
+      "Pool & yard",
+      "BBQ island",
+      51
+    ],
+    [
+      "Pool & yard",
+      "BBQ island",
+      52
+    ],
+    [
+      "Pool & yard",
+      "Back yard",
+      53
+    ],
+    [
+      "Pool & yard",
+      "Back yard",
+      54
+    ],
+    [
+      "Pool & yard",
+      "BBQ island and patio room",
+      55
+    ],
+    [
+      "Pool & yard",
+      "BBQ island and patio room",
+      56
     ]
   ],
   "calculator": {
