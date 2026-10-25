@@ -35,3 +35,12 @@ Sold listings move to `/sold-listing/<slug>` and show under "Recent sales".
 
 ## Local preview
 `node build.mjs` then serve `public/`.
+
+## PDF brochures
+Each listing's "Print brochure (PDF)" button opens `listings/<slug>/brochure.pdf`.
+After adding a listing or changing its price, text, or photos, rebuild the brochure and commit it:
+
+    pip install reportlab pillow   # once
+    python3 tools/brochure.py <slug>     # or: python3 tools/brochure.py --all
+
+Fonts (Inter, SIL Open Font License) are in `tools/fonts/`.

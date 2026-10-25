@@ -117,6 +117,11 @@ for (const L of listings) {
   L.urlPath = `${prefix}/${L.slug}`;
   L.url = `/${L.urlPath}`;
   fs.cpSync(path.join(ROOT, "listings", L.dir, "photos"), path.join(OUT, L.urlPath, "photos"), { recursive: true });
+  // PDF brochure made by tools/brochure.py (re-run it after changing a listing)
+  const brochureSrc = path.join(ROOT, "listings", L.dir, "brochure.pdf");
+  const brochureName = `${(L.shortAddress || L.address).replace(/[^A-Za-z0-9]+/g, "-")}-Brochure.pdf`;
+  L.brochure = fs.existsSync(brochureSrc) ? `/${L.urlPath}/${brochureName}` : "";
+  if (L.brochure) fs.copyFileSync(brochureSrc, path.join(OUT, L.urlPath, brochureName));
   const agent = team.find((m) => m.slug === L.agent) || founder;
   L.agentSlug = agent.slug;
   const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
@@ -135,6 +140,7 @@ for (const L of listings) {
     KICKER: esc([L.type, L.neighborhood, `${L.city}, ${L.state}`].filter(Boolean).join(" · ")),
     CITY_LINE: esc(`${L.city}, ${L.state === "CA" ? "California" : L.state} ${L.zip}`),
     MORE_LISTINGS: (() => { const o = listings.filter((x) => x.status !== "sold" && x.slug !== L.slug); return o.length ? `<div class="more-l">${o.map((x) => `<a href="${x.url}"><img src="${x.url}/photos/${esc(x.cardPhoto || "01.jpg")}" alt="${esc(x.address)}" loading="lazy"><div class="mb">${x.showPrice !== false && x.price ? `<b>${usd(x.price)}</b>` : ""}<span>${esc(x.address)}, ${esc(x.city)}</span><span>${esc([x.beds && x.beds + " bd", x.baths && x.baths + " ba", x.sqft && x.sqft + " sq ft"].filter(Boolean).join(" · "))}</span><i>View this home →</i></div></a>`).join("")}</div>` : ""; })(),
+    BROCHURE_BTN: L.brochure ? `<a href="${L.brochure}" target="_blank" rel="noopener">Print brochure (PDF)</a>` : `<button type="button" onclick="window.print()">Print brochure</button>`,
     STATUS_LABEL: esc(label), PRICE_HTML: priceTxt ? `<span class="price">${priceTxt}</span>` : "",
     PHOTO_COUNT: String(L.photos.length),
     STAT_COUNT: String(L.stats.length), STATS_HTML: L.stats.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""),
