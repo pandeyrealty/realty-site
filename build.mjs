@@ -51,21 +51,22 @@ const memberCard = (m) => `<aside class="agent">
   ${m.preapprovalUrl ? `<a class="btn gold" href="${esc(m.preapprovalUrl)}" target="_blank" rel="noopener">Secure pre-approval application</a>` : ""}
   <div class="lic">${m.licenses.map(([k, v]) => `<span>${esc(m.name)} · ${esc(k)} ${esc(v)}</span>`).join("")}<span>${esc(site.company)} · CA DRE Corp. #02446715 · NMLS #2877353</span></div>
 </aside>`;
-const COMPANY_CARD = `<aside class="agent">
+const companyCard = (withPreapproval = true) => `<aside class="agent">
   <img class="agent-logo" src="/assets/logo.png" alt="Pandey Realty" loading="lazy" style="width:190px">
   <div class="who"><div><p class="name">${esc(site.company)}</p><p class="role">Real estate brokerage &amp; mortgage<br>${esc(site.tagline)}</p></div></div>
   <div class="line"><div><small>Call or text</small><a href="tel:${site.phoneHref}">${esc(site.phone)}</a></div></div>
   <div class="line"><div><small>Real estate</small><a href="mailto:${esc(site.emailRealEstate)}">${esc(site.emailRealEstate)}</a></div></div>
   <div class="line"><div><small>Mortgage</small><a href="mailto:${esc(site.emailMortgage)}">${esc(site.emailMortgage)}</a></div></div>
   <div class="line"><div><small>Office</small>${esc(site.office)}</div></div>
-  <a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Secure pre-approval application</a>
+  ${withPreapproval ? `<a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Secure pre-approval application</a>` : ""}
   <div class="lic"><span>CA DRE Corporation #02446715</span><span>NMLS #2877353</span></div>
 </aside>`;
+const COMPANY_CARD = companyCard(true);
 const TEAM_CARDS = team.map((m) => `<a class="tcard" href="${memberUrl(m)}"><img src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy"><div class="tb"><b>${esc(m.name)}</b><span>${esc(m.role)}</span><small>${m.licenses.map(([k, v]) => `${esc(k)} ${esc(v)}`).join(" · ")}</small><i>${m.founder ? "Meet our founder →" : "View profile →"}</i></div></a>`).join("");
 
-function leadForm(topics, { showWhen = false, submitLabel = "Send message", placeholder = "Tell me a bit about what you're looking for." } = {}) {
+function leadForm(topics, { showWhen = false, showLoan = true, label = "I'd like help with", submitLabel = "Send message", placeholder = "Tell me a bit about what you're looking for." } = {}) {
   return `<form class="form" id="leadForm" novalidate>
-  <div class="field"><div class="fl"><span>I'd like help with</span></div>
+  <div class="field"><div class="fl"><span>${esc(label)}</span></div>
     <div class="seg" id="topic" role="group" aria-label="Request type">${topics.map((t, i) => `<button type="button" data-v="${esc(t)}" aria-pressed="${i === 0}">${esc(t)}</button>`).join("")}</div></div>
   <div class="row2">
     <div class="field"><label for="fName">Full name <span class="req">*</span></label><input type="text" id="fName" autocomplete="name" required maxlength="100"></div>
@@ -77,7 +78,7 @@ function leadForm(topics, { showWhen = false, submitLabel = "Send message", plac
     <div class="field"><label for="fTime">Preferred time</label><select id="fTime"><option value="">Any time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
   </div>` : ""}
   <div class="field"><label for="fMsg">Message</label><textarea id="fMsg" maxlength="2000" placeholder="${esc(placeholder)}"></textarea></div>
-  <label class="check"><input type="checkbox" id="fLoan"> I'd also like help getting pre-approved for a loan.</label>
+  ${showLoan ? `<label class="check"><input type="checkbox" id="fLoan"> I'd also like help getting pre-approved for a loan.</label>` : ""}
   <label class="check"><input type="checkbox" id="fConsent" required> I agree that Pandey Realty may contact me by phone, text, or email about my inquiry. Consent is not a condition of purchasing any property or obtaining financing. Message and data rates may apply.</label>
   <div class="hp" aria-hidden="true"><label for="fWeb">Website</label><input type="text" id="fWeb" tabindex="-1" autocomplete="off"></div>
   <div class="status" id="fStatus" role="status" hidden></div>
@@ -177,14 +178,14 @@ write("index.html", fill(read("src/home.html"), {
 const FOUNDER_STATS = (founder.stats || []).map(([v, k]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 const FOUNDER_LICENSES = founder.licenses.map(([k, v]) => `<div><dt>${esc(founder.name)} · ${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
 const pageForms = {
-  join: leadForm(["Join as an agent", "Join as a loan officer", "Other"], { placeholder: "Your license type and number, years of experience, and what you're looking for." }),
+  join: leadForm(["Join as an agent", "Join as a loan officer", "Other"], { showLoan: false, label: "I'm interested in", submitLabel: "Send my info", placeholder: "Your license type and number, years of experience, and what you're looking for." }),
 };
 for (const page of ["mortgage", "calculators", "privacy", "terms", "founder", "team", "join"]) {
   const src = `src/${page}.html`;
   if (!fs.existsSync(path.join(ROOT, src))) continue;
   write(`${page}/index.html`, fill(read(src), {
     ...common,
-    REVIEWS, FOUNDER_STATS, FOUNDER_LICENSES,
+    REVIEWS, FOUNDER_STATS, FOUNDER_LICENSES, COMPANY_CARD: companyCard(page !== "join"),
     LEAD_FORM: pageForms[page] || leadForm(["Get pre-approved", "Purchase loan", "Refinance", "Investment loan", "General question"], { placeholder: "What are you trying to do? No sensitive details, please." }),
   }));
 }
