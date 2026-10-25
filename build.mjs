@@ -39,7 +39,7 @@ const FOOTER = `<footer><div class="wrap">
   <div class="lic">${licLine}</div>
   <div class="eho"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 3 16h4v18h26V16h4z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M13 22h14M13 27h14" stroke="currentColor" stroke-width="2.4"/></svg><span><b style="color:var(--on-navy)">Equal Housing Opportunity.</b> Pandey Realty is committed to compliance with all federal, state, and local fair housing laws.</span></div>
   <div>Mortgage information on this site is not a commitment to lend or an offer to extend credit. All loans are subject to credit approval, underwriting, and property eligibility; terms and programs may change without notice. NMLS Consumer Access: <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener">nmlsconsumeraccess.org</a>. California DRE license lookup: <a href="https://www2.dre.ca.gov/publicasp/pplinfo.asp" target="_blank" rel="noopener">dre.ca.gov</a>.</div>
-  <div style="display:flex;flex-wrap:wrap;gap:8px 20px"><span>© ${new Date().getFullYear()} ${esc(site.company)}</span><a href="/privacy">Privacy policy</a><a href="/terms">Terms of use</a><a href="/mortgage">Mortgage Center</a><a href="/calculators">Calculators</a></div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px 20px"><span>© ${new Date().getFullYear()} ${esc(site.company)}</span><a href="/privacy">Privacy policy</a><a href="/terms">Terms of use</a><a href="/home-value">Home valuation</a><a href="/mortgage">Mortgage Center</a><a href="/calculators">Calculators</a></div>
 </div></footer>`;
 
 const memberCard = (m, brk) => `<aside class="agent">
@@ -193,7 +193,7 @@ const FOUNDER_LICENSES = founder.licenses.map(([k, v]) => `<div><dt>${esc(founde
 const pageForms = {
   join: leadForm(["Join as an agent", "Join as a loan officer", "Other"], { showLoan: false, label: "I'm interested in", submitLabel: "Send my info", placeholder: "Your license type and number, years of experience, and what you're looking for." }),
 };
-for (const page of ["mortgage", "calculators", "privacy", "terms", "founder", "team", "join"]) {
+for (const page of ["mortgage", "calculators", "privacy", "terms", "founder", "team", "join", "home-value"]) {
   const src = `src/${page}.html`;
   if (!fs.existsSync(path.join(ROOT, src))) continue;
   write(`${page}/index.html`, fill(read(src), {
@@ -218,7 +218,7 @@ for (const m of team.filter((x) => !x.founder)) {
     LEAD_FORM: leadForm(["Buying a home", "Selling a home", "Financing or refinancing", "Other"]),
   }));
 }
-const urls = ["/", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url)];
+const urls = ["/", "/home-value", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://www.pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
 write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://www.pandey.realty/sitemap.xml\n");
 console.log(`Built ${listings.length} listing(s): ${listings.map((l) => l.url).join(", ")}`);

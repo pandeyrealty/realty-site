@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What's My Home Worth? Free Home Valuation | Pandey Realty</title>
+<meta name="description" content="Request a free, personalized home valuation from Pandey Realty. Our team reviews recent comparable sales near your East Bay home. No commitment. CA DRE #02446715.">
+<meta property="og:title" content="What's your home really worth? · Pandey Realty">
+<meta property="og:description" content="A personalized valuation from our team, based on real comparable sales. No commitment.">
+<meta property="og:image" content="https://www.pandey.realty/assets/og.jpg">
+<link rel="canonical" href="https://www.pandey.realty/home-value">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+.vhero{text-align:center;padding:72px 0 8px}
+.vhero h1{font-weight:800;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-.03em}
+.vhero h1 em{font-style:normal;color:var(--gold-ink);display:block}
+.vhero .lead{color:var(--muted);font-size:19px;max-width:58ch;margin:22px auto 0}
+.vwrap{max-width:760px;margin:0 auto}
+
+/* Stepper */
+.stepper{list-style:none;margin:48px auto 36px;padding:0;display:flex;justify-content:center;max-width:520px}
+.stepper li{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.stepper li+li::before{content:"";position:absolute;top:22px;right:calc(50% + 32px);width:calc(100% - 64px);height:2px;background:var(--line);transition:background .3s}
+.stepper .dot{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;font-size:16px;letter-spacing:0;background:var(--line);color:var(--muted);transition:background .3s,color .3s}
+.stepper li.on{color:var(--fg)}
+.stepper li.on .dot{background:var(--navy);color:#fff}
+.stepper li.done .dot{background:var(--gold);color:#0f1d33}
+.stepper li.done+li::before,.stepper li.on:not(:first-child)::before{background:var(--gold)}
+@media (prefers-color-scheme:dark){.stepper li.on .dot{background:var(--gold);color:#0f1d33}}
+
+/* Card */
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:44px 48px;display:grid;gap:20px}
+.vcard h2{font-size:clamp(26px,3.4vw,34px);margin:0}
+.vcard .hint{color:var(--muted);margin:-12px 0 4px}
+.vcard .eyebrow{margin:0}
+.row3{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.opt{font-weight:500;color:var(--muted)}
+#vForm .field label{justify-content:flex-start;gap:4px}
+.actions{display:flex;gap:12px;align-items:center;margin-top:6px}
+.actions .btn.gold{flex:1;padding:15px 22px;font-size:16px;letter-spacing:.02em}
+.actions .back{background:none;border:0;font:inherit;font-weight:600;color:var(--muted);cursor:pointer;padding:12px 6px}
+.actions .back:hover{color:var(--fg)}
+.field.bad input{border-color:var(--err)}
+.ferr{color:var(--err);font-size:14px;margin:6px 0 0}
+.addr-pill{display:flex;align-items:center;gap:10px;background:var(--gold-soft);border-radius:10px;padding:12px 16px;font-weight:600}
+.addr-pill svg{flex:none;color:var(--gold-ink)}
+.addr-pill button{margin-left:auto;background:none;border:0;font:inherit;font-size:14px;font-weight:700;color:var(--gold-ink);cursor:pointer}
+.done-card{text-align:center;justify-items:center}
+.done-card .tick{width:64px;height:64px;border-radius:999px;background:var(--gold);color:#0f1d33;display:grid;place-items:center}
+.done-card p{color:var(--muted);max-width:52ch;margin:0}
+.done-card .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+@media (max-width:640px){.vcard{padding:26px 22px}.row3,.row4{grid-template-columns:1fr 1fr}.row3 .field:first-child{grid-column:1/-1}.stepper li{font-size:11px}}
+
+/* How it works */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.how article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.how small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--gold-ink)}
+.how h3{font-size:20px;margin:6px 0 8px}
+.how p{margin:0;color:var(--muted);font-size:16px}
+@media (max-width:860px){.how{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{{NAV}}
+<main>
+<div class="vhero"><div class="wrap">
+  <p class="eyebrow">Free home valuation</p>
+  <h1>What's your home <em>really worth?</em></h1>
+  <p class="lead">East Bay home values shift constantly. Get a personalized valuation from our team, based on real comparable sales, not an automated guess. No commitment. Just answers.</p>
+</div></div>
+
+<div class="wrap"><div class="vwrap">
+  <ol class="stepper" id="stepper" aria-label="Progress">
+    <li class="on" aria-current="step"><span class="dot">1</span>Property</li>
+    <li><span class="dot">2</span>Details</li>
+    <li><span class="dot">3</span>Contact</li>
+  </ol>
+
+  <form id="vForm" novalidate>
+    <!-- Step 1 -->
+    <div class="vcard" data-step="1">
+      <p class="eyebrow">Step 1 of 3</p>
+      <h2>Enter your address to begin</h2>
+      <p class="hint">We'll use this to find comparable sales in your neighborhood.</p>
+      <div class="row3">
+        <div class="field"><label for="vStreet">Street address <span class="req">*</span></label><input type="text" id="vStreet" autocomplete="address-line1" placeholder="123 Main St" maxlength="100" required></div>
+        <div class="field"><label for="vUnit">Unit <span class="opt">(optional)</span></label><input type="text" id="vUnit" autocomplete="address-line2" placeholder="Apt 4" maxlength="20"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="vCity">City <span class="req">*</span></label><input type="text" id="vCity" autocomplete="address-level2" placeholder="Richmond" maxlength="60" required></div>
+        <div class="field"><label for="vZip">ZIP code <span class="req">*</span></label><input type="text" id="vZip" autocomplete="postal-code" inputmode="numeric" placeholder="94803" maxlength="10" required></div>
+      </div>
+      <div class="actions"><button class="btn gold" type="button" data-next>Continue →</button></div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="vcard" data-step="2" hidden>
+      <p class="eyebrow">Step 2 of 3</p>
+      <h2>Tell us about the home</h2>
+      <div class="addr-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span id="vAddrShow"></span><button type="button" data-goto="1">Edit</button></div>
+      <div class="field"><div class="fl"><span>Property type</span></div>
+        <div class="seg" id="vType" role="group" aria-label="Property type">
+          <button type="button" data-v="Single-family" aria-pressed="true">Single-family</button><button type="button" data-v="Condo / townhome" aria-pressed="false">Condo / townhome</button><button type="button" data-v="Multi-unit (2–4)" aria-pressed="false">Multi-unit (2–4)</button><button type="button" data-v="Land / other" aria-pressed="false">Land / other</button>
+        </div></div>
+      <div class="row4">
+        <div class="field"><label for="vBeds">Bedrooms</label><select id="vBeds"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+        <div class="field"><label for="vBaths">Bathrooms</label><select id="vBaths"><option value="">—</option><option>1</option><option>1.5</option><option>2</option><option>2.5</option><option>3</option><option>3.5</option><option>4+</option></select></div>
+        <div class="field"><label for="vSqft">Sq ft</label><input type="text" id="vSqft" inputmode="numeric" placeholder="1,500" maxlength="7"></div>
+        <div class="field"><label for="vYear">Year built</label><input type="text" id="vYear" inputmode="numeric" placeholder="1985" maxlength="4"></div>
+      </div>
+      <div class="field"><div class="fl"><span>Condition</span></div>
+        <div class="seg" id="vCond" role="group" aria-label="Condition">
+          <button type="button" data-v="Move-in ready" aria-pressed="false">Move-in ready</button><button type="button" data-v="Some updates needed" aria-pressed="false">Some updates needed</button><button type="button" data-v="Needs major work" aria-pressed="false">Needs major work</button>
+        </div></div>
+      <div class="field"><label for="vUpdates">Recent updates or features <span class="opt">(optional)</span></label><textarea id="vUpdates" maxlength="800" placeholder="New roof 2021, remodeled kitchen, solar, ADU, pool…"></textarea></div>
+      <div class="actions"><button class="back" type="button" data-goto="1">← Back</button><button class="btn gold" type="button" data-next>Continue →</button></div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="vcard" data-step="3" hidden>
+      <p class="eyebrow">Step 3 of 3</p>
+      <h2>Where should we send your valuation?</h2>
+      <p class="hint">A member of our team will review recent sales near you and reach out with your valuation.</p>
+      <div class="field"><div class="fl"><span>What's prompting this?</span></div>
+        <div class="seg" id="vGoal" role="group" aria-label="Reason">
+          <button type="button" data-v="Selling in the next 3 months" aria-pressed="false">Selling in 3 months</button><button type="button" data-v="Selling in 3–12 months" aria-pressed="false">Selling in 3–12 months</button><button type="button" data-v="Refinance or home equity" aria-pressed="false">Refinance / equity</button><button type="button" data-v="Just curious" aria-pressed="false">Just curious</button>
+        </div></div>
+      <div class="row2">
+        <div class="field"><label for="fName">Full name <span class="req">*</span></label><input type="text" id="fName" autocomplete="name" required maxlength="100"></div>
+        <div class="field"><label for="fPhone">Phone <span class="req">*</span></label><input type="tel" id="fPhone" autocomplete="tel" required maxlength="30"></div>
+      </div>
+      <div class="field"><label for="fEmail">Email <span class="req">*</span></label><input type="email" id="fEmail" autocomplete="email" required maxlength="150"></div>
+      <label class="check"><input type="checkbox" id="fConsent" required> I agree that Pandey Realty may contact me by phone, text, or email about my home valuation. Consent is not a condition of any purchase, sale, or financing. Message and data rates may apply.</label>
+      <div class="hp" aria-hidden="true"><label for="fWeb">Website</label><input type="text" id="fWeb" tabindex="-1" autocomplete="off"></div>
+      <div class="status" id="fStatus" role="status" hidden></div>
+      <div class="actions"><button class="back" type="button" data-goto="2">← Back</button><button class="btn gold" type="submit" id="fSubmit">Get my home value</button></div>
+      <p class="fine">A valuation from our team is an opinion of value based on market data. It is not an appraisal. Please don't include Social Security numbers or account numbers. Your information goes only to Pandey Realty and its licensed team members. See our <a href="/privacy">privacy policy</a>.</p>
+    </div>
+
+    <!-- Done -->
+    <div class="vcard done-card" data-step="4" hidden>
+      <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></div>
+      <h2 id="vDoneH">Thank you!</h2>
+      <p>We received your request for <b id="vDoneAddr"></b>. A member of our team will review recent comparable sales and reach out to walk you through your home's value.</p>
+      <p>Questions in the meantime? Call or text <a href="tel:{{PHONE_HREF}}">(469) 407-5853</a>.</p>
+      <div class="btns"><a class="btn ghost" href="/calculators#net">Estimate your net proceeds</a><a class="btn ghost" href="/">Back to home</a></div>
+    </div>
+  </form>
+</div></div>
+
+<section class="reveal"><div class="wrap">
+  <p class="eyebrow">How it works</p>
+  <h2>A real valuation, from people who know the East Bay</h2>
+  <div class="how">
+    <article><small>Step 1</small><h3>You tell us about the home</h3><p>Address, size, condition, and anything an online estimate can't see, like a remodel or an ADU.</p></article>
+    <article><small>Step 2</small><h3>We pull the comparable sales</h3><p>Our team looks at recent nearby sales, active competition, and adjusts for your home's features.</p></article>
+    <article><small>Step 3</small><h3>We walk you through the number</h3><p>You get a value range and the sales behind it. If selling or refinancing makes sense, we'll talk options. If not, that's fine too.</p></article>
+  </div>
+</div></section>
+</main>
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+PR.nav();PR.reveal();
+(() => {
+  const $ = PR.$, form = $("vForm"), cards = [...form.querySelectorAll("[data-step]")], dots = [...$("stepper").children];
+  const started = Date.now();
+  let step = 1;
+  const seg = (id) => { const g = $(id); g.querySelectorAll("button").forEach((b) => b.onclick = () => g.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b))); return () => (g.querySelector('[aria-pressed="true"]') || {}).dataset?.v || ""; };
+  const type = seg("vType"), cond = seg("vCond"), goal = seg("vGoal");
+  const val = (id) => $(id).value.trim();
+  const address = () => `${val("vStreet")}${val("vUnit") ? " " + val("vUnit") : ""}, ${val("vCity")}, CA ${val("vZip")}`;
+
+  function show(n, focus = true) {
+    step = n;
+    cards.forEach((c) => (c.hidden = Number(c.dataset.step) !== n));
+    dots.forEach((d, i) => { d.classList.toggle("on", i + 1 === n); d.classList.toggle("done", i + 1 < n); i + 1 === n ? d.setAttribute("aria-current", "step") : d.removeAttribute("aria-current"); });
+    if (n === 2) $("vAddrShow").textContent = address();
+    const card = cards[n - 1];
+    if (focus) { const top = $("stepper").getBoundingClientRect().top + scrollY - 90; if (scrollY > top) scrollTo({ top, behavior: PR.reduce ? "auto" : "smooth" }); (card.querySelector("input:not([type=checkbox]),h2") || card).focus({ preventScroll: true }); }
+  }
+  function flag(id, msg) {
+    const f = $(id).closest(".field"); f.classList.add("bad");
+    let e = f.querySelector(".ferr"); if (!e) { e = document.createElement("p"); e.className = "ferr"; f.appendChild(e); } e.textContent = msg;
+    $(id).setAttribute("aria-invalid", "true"); return false;
+  }
+  form.addEventListener("input", (e) => { const f = e.target.closest(".field.bad"); if (f) { f.classList.remove("bad"); f.querySelector(".ferr")?.remove(); e.target.removeAttribute("aria-invalid"); } });
+
+  function check(n) {
+    let ok = true, first;
+    const need = (id, test, msg) => { if (!test(val(id))) { flag(id, msg); ok = false; first = first || id; } };
+    if (n === 1) {
+      need("vStreet", (v) => v.length >= 4 && /\d/.test(v), "Please enter the street address, including the number.");
+      need("vCity", (v) => v.length >= 2, "Please enter the city.");
+      need("vZip", (v) => /^\d{5}(-\d{4})?$/.test(v), "Please enter a 5-digit ZIP code.");
+    }
+    if (n === 2) {
+      need("vSqft", (v) => !v || (PR.num(v) >= 200 && PR.num(v) <= 50000), "Enter square feet as a number, or leave it blank.");
+      need("vYear", (v) => !v || (/^\d{4}$/.test(v) && +v >= 1850 && +v <= new Date().getFullYear() + 1), "Enter a 4-digit year, or leave it blank.");
+    }
+    if (n === 3) {
+      need("fName", (v) => v.length >= 2, "Please enter your name.");
+      need("fPhone", (v) => v.replace(/\D/g, "").length >= 10, "Please enter a phone number with area code.");
+      need("fEmail", (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), "Please enter a valid email address.");
+    }
+    if (first) $(first).focus();
+    return ok;
+  }
+  $("vSqft").addEventListener("blur", (e) => PR.fmtInput(e.target));
+
+  form.querySelectorAll("[data-next]").forEach((b) => (b.onclick = () => check(step) && show(step + 1)));
+  form.querySelectorAll("[data-goto]").forEach((b) => (b.onclick = () => show(Number(b.dataset.goto))));
+  form.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.tagName === "INPUT" && step < 3) { e.preventDefault(); check(step) && show(step + 1); } });
+
+  const status = $("fStatus"), submit = $("fSubmit");
+  const say = (msg) => { status.textContent = msg; status.className = "status err"; status.hidden = false; };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!check(3)) return;
+    if (!$("fConsent").checked) { say("Please check the box so we can contact you about your valuation."); return; }
+    status.hidden = true; submit.disabled = true; submit.textContent = "Sending…";
+    const details = [
+      ["Address", address()],
+      ["Property type", type()],
+      ["Bedrooms", val("vBeds")], ["Bathrooms", val("vBaths")],
+      ["Square feet", val("vSqft")], ["Year built", val("vYear")],
+      ["Condition", cond()], ["Reason", goal()],
+      ["Updates / features", val("vUpdates")],
+    ].map(([k, v]) => `${k}: ${v || "—"}`).join("\n");
+    const name = val("fName");
+    try {
+      const res = await fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+        topic: "Home valuation", listing: address(), page: location.href,
+        name, email: val("fEmail"), phone: val("fPhone"), message: details,
+        preapproval: goal() === "Refinance or home equity", consent: true,
+        website: $("fWeb").value, elapsed: Date.now() - started }) });
+      const data = await res.json().catch(() => ({}));
+      if (!(res.ok && data.ok)) throw new Error(data.error || "send failed");
+      $("vDoneH").textContent = `Thank you, ${name.split(" ")[0]}!`;
+      $("vDoneAddr").textContent = address();
+      show(4);
+    } catch (err) {
+      say("Sorry, your request couldn't be sent. Please call or text us at (469) 407-5853.");
+      submit.disabled = false; submit.textContent = "Get my home value";
+    }
+  });
+
+  // Prefill from ?address=…&city=…&zip=… (e.g. a homepage or listing mini-form)
+  const q = new URLSearchParams(location.search);
+  [["address", "vStreet"], ["city", "vCity"], ["zip", "vZip"]].forEach(([k, id]) => { if (q.get(k)) $(id).value = q.get(k).slice(0, 100); });
+  show(1, false);
+})();
+</script>
+</body>
+</html>
