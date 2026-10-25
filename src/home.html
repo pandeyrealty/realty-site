@@ -50,6 +50,16 @@
 .stats dt{order:2;font-size:13px;color:var(--on-navy-muted)}
 .stats dd{margin:0 0 2px;font-family:var(--display);font-weight:800;font-size:clamp(26px,3.2vw,36px);line-height:1.1;color:#fff;font-variant-numeric:tabular-nums}
 .stats dd .star{color:var(--gold)}
+.hvband{padding-block:72px 0}
+.hvbox{background:var(--navy);color:var(--on-navy);border-radius:18px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hvtxt .eyebrow{color:var(--gold)}
+.hvtxt h2{color:#fff;margin-bottom:14px}
+.hvtxt h2 span{color:var(--gold);display:block}
+.hvtxt p:last-child{color:var(--on-navy-muted);margin:0;max-width:46ch}
+.hvform{background:var(--surface);color:var(--fg);border-radius:14px;padding:26px;display:grid;gap:14px}
+.hvform .field label{justify-content:flex-start}
+.hvform .btn{width:100%;padding:14px}
+@media (max-width:860px){.hvbox{grid-template-columns:1fr;padding:28px 22px;gap:24px}.hvform{padding:20px}}
 .steps{background:var(--navy);color:var(--on-navy)}
 .steps .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-block:56px 64px}
 .steps-h{grid-column:1/-1;color:#fff;font-size:clamp(26px,3.4vw,38px);margin:0 0 28px}
@@ -187,6 +197,7 @@
       <a href="/team">Our Team</a>
       <a href="/founder">Founder</a>
       <a href="#contact">Contact</a>
+      <a class="hv" href="/home-value">Find my home value</a>
       <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved</a>
     </nav>
   </div>
@@ -201,7 +212,7 @@
       <nav class="paths" aria-label="How can we help">
         <a href="#listings"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search homes</a>
         <a href="/mortgage"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Mortgage guidance</a>
-        <a href="/home-value"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-7h6v7"/></svg>Sell your property</a>
+        <a href="/home-value"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-7h6v7"/></svg>Find my home value</a>
         <a href="#contact" data-topic="Investment property"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Investment opportunities</a>
         <a href="#contact" class="hl"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book a consultation</a>
       </nav>
@@ -225,6 +236,22 @@
 </div></div>
 
 <main>
+<section class="hvband reveal" aria-labelledby="hvH"><div class="wrap"><div class="hvbox">
+  <div class="hvtxt">
+    <p class="eyebrow">Free home valuation</p>
+    <h2 id="hvH">What's your home <span>really worth?</span></h2>
+    <p>Get a personalized valuation from our team, based on real comparable sales near you, not an automated guess. No commitment.</p>
+  </div>
+  <form class="hvform" action="/home-value" method="get">
+    <div class="field"><label for="hvAddr">Street address</label><input type="text" id="hvAddr" name="address" autocomplete="address-line1" placeholder="123 Main St" maxlength="100" required></div>
+    <div class="row2">
+      <div class="field"><label for="hvCity">City</label><input type="text" id="hvCity" name="city" autocomplete="address-level2" placeholder="Richmond" maxlength="60"></div>
+      <div class="field"><label for="hvZip">ZIP code</label><input type="text" id="hvZip" name="zip" autocomplete="postal-code" inputmode="numeric" placeholder="94803" maxlength="10"></div>
+    </div>
+    <button class="btn gold" type="submit">Find my home value →</button>
+  </form>
+</div></div></section>
+
 <section id="listings" class="reveal"><div class="wrap">
   <div class="lhead">
     <div><p class="eyebrow">Listings</p><h2>Featured listings</h2></div>

@@ -251,7 +251,9 @@ PR.nav();PR.reveal();
   // Prefill from ?address=…&city=…&zip=… (e.g. a homepage or listing mini-form)
   const q = new URLSearchParams(location.search);
   [["address", "vStreet"], ["city", "vCity"], ["zip", "vZip"]].forEach(([k, id]) => { if (q.get(k)) $(id).value = q.get(k).slice(0, 100); });
-  show(1, false);
+  const pre = q.get("address") && q.get("city") && /^\d{5}(-\d{4})?$/.test(q.get("zip") || "") && /\d/.test(q.get("address"));
+  show(pre ? 2 : 1, false);
+  if (!pre && q.get("address")) $(q.get("city") ? "vZip" : "vCity").focus({ preventScroll: true });
 })();
 </script>
 </body>

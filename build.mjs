@@ -93,6 +93,7 @@ const NAV = `<header class="nav">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
     <nav class="links" id="links" aria-label="Site">
       <a href="/#listings">Listings</a><a href="/#services">Services</a><a href="/mortgage">Mortgage Center</a><a href="/calculators">Calculators</a><a href="/team">Our Team</a><a href="/founder">Founder</a><a href="/#contact">Contact</a>
+      <a class="hv" href="/home-value">Find my home value</a>
       <a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Get pre-approved</a>
     </nav>
   </div>

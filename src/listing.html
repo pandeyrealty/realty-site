@@ -20,7 +20,8 @@
 .nav.solid{background:var(--surface);color:var(--fg);border-bottom-color:var(--line)}
 .nav:not(.solid) .brand small{color:rgba(255,255,255,.8)}
 .nav:not(.solid) .links a:not(.btn):hover{background:rgba(255,255,255,.14)}
-@media (max-width:980px){.nav .links{color:var(--fg)}}
+@media (max-width:1180px){.nav .links{color:var(--fg)}}
+@media (min-width:1181px){.nav:not(.solid) .links a.hv{color:#fff}}
 .nav .links a{white-space:nowrap}
 .more-l{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin:24px 0 28px}
 .more-l a{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s}
