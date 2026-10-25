@@ -177,7 +177,8 @@ const soldItems = [
 ];
 const SOLD = soldItems.map(([a, c, p, u]) => `<div><small>Sold</small><b>${usd(p)}</b><span>${u ? `<a href="${u}">${esc(a)}</a>` : esc(a)}</span><i>${esc(c)}</i></div>`).join("");
 const REVIEWS = site.reviews.map(([q, who]) => `<figure><blockquote>“${esc(q)}”</blockquote><figcaption><span>${esc(who)}</span><a href="${esc(site.zillowUrl)}" target="_blank" rel="noopener">Read on Zillow</a></figcaption></figure>`).join("");
-write("index.html", fill(read("src/home.html"), {
+// Homepage is written as home.html (not index.html) so vercel.json can show a listing at "/" on a listing domain.
+write("home.html", fill(read("src/home.html"), {
   ...common, LISTING_CARDS, SOLD, REVIEWS, HERO_FEATURE,
   AREAS: site.areas.map((a) => `<span>${esc(a)}</span>`).join(""),
   LICENSES: site.licenses.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""),

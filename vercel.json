@@ -58,6 +58,11 @@
       ],
       "destination": "https://www.pandey.realty/:path",
       "permanent": false
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -70,6 +75,10 @@
         }
       ],
       "destination": "/active-listing/767-lemos"
+    },
+    {
+      "source": "/",
+      "destination": "/home"
     }
   ]
 }
