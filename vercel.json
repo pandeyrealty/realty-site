@@ -16,25 +16,14 @@
   ],
   "redirects": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "767lemos.com"
-        }
-      ],
-      "destination": "https://www.pandey.realty/active-listing/767-lemos",
-      "permanent": true
-    },
-    {
       "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "767lemos.com"
+          "value": "www.767lemos.com"
         }
       ],
-      "destination": "https://www.pandey.realty/active-listing/767-lemos",
+      "destination": "https://767lemos.com/:path*",
       "permanent": true
     },
     {
@@ -45,19 +34,42 @@
           "value": "www.767lemos.com"
         }
       ],
-      "destination": "https://www.pandey.realty/active-listing/767-lemos",
+      "destination": "https://767lemos.com/",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/active-listing/767-lemos",
       "has": [
         {
           "type": "host",
-          "value": "www.767lemos.com"
+          "value": "767lemos.com"
         }
       ],
-      "destination": "https://www.pandey.realty/active-listing/767-lemos",
-      "permanent": true
+      "destination": "https://767lemos.com/",
+      "permanent": false
+    },
+    {
+      "source": "/:path((?!active-listing/767-lemos/|assets/|api/|_vercel/|favicon|robots\\.txt).+)",
+      "has": [
+        {
+          "type": "host",
+          "value": "767lemos.com"
+        }
+      ],
+      "destination": "https://www.pandey.realty/:path",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "767lemos.com"
+        }
+      ],
+      "destination": "/active-listing/767-lemos"
     }
   ]
 }

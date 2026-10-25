@@ -146,6 +146,13 @@ for (const L of listings) {
   }));
 }
 
+// Listing pages can be served on their own domain (e.g. 767lemos.com), where "/" is the listing itself,
+// so links back to the company homepage must be absolute.
+for (const L of listings) {
+  const f = path.join(OUT, L.urlPath, "index.html");
+  fs.writeFileSync(f, fs.readFileSync(f, "utf8").replaceAll('href="/"', 'href="https://www.pandey.realty/"').replaceAll('href="/#', 'href="https://www.pandey.realty/#'));
+}
+
 // ---------- Homepage ----------
 const active = listings.filter((l) => l.status !== "sold");
 const feat = active[0];
