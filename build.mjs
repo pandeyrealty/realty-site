@@ -1,0 +1,170 @@
+// Builds the static site into ./public from ./src templates, ./data/site.json, and ./listings/*/listing.json.
+// Run locally with:  node build.mjs     (Vercel runs it automatically on every push)
+import fs from "node:fs";
+import path from "node:path";
+
+const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const OUT = path.join(ROOT, "public");
+const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const usd = (n) => "$" + Number(n).toLocaleString("en-US");
+const fill = (tpl, vars) => tpl.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => (k in vars ? vars[k] : m));
+
+const site = JSON.parse(read("data/site.json"));
+const CSS = read("src/shared.css");
+const SHARED_JS = read("src/shared.js");
+const STATUS = { active: ["For sale", "active-listing"], pending: ["Pending", "active-listing"], sold: ["Sold", "sold-listing"], coming: ["Coming soon", "active-listing"] };
+
+fs.rmSync(OUT, { recursive: true, force: true });
+fs.mkdirSync(OUT, { recursive: true });
+fs.cpSync(path.join(ROOT, "src/assets"), path.join(OUT, "assets"), { recursive: true });
+
+// ---------- Shared partials ----------
+const HEAD_COMMON = `<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<meta name="theme-color" content="#0f1d33">`;
+
+const licLine = site.licenses.map(([k, v]) => `<span>${esc(k)} <b>${esc(v)}</b></span>`).join("");
+const socials = Object.entries(site.social).map(([k, v]) => `<a href="${esc(v)}" target="_blank" rel="noopener">${esc(k)}</a>`).join("");
+const FOOTER = `<footer><div class="wrap">
+  <div class="top">
+    <a href="/"><img class="logo" src="/assets/logo.png" alt="Pandey Realty" loading="lazy"></a>
+    <div class="soc">${socials}<a href="${esc(site.zillowUrl)}" target="_blank" rel="noopener">Zillow</a></div>
+  </div>
+  <div style="color:var(--on-navy)"><b>${esc(site.company)}</b> · ${esc(site.tagline)} · ${esc(site.office)} · <a href="tel:${site.phoneHref}">${esc(site.phone)}</a></div>
+  <div class="lic">${licLine}</div>
+  <div class="eho"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 3 16h4v18h26V16h4z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M13 22h14M13 27h14" stroke="currentColor" stroke-width="2.4"/></svg><span><b style="color:var(--on-navy)">Equal Housing Opportunity.</b> Pandey Realty is committed to compliance with all federal, state, and local fair housing laws.</span></div>
+  <div>Mortgage information on this site is not a commitment to lend or an offer to extend credit. All loans are subject to credit approval, underwriting, and property eligibility; terms and programs may change without notice. NMLS Consumer Access: <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener">nmlsconsumeraccess.org</a>. California DRE license lookup: <a href="https://www2.dre.ca.gov/publicasp/pplinfo.asp" target="_blank" rel="noopener">dre.ca.gov</a>.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px 20px"><span>© ${new Date().getFullYear()} ${esc(site.company)}</span><a href="/privacy">Privacy policy</a><a href="/terms">Terms of use</a><a href="/mortgage">Mortgage Center</a><a href="/calculators">Calculators</a></div>
+</div></footer>`;
+
+const AGENT_CARD = `<aside class="agent">
+  <img class="agent-logo" src="/assets/logo.png" alt="Pandey Realty" loading="lazy">
+  <div class="who"><img class="avatar" src="/assets/nayan.jpg" alt="Nayan Pandey" loading="lazy"><div><p class="name">${esc(site.name)}</p><p class="role">${esc(site.title)}<br>${esc(site.company)}</p></div></div>
+  <div class="line"><div><small>Call or text</small><a href="tel:${site.phoneHref}">${esc(site.phone)}</a></div></div>
+  <div class="line"><div><small>Real estate</small><a href="mailto:${esc(site.emailRealEstate)}">${esc(site.emailRealEstate)}</a></div></div>
+  <div class="line"><div><small>Mortgage</small><a href="mailto:${esc(site.emailMortgage)}">${esc(site.emailMortgage)}</a></div></div>
+  <div class="line"><div><small>Office</small>${esc(site.office)}</div></div>
+  <a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Secure pre-approval application</a>
+  <div class="lic">${site.licenses.map(([k, v]) => `<span>${esc(k)} ${esc(v)}</span>`).join("")}</div>
+</aside>`;
+
+function leadForm(topics, { showWhen = false, submitLabel = "Send message", placeholder = "Tell me a bit about what you're looking for." } = {}) {
+  return `<form class="form" id="leadForm" novalidate>
+  <div class="field"><div class="fl"><span>I'd like help with</span></div>
+    <div class="seg" id="topic" role="group" aria-label="Request type">${topics.map((t, i) => `<button type="button" data-v="${esc(t)}" aria-pressed="${i === 0}">${esc(t)}</button>`).join("")}</div></div>
+  <div class="row2">
+    <div class="field"><label for="fName">Full name <span class="req">*</span></label><input type="text" id="fName" autocomplete="name" required maxlength="100"></div>
+    <div class="field"><label for="fPhone">Phone <span class="req">*</span></label><input type="tel" id="fPhone" autocomplete="tel" required maxlength="30"></div>
+  </div>
+  <div class="field"><label for="fEmail">Email <span class="req">*</span></label><input type="email" id="fEmail" autocomplete="email" required maxlength="150"></div>
+  ${showWhen ? `<div class="row2" id="whenRow">
+    <div class="field"><label for="fDate">Preferred date</label><input type="date" id="fDate"></div>
+    <div class="field"><label for="fTime">Preferred time</label><select id="fTime"><option value="">Any time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+  </div>` : ""}
+  <div class="field"><label for="fMsg">Message</label><textarea id="fMsg" maxlength="2000" placeholder="${esc(placeholder)}"></textarea></div>
+  <label class="check"><input type="checkbox" id="fLoan"> I'd also like help getting pre-approved for a loan.</label>
+  <label class="check"><input type="checkbox" id="fConsent" required> I agree that Nayan Pandey may contact me by phone, text, or email about my inquiry. Consent is not a condition of purchasing any property or obtaining financing. Message and data rates may apply.</label>
+  <div class="hp" aria-hidden="true"><label for="fWeb">Website</label><input type="text" id="fWeb" tabindex="-1" autocomplete="off"></div>
+  <div class="status" id="fStatus" role="status" hidden></div>
+  <button class="btn gold" type="submit" id="fSubmit">${esc(submitLabel)}</button>
+  <p class="fine">Please don't include Social Security numbers, account numbers, or other sensitive financial details here. Your information goes only to Pandey Realty and is used to respond to you. See our <a href="/privacy">privacy policy</a>.</p>
+</form>`;
+}
+
+const NAV = `<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/logo-sm.png" alt="" width="72" height="42"><span><b>Pandey Realty</b><small>Home easily, loan smoothly</small></span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+    <nav class="links" id="links" aria-label="Site">
+      <a href="/#listings">Listings</a><a href="/#services">Services</a><a href="/mortgage">Mortgage Center</a><a href="/calculators">Calculators</a><a href="/#about">About</a><a href="/#contact">Contact</a>
+      <a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Get pre-approved</a>
+    </nav>
+  </div>
+</header>`;
+const CTA_BAR = `<div class="cta-bar" id="ctaBar"><a class="btn ghost" href="tel:${site.phoneHref}">Call Nayan</a><a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Get pre-approved</a></div>`;
+const common = { NAV, CTA_BAR, CSS, SHARED_JS, HEAD_COMMON, FOOTER, AGENT_CARD, PREAPPROVAL: esc(site.preapprovalUrl), ZILLOW: esc(site.zillowUrl), PHONE_HREF: site.phoneHref };
+const write = (rel, html) => { const f = path.join(OUT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); };
+
+// ---------- Listings ----------
+const listings = fs.readdirSync(path.join(ROOT, "listings"), { withFileTypes: true })
+  .filter((d) => d.isDirectory() && fs.existsSync(path.join(ROOT, "listings", d.name, "listing.json")))
+  .map((d) => ({ dir: d.name, ...JSON.parse(read(`listings/${d.name}/listing.json`)) }))
+  .filter((l) => l.status !== "draft")
+  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+
+const listingTpl = read("src/listing.html");
+for (const L of listings) {
+  const [label, prefix] = STATUS[L.status] || STATUS.active;
+  L.urlPath = `${prefix}/${L.slug}`;
+  L.url = `/${L.urlPath}`;
+  fs.cpSync(path.join(ROOT, "listings", L.dir, "photos"), path.join(OUT, L.urlPath, "photos"), { recursive: true });
+  const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
+  const canonical = `https://pandey.realty${L.url}`;
+  const ogImg = `https://pandey.realty${L.url}/photos/${L.cardPhoto || "01.jpg"}`;
+  const desc = `${L.type ? L.type + " " : ""}${label.toLowerCase()} at ${L.address}, ${L.city}, ${L.state} ${L.zip}. ${L.summary || ""} Listed by Nayan Pandey, Pandey Realty, DRE #02174678.`.trim();
+  const data = { ...L, dir: undefined };
+  write(`${L.urlPath}/index.html`, fill(listingTpl, {
+    ...common,
+    LEAD_FORM: leadForm(["Schedule a showing", "Get more info", "Get pre-approved"], { showWhen: true, submitLabel: "Send request", placeholder: "Questions, how you plan to use the property, etc." }),
+    TITLE: esc(`${L.shortAddress || L.address}, ${L.city} ${L.state}${priceTxt ? " | " + priceTxt : ""} | Pandey Realty`),
+    OG_TITLE: esc(`${L.shortAddress || L.address}, ${L.city} ${L.state}: ${L.type || "Home"} ${label.toLowerCase()}`),
+    DESCRIPTION: esc(desc), CANONICAL: canonical, OG_IMAGE: ogImg,
+    SHORT_ADDRESS: esc(L.shortAddress || L.address), ADDRESS: esc(L.address), CITY: esc(L.city), STATE: esc(L.state), ZIP: esc(L.zip),
+    KICKER: esc([L.type, L.neighborhood, `${L.city}, ${L.state}`].filter(Boolean).join(" · ")),
+    CITY_LINE: esc(`${L.city}, ${L.state === "CA" ? "California" : L.state} ${L.zip}`),
+    STATUS_LABEL: esc(label), PRICE_HTML: priceTxt ? `<span class="price">${priceTxt}</span>` : "",
+    PHOTO_COUNT: String(L.photos.length),
+    STAT_COUNT: String(L.stats.length), STATS_HTML: L.stats.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""),
+    ABOUT_TITLE: esc(L.about.title), ABOUT_LEAD: esc(L.about.lead),
+    ABOUT_PARAS: (L.about.paragraphs || []).map((p) => `<p>${esc(p)}</p>`).join("\n"),
+    ABOUT_MORE: (L.about.more || []).map((p) => `<p>${esc(p)}</p>`).join("\n"),
+    HIGHLIGHTS: (L.about.highlights || []).map((h) => `<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>${esc(h)}</li>`).join(""),
+    LOCATION_TEXT: esc(L.locationText || ""), MAP_Q: encodeURIComponent(`${L.address}, ${L.city}, ${L.state} ${L.zip}`),
+    FACTS_NOTE: esc(L.factsNote || "Information deemed reliable but not guaranteed. Buyers should verify all information."),
+    LISTING_JSON: JSON.stringify(data).replace(/</g, "\\u003c"),
+  }));
+}
+
+// ---------- Homepage ----------
+const active = listings.filter((l) => l.status !== "sold");
+const LISTING_CARDS = active.length
+  ? `<div class="lcards${active.length === 1 ? " solo" : ""}">${active.map((L) => {
+      const [label] = STATUS[L.status] || STATUS.active;
+      return `<a class="lcard" href="${L.url}">
+  <div class="ph"><img src="${L.url}/photos/${esc(L.cardPhoto || "01.jpg")}" alt="${esc(L.address)}" loading="lazy"><span class="pill ${esc(L.status)}">${esc(label)}</span></div>
+  <div class="body">${L.showPrice !== false && L.price ? `<div class="price">${usd(L.price)}</div>` : ""}
+    <div class="addr">${esc(L.address)}</div><div class="city">${esc([L.neighborhood, `${L.city}, ${L.state} ${L.zip}`].filter(Boolean).join(" · "))}</div>
+    <div class="facts">${[L.type && `<span><b>${esc(L.type)}</b></span>`, L.beds && `<span><b>${esc(L.beds)}</b> bd</span>`, L.baths && `<span><b>${esc(L.baths)}</b> ba</span>`, L.sqft && `<span><b>${esc(L.sqft)}</b> sq ft</span>`].filter(Boolean).join("")}</div>
+    ${active.length === 1 && L.summary ? `<p style="margin:8px 0 0;color:var(--muted)">${esc(L.summary)}</p>` : ""}<span class="go">View this home →</span></div></a>`;
+    }).join("")}</div>`
+  : `<div class="lempty">New listings are coming soon. <a href="#contact">Tell me what you're looking for</a> and I'll send homes that fit.</div>`;
+const soldItems = [
+  ...listings.filter((l) => l.status === "sold").map((l) => [l.address, `${l.city}, ${l.state}`, l.soldPrice || l.price, l.url]),
+  ...site.sold,
+];
+const SOLD = soldItems.map(([a, c, p, u]) => `<div><small>Sold</small><b>${usd(p)}</b><span>${u ? `<a href="${u}">${esc(a)}</a>` : esc(a)}</span><i>${esc(c)}</i></div>`).join("");
+const REVIEWS = site.reviews.map(([q, who]) => `<figure><blockquote>“${esc(q)}”</blockquote><figcaption><span>${esc(who)}</span><a href="${esc(site.zillowUrl)}" target="_blank" rel="noopener">Read on Zillow</a></figcaption></figure>`).join("");
+write("index.html", fill(read("src/home.html"), {
+  ...common, LISTING_CARDS, SOLD, REVIEWS,
+  AREAS: site.areas.map((a) => `<span>${esc(a)}</span>`).join(""),
+  LICENSES: site.licenses.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""),
+  LEAD_FORM: leadForm(["Buying a home", "Selling a home", "Financing or refinancing", "Investment property", "Not sure yet"]),
+}));
+
+// ---------- Other pages ----------
+for (const page of ["mortgage", "calculators", "privacy", "terms"]) {
+  const src = `src/${page}.html`;
+  if (!fs.existsSync(path.join(ROOT, src))) continue;
+  write(`${page}/index.html`, fill(read(src), {
+    ...common,
+    LEAD_FORM: leadForm(["Get pre-approved", "Purchase loan", "Refinance", "Investment loan", "General question"], { placeholder: "What are you trying to do? No sensitive details, please." }),
+  }));
+}
+
+// ---------- sitemap + vercel routing ----------
+const urls = ["/", "/mortgage", "/calculators", ...listings.map((l) => l.url)];
+write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
+write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://pandey.realty/sitemap.xml\n");
+console.log(`Built ${listings.length} listing(s): ${listings.map((l) => l.url).join(", ")}`);

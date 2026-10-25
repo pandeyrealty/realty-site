@@ -1,0 +1,98 @@
+{
+  "name": "Nayan Pandey",
+  "company": "Pandey Realty, Inc.",
+  "title": "Broker & Mortgage Loan Officer",
+  "tagline": "Home easily, loan smoothly",
+  "phone": "(469) 407-5853",
+  "phoneHref": "+14694075853",
+  "emailRealEstate": "pandeyrealty7@gmail.com",
+  "emailMortgage": "pandeyloan7@gmail.com",
+  "office": "5187 Buckboard Way, Richmond, CA 94803",
+  "preapprovalUrl": "https://www.blink.mortgage/app/signup/p/pandeyrealty/nayanpandey",
+  "zillowUrl": "https://www.zillow.com/profile/pandeyrealtymortgage",
+  "social": {
+    "Facebook": "https://www.facebook.com/realtypandey",
+    "Instagram": "https://www.instagram.com/pandey_realty_mortgage/",
+    "LinkedIn": "https://www.linkedin.com/in/nayanpandey/"
+  },
+  "licenses": [
+    [
+      "Nayan Pandey · CA DRE Broker",
+      "#02174678"
+    ],
+    [
+      "Nayan Pandey · NMLS",
+      "#2436273"
+    ],
+    [
+      "Pandey Realty · CA DRE Corporation",
+      "#02446715"
+    ],
+    [
+      "Pandey Realty · NMLS",
+      "#2877353"
+    ]
+  ],
+  "sold": [
+    [
+      "5016 Escalon Cir",
+      "Richmond, CA",
+      860000
+    ],
+    [
+      "4968 Buckboard Way",
+      "Richmond, CA",
+      615000
+    ],
+    [
+      "215 W Santa Cruz Way",
+      "Mountain House, CA",
+      575000
+    ],
+    [
+      "2266 E Main St",
+      "East Quincy, CA",
+      500000
+    ],
+    [
+      "262 Tradewinds Ct Apt 4",
+      "San Jose, CA",
+      475000
+    ]
+  ],
+  "reviews": [
+    [
+      "Nayan made my home-buying process smooth and stress-free. He understood my needs, guided me through every step, and also helped with the mortgage…",
+      "Buyer · Carriage Hills North, Richmond · 2024"
+    ],
+    [
+      "After being rejected and overlooked by other realtors in the past, I was starting to lose hope…",
+      "Buyer · Meadow Brook, Oakland · 2025"
+    ],
+    [
+      "Nayan went above and beyond and made the deal happen. He worked on it relentlessly for months…",
+      "Buyer · Monterey Vista, Monterey · 2025"
+    ],
+    [
+      "Nayan went above and beyond expectations in helping us buy our first home…",
+      "First-time buyer · Groveland · 2024"
+    ]
+  ],
+  "areas": [
+    "Hercules",
+    "Pinole",
+    "Richmond",
+    "El Cerrito",
+    "San Pablo",
+    "Berkeley",
+    "Oakland",
+    "Concord",
+    "Walnut Creek",
+    "Lafayette",
+    "Orinda",
+    "Moraga",
+    "Danville",
+    "Fremont",
+    "Livermore"
+  ]
+}

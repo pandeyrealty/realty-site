@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mortgage Center · Loan Programs Explained | Pandey Realty</title>
+<meta name="description" content="Conventional, FHA, VA, jumbo, first-time buyer, self-employed, DSCR investor, refinance, and home equity loans explained in plain language by Nayan Pandey, NMLS #2436273.">
+<meta property="og:title" content="Mortgage Center · Pandey Realty">
+<meta property="og:description" content="Loan programs explained in plain language. Nayan Pandey, NMLS #2436273.">
+<meta property="og:image" content="https://pandey.realty/assets/og.jpg">
+<link rel="canonical" href="https://pandey.realty/mortgage">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+.phero{background:var(--navy);color:var(--on-navy)}
+.phero .wrap{padding-block:64px 56px;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:end}
+.phero .eyebrow{color:var(--gold)}
+.phero h1{font-weight:800;font-size:clamp(40px,5.6vw,68px);line-height:.98;color:#fff}
+.phero p{color:var(--on-navy-muted);font-size:19px;max-width:56ch;margin:20px 0 0}
+.phero .box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:22px;display:grid;gap:12px}
+.phero .box b{color:#fff;font-family:var(--display);font-size:20px}
+.phero .box span{font-size:15px}
+@media (max-width:860px){.phero .wrap{grid-template-columns:1fr}}
+.goals{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.goals button{font:inherit;font-size:15px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.goals button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.progs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:18px}
+.prog{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.prog h3{font-size:21px}
+.prog .tag{align-self:flex-start;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--gold-ink);background:var(--gold-soft);padding:4px 9px;border-radius:5px}
+.prog p{margin:0;color:var(--muted)}
+.prog dl{margin:0;display:grid;gap:10px;font-size:15px}
+.prog dt{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg)}
+.prog dd{margin:2px 0 0;color:var(--muted)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;list-style:none;margin:0;padding:0}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--gold);color:#0f1d33;font-weight:800;margin-bottom:12px}
+.steps h3{font-size:19px;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted);font-size:16px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px}
+.faq p{margin:12px 0 0;color:var(--muted)}
+.contact{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.disc{background:var(--gold-soft);border-radius:12px;padding:18px 22px;color:var(--fg);font-size:15px;margin-top:22px}
+</style>
+</head>
+<body>
+{{NAV}}
+<div class="phero"><div class="wrap">
+  <div>
+    <p class="eyebrow">Mortgage Center</p>
+    <h1>The right loan starts with the right questions.</h1>
+    <p>Here's how each loan program works, in plain language. The best fit depends on your income, credit, savings, and the property, so treat this as a starting point for a conversation, not a decision.</p>
+  </div>
+  <div class="box">
+    <b>Ready when you are</b>
+    <span>Start a secure application, or ask a question first. No obligation.</span>
+    <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Start secure pre-approval</a>
+    <a class="btn on-dark" href="#contact">Ask Nayan a question</a>
+  </div>
+</div></div>
+
+<main>
+<section style="padding-top:64px"><div class="wrap">
+  <p class="eyebrow">Loan programs</p>
+  <h2>Find programs that fit your situation</h2>
+  <div class="goals" id="goals" role="group" aria-label="Filter by goal">
+    <button data-g="all" aria-pressed="true">All programs</button>
+    <button data-g="first" aria-pressed="false">Buying my first home</button>
+    <button data-g="self" aria-pressed="false">Self-employed</button>
+    <button data-g="invest" aria-pressed="false">Investing</button>
+    <button data-g="refi" aria-pressed="false">Refinance or equity</button>
+    <button data-g="vet" aria-pressed="false">Veterans</button>
+  </div>
+  <div class="progs" id="progs"></div>
+  <p class="disc"><b>Please note:</b> Programs, guidelines, and availability change and vary by lender. Nothing on this page is a commitment to lend, a rate quote, or a pre-approval. Eligibility is determined only after a complete application, credit review, and underwriting.</p>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">How it works</p>
+  <h2>From first call to closing</h2>
+  <ol class="steps">
+    <li><h3>Talk it through</h3><p>A short conversation about your goals, timeline, income type, and the kind of property you want.</p></li>
+    <li><h3>Get pre-approved</h3><p>You apply through a secure portal. I review credit, income, and assets and tell you what you qualify for.</p></li>
+    <li><h3>Shop with real numbers</h3><p>Every home you consider gets a monthly-cost estimate, so you know the payment before you tour.</p></li>
+    <li><h3>Make the offer</h3><p>Your offer carries a pre-approval from the same person negotiating it, which listing agents take seriously.</p></li>
+    <li><h3>Lock and underwrite</h3><p>We choose when to lock your rate, then work through appraisal and conditions together.</p></li>
+    <li><h3>Close</h3><p>Review your closing disclosure with me line by line before you sign.</p></li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Common questions</p>
+  <h2>Good to know</h2>
+  <div class="faq">
+    <details><summary>What's the difference between pre-qualification and pre-approval?</summary><p>A pre-qualification is an estimate based on what you tell a lender. A pre-approval involves reviewing your credit and documents. Neither is a final loan approval; that comes after underwriting and an acceptable appraisal on a specific property.</p></details>
+    <details><summary>How much do I need for a down payment?</summary><p>It depends on the program. Some conventional loans for qualifying buyers allow as little as 3% down, FHA loans can allow 3.5% down for qualifying borrowers, and VA loans can allow no down payment for eligible veterans and service members. You'll also need funds for closing costs and, sometimes, reserves.</p></details>
+    <details><summary>Does checking my options hurt my credit?</summary><p>Using the calculators on this site doesn't involve your credit at all. A full pre-approval usually includes a credit check. Ask me before you apply if you'd like to talk through timing.</p></details>
+    <details><summary>Can I use rent from a duplex or rental to qualify?</summary><p>Often, part of the expected rental income can be counted, depending on the program and documentation such as leases or an appraiser's rent estimate. The rules differ between loan types, so it's worth a quick conversation.</p></details>
+    <details><summary>Why do you work as both an agent and a loan officer?</summary><p>So your search and your financing move on one timeline with one person accountable for both. You're never required to use both services.</p></details>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <p class="eyebrow">Contact</p>
+  <h2>Ask a mortgage question</h2>
+  <p class="sub">For your security, please don't send Social Security numbers, account numbers, or financial documents through this form. When you're ready to apply, use the <a href="{{PREAPPROVAL}}" target="_blank" rel="noopener">secure application</a>.</p>
+  <div class="contact">{{LEAD_FORM}}{{AGENT_CARD}}</div>
+</div></section>
+</main>
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+(()=>{const {$}=PR;PR.nav();PR.leadForm();
+const P=[
+ ["Conventional","Most common","first refi invest","A loan that follows Fannie Mae and Freddie Mac guidelines, used for primary homes, second homes, and investment property.","Buyers with steady income and fair-to-strong credit. Some first-time buyer options allow as little as 3% down.","With less than 20% down you'll typically pay private mortgage insurance (PMI), which can usually be removed later as you build equity."],
+ ["FHA","Flexible credit","first","A government-insured loan with more flexible credit and down payment guidelines.","First-time and repeat buyers who want a lower down payment (3.5% for qualifying borrowers) or are rebuilding credit.","FHA loans carry mortgage insurance premiums, and the property must be your primary residence and meet FHA standards."],
+ ["VA","Veterans","vet first","A loan guaranteed by the U.S. Department of Veterans Affairs for eligible veterans, service members, and some surviving spouses.","Eligible borrowers who want little or no down payment and no monthly mortgage insurance.","You'll need a Certificate of Eligibility, and a VA funding fee usually applies unless you're exempt."],
+ ["Jumbo","Higher prices","invest","A loan above the conforming loan limit set for your county, common for higher-priced Bay Area homes.","Buyers purchasing above conforming limits who have strong credit and reserves.","Expect larger down payment and reserve requirements than conforming loans."],
+ ["First-time buyer programs","Lower barriers","first","Loan options and education designed for people buying their first home.","Buyers who haven't owned a home recently and want a lower down payment or reduced mortgage insurance.","Income limits, homebuyer education, and other requirements may apply."],
+ ["Down-payment assistance","Help with cash to close","first","State and local programs, such as those offered through CalHFA, that help with down payment or closing costs.","Buyers with good income who are short on savings for the down payment.","Funds are limited, programs have income and price limits, and some assistance must be repaid."],
+ ["Bank statement loans","Self-employed","self","A non-QM loan that qualifies you using business or personal bank deposits instead of tax returns.","Business owners whose tax returns understate their real cash flow.","Usually requires 12–24 months of statements, a larger down payment, and a higher rate than conventional loans."],
+ ["1099 income loans","Self-employed","self","Qualifies contractors and gig workers using 1099 forms instead of full tax returns.","Independent contractors with consistent 1099 income.","Terms vary by lender; a larger down payment or reserves may be required."],
+ ["Asset-based qualification","Self-employed","self invest","Uses your liquid assets, such as investment or retirement accounts, to help qualify instead of employment income.","Retirees or high-asset borrowers with irregular income.","Asset documentation requirements are strict, and pricing differs from standard loans."],
+ ["DSCR investor loans","Investors","invest","Qualifies an investment property mainly on its rental income compared with the mortgage payment (the debt service coverage ratio).","Investors who want to qualify on the property's numbers rather than personal income.","For investment property only. Expect a larger down payment and a higher rate than owner-occupied loans."],
+ ["Multifamily & investment financing","Investors","invest","Financing for 2–4 unit properties and other rentals, including owner-occupied duplexes where you live in one unit.","Buyers who want rental income to help cover their housing costs.","Rules for counting rental income vary by program; reserves are usually required."],
+ ["Non-QM loans","Unique situations","self invest","Loans outside standard guidelines for borrowers whose finances don't fit a typical file.","Recent credit events, foreign nationals, or complex income.","Rates and down payments are usually higher; compare carefully against conventional options."],
+ ["Rate-and-term refinance","Lower payment","refi","Replaces your current loan to change the rate, the term, or both.","Homeowners who can lower their rate or want to shorten their loan term.","Closing costs apply; the savings should outweigh them before you plan to move. Try the refinance calculator."],
+ ["Cash-out refinance","Use your equity","refi","Replaces your loan with a larger one and pays you the difference in cash.","Funding renovations, consolidating higher-interest debt, or investing.","Increases your loan balance and is secured by your home; maximum loan-to-value limits apply."],
+ ["HELOC & home equity loans","Keep your first loan","refi","A second loan or line of credit against your equity, leaving your current mortgage in place.","Homeowners with a low first-mortgage rate who need access to cash.","Your home secures the loan; HELOC rates are often variable."]
+];
+const box=$("progs");
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+box.innerHTML=P.map(p=>`<article class="prog" data-g="${p[2]}"><span class="tag">${esc(p[1])}</span><h3>${esc(p[0])}</h3><p>${esc(p[3])}</p><dl><div><dt>Often a fit for</dt><dd>${esc(p[4])}</dd></div><div><dt>Keep in mind</dt><dd>${esc(p[5])}</dd></div></dl></article>`).join("");
+document.querySelectorAll("#goals button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#goals button").forEach(x=>x.setAttribute("aria-pressed",x===b));const g=b.dataset.g;box.querySelectorAll(".prog").forEach(c=>c.hidden=g!=="all"&&!c.dataset.g.split(" ").includes(g))});
+PR.reveal();})();
+</script>
+</body>
+</html>

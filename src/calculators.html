@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Real Estate & Mortgage Calculators | Pandey Realty</title>
+<meta name="description" content="Free calculators for mortgage payment, affordability, rent vs. buy, cash to close, refinance savings, points breakeven, DSCR, investment cash flow and cap rate, seller net proceeds, and home equity.">
+<meta property="og:title" content="Real Estate & Mortgage Calculators · Pandey Realty">
+<meta property="og:image" content="https://pandey.realty/assets/og.jpg">
+<link rel="canonical" href="https://pandey.realty/calculators">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+.phero{background:var(--navy);color:var(--on-navy)}
+.phero .wrap{padding-block:56px 48px}
+.phero .eyebrow{color:var(--gold)}
+.phero h1{font-weight:800;font-size:clamp(38px,5.4vw,64px);line-height:1;color:#fff}
+.phero p{color:var(--on-navy-muted);font-size:18px;max-width:62ch;margin:18px 0 0}
+.calcwrap{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start;padding-top:48px}
+.clist{position:sticky;top:92px;display:grid;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px}
+.clist button{font:inherit;text-align:left;border:0;background:none;color:var(--fg);padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:600;font-size:15px;display:flex;gap:10px;align-items:center}
+.clist button small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
+.clist button[aria-selected="true"]{background:var(--navy);color:#fff}
+.clist button[aria-selected="true"] small{color:var(--on-navy-muted)}
+.clist .grp{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--gold-ink);padding:12px 12px 4px}
+.ctitle{margin-bottom:6px}
+.cdesc{color:var(--muted);margin:0 0 20px;max-width:62ch}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(38px,5.4vw,56px);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.big.good{color:#8fdcae}.big.warn{color:#f3c76b}.big.bad{color:#f39a9a}
+.rows{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.rows li{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px}
+.rows li span{color:var(--on-navy-muted)}
+.rows li.tot{font-weight:700}
+.rows li.tot span{color:var(--on-navy)}
+.assume{font-size:13px;color:var(--on-navy-muted);margin:0}
+.unit-sfx{position:relative}
+.unit-sfx span{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.unit-sfx input{padding-right:46px}
+.mobile-pick{display:none}
+@media (max-width:900px){.calcwrap{grid-template-columns:1fr}.clist{display:none}.mobile-pick{display:block;margin-bottom:8px}}
+</style>
+</head>
+<body>
+{{NAV}}
+<div class="phero"><div class="wrap">
+  <p class="eyebrow">Calculators</p>
+  <h1>Run the numbers before you decide.</h1>
+  <p>Every calculator shows its assumptions. Results are estimates for planning, not loan quotes or approvals. For real numbers on a specific home or loan, send me a message.</p>
+</div></div>
+<main><div class="wrap calcwrap">
+  <nav class="clist" id="clist" role="tablist" aria-label="Calculators" aria-orientation="vertical"></nav>
+  <div>
+    <div class="field mobile-pick"><label for="pick">Choose a calculator</label><select id="pick"></select></div>
+    <h2 class="ctitle" id="cTitle"></h2>
+    <p class="cdesc" id="cDesc"></p>
+    <div class="calc" role="tabpanel" id="cPanel">
+      <div class="calc-in" id="cIn"></div>
+      <div class="calc-out" aria-live="polite">
+        <div><p class="eyebrow" id="bigLabel" style="margin-bottom:6px"></p><div class="big" id="big"></div></div>
+        <ul class="rows" id="rows"></ul>
+        <p class="assume" id="assume"></p>
+        <a class="btn gold" href="/#contact">Get real numbers from Nayan</a>
+        <p class="assume">Estimates only. Not a loan commitment, rate quote, or offer to extend credit. Taxes, insurance, fees, and program rules vary. Nayan Pandey NMLS #2436273 · Pandey Realty NMLS #2877353.</p>
+      </div>
+    </div>
+  </div>
+</div></main>
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+(()=>{const {$,num,usd}=PR;PR.nav();
+const pct=n=>(Math.round(n*100)/100).toLocaleString("en-US")+"%";
+const pmt=(loan,ratePct,years)=>{const r=ratePct/1200,n=years*12;return loan<=0?0:r?loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):loan/n};
+const bal=(loan,ratePct,years,monthsPaid)=>{const r=ratePct/1200,p=pmt(loan,ratePct,years);if(!r)return loan-p*monthsPaid;return loan*Math.pow(1+r,monthsPaid)-p*(Math.pow(1+r,monthsPaid)-1)/r};
+const M="money",P="pct",N="num",Y="yrs";
+const C=[
+ {g:"Buying",id:"payment",name:"Monthly payment",hint:"Principal, interest, taxes, insurance",desc:"Your estimated monthly housing payment for a purchase price, down payment, and rate.",
+  in:[["price","Purchase price",M,800000],["down","Down payment",P,20],["rate","Interest rate",P,6.5],["term","Loan term",Y,30],["tax","Property tax rate (yearly)",P,1.1],["ins","Home insurance / month",M,175],["hoa","HOA dues / month",M,0]],
+  f:v=>{const loan=v.price*(1-v.down/100),pi=pmt(loan,v.rate,v.term),tax=v.price*v.tax/1200,mi=v.down>=20?0:loan*0.005/12,t=pi+tax+v.ins+v.hoa+mi;
+   return{label:"Estimated monthly payment",big:usd(t)+"/mo",rows:[["Principal & interest",usd(pi)],["Property tax",usd(tax)],["Home insurance",usd(v.ins)],["Mortgage insurance (est.)",usd(mi)],["HOA",usd(v.hoa)],["Loan amount",usd(loan)]],note:"Mortgage insurance is estimated at 0.5% of the loan per year when the down payment is under 20%."}}},
+ {g:"Buying",id:"afford",name:"Affordability",hint:"How much home can I buy?",desc:"Estimates a purchase price from your income, debts, and savings using common lending ratios.",
+  in:[["inc","Household income / year",M,180000],["debts","Monthly debts",M,600],["cash","Cash for down payment",M,80000],["rate","Interest rate",P,6.5],["term","Loan term",Y,30],["tax","Property tax rate (yearly)",P,1.1],["ins","Home insurance / month",M,175]],
+  f:v=>{const mInc=v.inc/12,max=Math.max(0,Math.min(mInc*.28,mInc*.43-v.debts));let lo=0,hi=6e6;for(let i=0;i<60;i++){const mid=(lo+hi)/2,loan=Math.max(0,mid-v.cash),dp=mid?v.cash/mid:1,t=pmt(loan,v.rate,v.term)+mid*v.tax/1200+v.ins+(dp<.2?loan*.005/12:0);t>max?hi=mid:lo=mid}
+   const price=Math.floor(lo/1000)*1000,loan=Math.max(0,price-v.cash);
+   return{label:"Estimated price range",big:usd(price),rows:[["Max housing payment",usd(max)+"/mo"],["Down payment",usd(Math.min(v.cash,price))+" ("+pct(price?Math.min(100,v.cash/price*100):0)+")"],["Loan amount",usd(loan)],["Housing ratio used","28% of income"],["Total debt ratio used","43% of income"]],note:"Uses a 28% housing and 43% total-debt guideline. Many programs allow higher ratios; a real pre-approval looks at your full file. Closing costs are not deducted from your cash."}}},
+ {g:"Buying",id:"rentbuy",name:"Rent vs. buy",hint:"Compare total cost over time",desc:"Compares the total cost of renting with the net cost of owning over the years you expect to stay.",
+  in:[["rent","Current rent / month",M,3200],["rentUp","Rent increase per year",P,3],["price","Home price",M,800000],["down","Down payment",P,20],["rate","Interest rate",P,6.5],["years","Years you'll stay",N,7],["appr","Home value growth per year",P,3],["tax","Property tax rate (yearly)",P,1.1],["ins","Insurance / month",M,175],["maint","Maintenance per year (% of value)",P,1]],
+  f:v=>{const loan=v.price*(1-v.down/100),p=pmt(loan,v.rate,30),n=Math.round(v.years*12);let rentTot=0,r=v.rent;for(let m=0;m<n;m++){if(m&&m%12===0)r*=1+v.rentUp/100;rentTot+=r}
+   const own=p*n+(v.price*v.tax/100+v.ins*12+v.price*v.maint/100)*v.years+v.price*v.down/100+v.price*.025;
+   const value=v.price*Math.pow(1+v.appr/100,v.years),remain=Math.max(0,bal(loan,v.rate,30,n)),equityOut=value-remain-value*.06,netBuy=own-equityOut,diff=rentTot-netBuy;
+   return{label:diff>=0?"Buying comes out ahead by":"Renting comes out ahead by",big:usd(Math.abs(diff)),cls:diff>=0?"good":"warn",rows:[["Total rent paid",usd(rentTot)],["Total paid to own (incl. down & closing)",usd(own)],["Home value at sale",usd(value)],["Loan balance at sale",usd(remain)],["Net cost of owning",usd(netBuy)]],note:"Assumes a 30-year loan, closing costs of 2.5% of the price, 6% selling costs, and no return on the down payment if you rented instead. Tax benefits are not included."}}},
+ {g:"Buying",id:"cash",name:"Down payment & closing costs",hint:"Cash needed to close",desc:"Estimates the total cash you'll need on closing day.",
+  in:[["price","Purchase price",M,800000],["down","Down payment",P,10],["cc","Closing costs (% of price)",P,2.5],["reserve","Reserve months to keep",N,2],["payment","Est. monthly payment",M,5200]],
+  f:v=>{const d=v.price*v.down/100,cc=v.price*v.cc/100,r=v.reserve*v.payment;return{label:"Estimated cash needed",big:usd(d+cc+r),rows:[["Down payment",usd(d)],["Closing costs (est.)",usd(cc)],["Reserves",usd(r)],["Loan amount",usd(v.price-d)]],note:"Closing costs in California commonly run about 2–3% of the price for buyers, but vary with lender fees, title, escrow, and prepaid taxes and insurance. Seller credits can reduce them."}}},
+ {g:"Owning",id:"refi",name:"Refinance savings",hint:"Monthly savings & breakeven",desc:"Shows whether a refinance is likely to pay for itself before you move.",
+  in:[["bal","Current loan balance",M,600000],["cur","Current rate",P,7.5],["left","Years left on current loan",N,28],["new","New rate",P,6.25],["term","New loan term",Y,30],["cost","Refinance costs",M,8000]],
+  f:v=>{const a=pmt(v.bal,v.cur,v.left),b=pmt(v.bal,v.new,v.term),s=a-b,be=s>0?Math.ceil(v.cost/s):Infinity;
+   return{label:s>0?"Monthly savings":"Monthly payment increase",big:usd(Math.abs(s))+"/mo",cls:s>0?"good":"bad",rows:[["Current payment (P&I)",usd(a)],["New payment (P&I)",usd(b)],["Refinance costs",usd(v.cost)],["Breakeven",isFinite(be)?be+" months ("+(be/12).toFixed(1)+" years)":"No breakeven"]],note:"Compares principal and interest only. Resetting to a longer term can lower the payment but increase total interest paid."}}},
+ {g:"Owning",id:"points",name:"Points & breakeven",hint:"Is buying down the rate worth it?",desc:"Compares paying discount points for a lower rate against taking the higher rate.",
+  in:[["loan","Loan amount",M,640000],["r0","Rate with no points",P,6.75],["r1","Rate with points",P,6.25],["pts","Points paid (1 point = 1% of loan)",N,1.5],["term","Loan term",Y,30]],
+  f:v=>{const cost=v.loan*v.pts/100,s=pmt(v.loan,v.r0,v.term)-pmt(v.loan,v.r1,v.term),be=s>0?Math.ceil(cost/s):Infinity;
+   return{label:"Breakeven",big:isFinite(be)?be+" months":"Never",cls:isFinite(be)&&be<60?"good":"warn",rows:[["Cost of points",usd(cost)],["Monthly savings",usd(s)],["Savings over 5 years",usd(s*60-cost)],["Savings over 10 years",usd(s*120-cost)]],note:"Points make sense mainly if you'll keep the loan past the breakeven. Actual point pricing comes from a lender quote on the day you lock."}}},
+ {g:"Investing",id:"dscr",name:"DSCR",hint:"Debt service coverage ratio",desc:"Divides a rental's monthly rent by its monthly housing expense, the main number DSCR investor loans look at.",
+  in:[["rent","Monthly rent",M,4800],["price","Purchase price",M,800000],["down","Down payment",P,25],["rate","Interest rate",P,7.5],["term","Loan term",Y,30],["tax","Property tax rate (yearly)",P,1.1],["ins","Insurance / month",M,200],["hoa","HOA / month",M,0]],
+  f:v=>{const loan=v.price*(1-v.down/100),pi=pmt(loan,v.rate,v.term),exp=pi+v.price*v.tax/1200+v.ins+v.hoa,d=exp?v.rent/exp:0;
+   return{label:"DSCR",big:d.toFixed(2),cls:d>=1.25?"good":d>=1?"warn":"bad",rows:[["Monthly rent",usd(v.rent)],["Principal & interest",usd(pi)],["Taxes, insurance & HOA",usd(exp-pi)],["Total monthly expense",usd(exp)],["Rent needed for 1.00",usd(exp)],["Rent needed for 1.25",usd(exp*1.25)]],note:"Many DSCR lenders look for about 1.0–1.25 or higher, but requirements vary. Lenders use market rent from an appraisal or a lease."}}},
+ {g:"Investing",id:"cashflow",name:"Cash flow & cap rate",hint:"NOI, cap rate, cash-on-cash",desc:"Estimates a rental's monthly cash flow, cap rate, and cash-on-cash return.",
+  in:[["price","Purchase price",M,800000],["down","Down payment",P,25],["cc","Closing costs (% of price)",P,2.5],["rate","Interest rate",P,7.25],["term","Loan term",Y,30],["rent","Total monthly rent",M,5200],["vac","Vacancy",P,5],["tax","Property tax rate (yearly)",P,1.1],["ins","Insurance / month",M,200],["maint","Repairs & maintenance (% of rent)",P,8],["mgmt","Property management (% of rent)",P,0],["hoa","HOA / month",M,0]],
+  f:v=>{const loan=v.price*(1-v.down/100),pi=pmt(loan,v.rate,v.term),eff=v.rent*(1-v.vac/100),opex=v.price*v.tax/1200+v.ins+v.rent*(v.maint+v.mgmt)/100+v.hoa,noi=(eff-opex)*12,cf=eff-opex-pi,inv=v.price*v.down/100+v.price*v.cc/100;
+   return{label:"Monthly cash flow",big:(cf<0?"−":"")+usd(Math.abs(cf)),cls:cf>=0?"good":"bad",rows:[["Effective rent (after vacancy)",usd(eff)+"/mo"],["Operating expenses",usd(opex)+"/mo"],["Net operating income (NOI)",usd(noi)+"/yr"],["Cap rate",pct(v.price?noi/v.price*100:0)],["Cash invested",usd(inv)],["Cash-on-cash return",pct(inv?cf*12/inv*100:0)]],note:"Cap rate = NOI ÷ price (before financing). Cash-on-cash = yearly cash flow ÷ cash invested. Doesn't include appreciation, tax effects, or capital expenses like a new roof."}}},
+ {g:"Selling",id:"net",name:"Seller net proceeds",hint:"What you'd walk away with",desc:"Estimates what you'd receive after selling costs and paying off your loan.",
+  in:[["price","Sale price",M,850000],["payoff","Loan payoff",M,420000],["comm","Agent commissions (negotiable)",P,5],["title","Title, escrow & transfer taxes",P,1],["credits","Repairs or buyer credits",M,5000],["other","Other costs (HOA, liens, etc.)",M,0]],
+  f:v=>{const c=v.price*v.comm/100,t=v.price*v.title/100,n=v.price-v.payoff-c-t-v.credits-v.other;
+   return{label:"Estimated net proceeds",big:(n<0?"−":"")+usd(Math.abs(n)),cls:n>=0?"good":"bad",rows:[["Sale price",usd(v.price)],["Loan payoff",usd(v.payoff)],["Commissions",usd(c)],["Title, escrow & transfer taxes",usd(t)],["Repairs & credits",usd(v.credits+v.other)]],note:"Commissions are fully negotiable and not set by law. City transfer taxes vary widely across the Bay Area (Richmond, Oakland, and Berkeley are higher). Capital gains taxes are not included."}}},
+ {g:"Owning",id:"equity",name:"Home equity",hint:"How much could I borrow?",desc:"Estimates your equity and how much a lender might let you access through a cash-out refinance or HELOC.",
+  in:[["value","Estimated home value",M,900000],["owed","Mortgage balance",M,450000],["other","Other liens (HELOC, etc.)",M,0],["ltv","Max combined loan-to-value",P,80]],
+  f:v=>{const eq=v.value-v.owed-v.other,can=Math.max(0,v.value*v.ltv/100-v.owed-v.other);
+   return{label:"Estimated amount you could access",big:usd(can),cls:can>0?"good":"warn",rows:[["Your equity",usd(eq)],["Equity %",pct(v.value?eq/v.value*100:0)],["Max total borrowing at "+pct(v.ltv),usd(v.value*v.ltv/100)],["Current loans",usd(v.owed+v.other)]],note:"Lenders set their own loan-to-value limits, often 80–90% for primary homes. Your actual home value is determined by an appraisal."}}}
+];
+const list=$("clist"),pick=$("pick");let cur;const vals={};
+let lastG="";C.forEach(c=>{if(c.g!==lastG){const h=document.createElement("div");h.className="grp";h.textContent=c.g;list.appendChild(h);lastG=c.g}
+  const b=document.createElement("button");b.setAttribute("role","tab");b.id="tab-"+c.id;b.setAttribute("aria-controls","cPanel");b.innerHTML=`<span>${c.name}<small>${c.hint}</small></span>`;b.onclick=()=>open(c.id,true);list.appendChild(b);
+  const o=document.createElement("option");o.value=c.id;o.textContent=`${c.g}: ${c.name}`;pick.appendChild(o)});
+pick.onchange=()=>open(pick.value,true);
+function inputHTML([k,label,t,v]){const id="i_"+k;const val=t===M?Number(v).toLocaleString("en-US"):v;
+  if(t===M)return`<div class="field"><label for="${id}">${label}</label><div class="money"><span>$</span><input type="text" inputmode="numeric" id="${id}" value="${val}"></div></div>`;
+  if(t===Y)return`<div class="field"><label for="${id}">${label}</label><select id="${id}">${[30,25,20,15,10].map(y=>`<option value="${y}"${y==v?" selected":""}>${y} years</option>`).join("")}</select></div>`;
+  return`<div class="field"><label for="${id}">${label}</label><div class="unit-sfx"><input type="text" inputmode="decimal" id="${id}" value="${val}"><span>${t===P?"%":""}</span></div></div>`}
+function compute(){const c=C.find(x=>x.id===cur),v={};c.in.forEach(([k])=>{v[k]=num($("i_"+k).value)});vals[cur]=c.in.map(([k])=>$("i_"+k).value);
+  const r=c.f(v);$("bigLabel").textContent=r.label;$("big").textContent=r.big;$("big").className="big "+(r.cls||"");
+  $("rows").innerHTML=r.rows.map(([a,b])=>`<li><span>${a}</span><b>${b}</b></li>`).join("");$("assume").textContent=r.note}
+function open(id,focus){cur=id;const c=C.find(x=>x.id===id);
+  list.querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.id==="tab-"+id));pick.value=id;$("cPanel").setAttribute("aria-labelledby","tab-"+id);
+  $("cTitle").textContent=c.name;$("cDesc").textContent=c.desc;
+  $("cIn").innerHTML=c.in.map(inputHTML).join("");
+  if(vals[id])c.in.forEach(([k],i)=>{$("i_"+k).value=vals[id][i]});
+  $("cIn").querySelectorAll("input,select").forEach(el=>{el.addEventListener("input",compute);if(el.closest(".money"))el.addEventListener("blur",()=>PR.fmtInput(el))});
+  compute();if(focus&&location.hash!=="#"+id)history.replaceState(null,"","#"+id)}
+const start=C.find(c=>"#"+c.id===location.hash);open(start?start.id:"payment",false);
+})();
+</script>
+</body>
+</html>

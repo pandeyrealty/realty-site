@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nayan Pandey · Broker & Mortgage Loan Officer | Pandey Realty</title>
+<meta name="description" content="Nayan Pandey is a California real estate broker and mortgage loan officer serving Richmond and the East Bay. Buy, sell, and finance with one person accountable for both. DRE #02174678 · NMLS #2436273.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pandey Realty · Nayan Pandey, Broker & Mortgage Loan Officer">
+<meta property="og:description" content="Two licenses. One person. No handoff. Real estate and mortgage in the East Bay.">
+<meta property="og:image" content="https://pandey.realty/assets/og.jpg">
+<meta property="og:url" content="https://pandey.realty/">
+<link rel="canonical" href="https://pandey.realty/">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+/* ---------- Home ---------- */
+.hero{background:var(--navy);color:var(--on-navy);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-12%;top:-30%;width:70%;height:160%;background:radial-gradient(closest-side,rgba(212,166,58,.18),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end;padding-block:72px 0}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-weight:800;font-size:clamp(44px,6.6vw,84px);line-height:.95;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{font-size:19px;line-height:1.6;color:var(--on-navy-muted);max-width:52ch;margin:24px 0 30px}
+.paths{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-bottom:56px;max-width:640px}
+.paths a{display:flex;align-items:center;gap:10px;padding:13px 16px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;font-weight:600;transition:background .2s,border-color .2s}
+.paths a svg{color:var(--gold);flex:none}
+.paths a:hover{background:rgba(255,255,255,.12);border-color:var(--gold)}
+.paths a.hl{background:var(--gold);border-color:var(--gold);color:#0f1d33}
+.paths a.hl svg{color:#0f1d33}
+.portrait{position:relative;align-self:end;justify-self:end;width:min(420px,100%)}
+.portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:14px 14px 0 0;background:#e9ecef}
+.portrait figcaption{position:absolute;left:-28px;bottom:36px;background:var(--surface);color:var(--fg);border-radius:12px;padding:12px 16px;box-shadow:0 18px 40px rgba(0,0,0,.28);display:flex;gap:12px;align-items:center}
+.portrait figcaption b{font-family:var(--display);font-size:16px;display:block;line-height:1.2}
+.portrait figcaption span{font-size:13px;color:var(--muted)}
+.portrait figcaption i{width:10px;height:10px;border-radius:9px;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 25%,transparent);flex:none}
+.stats{background:var(--navy-2);color:var(--on-navy)}
+.stats dl{margin:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.stats dl>div{padding:24px 20px;border-left:1px solid rgba(255,255,255,.1)}
+.stats dl>div:first-child{border-left:0;padding-left:0}
+.stats dt{order:2;font-size:13px;color:var(--on-navy-muted)}
+.stats dd{margin:0 0 2px;font-family:var(--display);font-weight:800;font-size:clamp(26px,3.2vw,36px);line-height:1.1;color:#fff;font-variant-numeric:tabular-nums}
+.stats dd .star{color:var(--gold)}
+.steps{background:var(--navy);color:var(--on-navy)}
+.steps .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding-block:56px 64px}
+.steps-h{grid-column:1/-1;color:#fff;font-size:clamp(26px,3.4vw,38px);margin:0 0 28px}
+.steps-h span{color:var(--gold)}
+.steps article{padding:28px 28px 0 0;border-top:2px solid var(--gold)}
+.steps article+article{padding-left:28px;border-left:1px solid rgba(255,255,255,.1)}
+.steps small{display:block;color:var(--gold);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.steps h3{color:#fff;font-size:20px;margin-bottom:8px}
+.steps p{margin:0;color:var(--on-navy-muted);font-size:16px}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:8px;padding-top:48px}
+  .portrait{justify-self:center;width:min(360px,88%)}
+  .portrait figcaption{left:-12px}
+  .paths{margin-bottom:28px;grid-template-columns:1fr 1fr}
+  .stats dl{grid-template-columns:repeat(2,1fr)}
+  .stats dl>div{border-left:0;border-top:1px solid rgba(255,255,255,.1);padding-left:0}
+  .stats dl>div:nth-child(-n+2){border-top:0}
+  .steps .wrap{grid-template-columns:1fr}
+  .steps article,.steps article+article{padding:22px 0 0;border-left:0;margin-top:18px}
+}
+
+/* Listings */
+.lhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px 24px;margin-bottom:26px}
+.lhead h2{margin:0}
+.lcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:24px}
+.lcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s}
+.lcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,29,51,.14)}
+.lcard .ph{position:relative;aspect-ratio:3/2;background:var(--stucco);overflow:hidden}
+.lcard .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.lcard:hover .ph img{transform:scale(1.04)}
+.pill{position:absolute;left:14px;top:14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;padding:6px 10px;border-radius:6px;background:var(--gold);color:#0f1d33}
+.pill.pending{background:#fff;color:#0f1d33}
+.lcard .body{padding:20px 22px 22px;display:grid;gap:6px}
+.lcard .price{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+.lcard .addr{font-weight:600}
+.lcard .city{color:var(--muted);font-size:15px}
+.lcard .facts{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;padding-top:12px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.lcard .facts b{color:var(--fg)}
+.lcard .go{margin-top:10px;font-weight:700;color:var(--gold-ink)}
+.lcards.solo{grid-template-columns:1fr}
+.lcards.solo .lcard{display:grid;grid-template-columns:1.35fr 1fr}
+.lcards.solo .lcard .ph{aspect-ratio:auto;min-height:340px}
+.lcards.solo .lcard .body{padding:32px;align-content:center}
+.lcards.solo .lcard .price{font-size:40px}
+@media (max-width:760px){.lcards.solo .lcard{display:flex}.lcards.solo .lcard .ph{aspect-ratio:3/2;min-height:0}.lcards.solo .lcard .body{padding:20px 22px 22px}.lcards.solo .lcard .price{font-size:30px}}
+.lempty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:36px;text-align:center;color:var(--muted)}
+
+/* Sold */
+.sold{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:14px}
+.sold div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:grid;gap:2px;min-width:0}
+.sold small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--gold-ink)}
+.sold b{font-family:var(--display);font-size:24px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.sold span{font-weight:600;font-size:15px}
+.sold i{font-style:normal;color:var(--muted);font-size:14px}
+
+/* Services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.svc .ico{width:44px;height:44px;border-radius:12px;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.svc p{margin:0;color:var(--muted)}
+.svc ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.svc li{display:flex;gap:10px;font-size:16px}
+.svc li::before{content:"";flex:none;width:7px;height:7px;border-radius:2px;background:var(--gold);margin-top:.6em}
+.svc .btn{margin-top:auto;align-self:flex-start}
+@media (max-width:900px){.svc{grid-template-columns:1fr}}
+
+/* Calculator tabs */
+.ctabs{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px;margin-bottom:20px}
+.ctabs button{font:inherit;font-weight:600;font-size:15px;border:0;border-radius:999px;padding:9px 18px;background:none;color:var(--fg);cursor:pointer}
+.ctabs button[aria-selected="true"]{background:var(--navy);color:#fff}
+@media (prefers-color-scheme:dark){.ctabs button[aria-selected="true"]{background:var(--gold);color:#0f1d33}}
+
+/* Areas */
+.areas{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:600}
+.langs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.langs span{background:var(--gold-soft);color:var(--gold-ink);border-radius:6px;padding:4px 10px;font-weight:700;font-size:14px}
+@media (max-width:860px){.areas{grid-template-columns:1fr;gap:24px}}
+
+/* About */
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+.about p{margin:0 0 16px;max-width:64ch}
+.quote{margin:28px 0 0;padding:4px 0 4px 22px;border-left:4px solid var(--gold)}
+.quote b{display:block;font-family:var(--display);font-size:24px;line-height:1.25;letter-spacing:-.01em}
+.quote span{color:var(--muted);font-size:15px}
+.lic-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;position:sticky;top:96px}
+.lic-card img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 25%;border-radius:10px;margin-bottom:18px;background:#e9ecef}
+.lic-card dl{margin:0;display:grid;gap:12px}
+.lic-card dt{font-size:13px;color:var(--muted)}
+.lic-card dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.about{grid-template-columns:1fr;gap:32px}.lic-card{position:static}}
+
+/* Reviews */
+.rv-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-bottom:26px}
+.stars{color:var(--gold);font-size:22px;letter-spacing:2px}
+.rv{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.rv figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.rv blockquote{margin:0;font-size:18px;line-height:1.55}
+.rv figcaption{color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.rv figcaption a{font-weight:600}
+@media (max-width:760px){.rv{grid-template-columns:1fr}}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/logo-sm.png" alt="" width="72" height="42"><span><b>Pandey Realty</b><small>Home easily, loan smoothly</small></span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menu</button>
+    <nav class="links" id="links" aria-label="Site">
+      <a href="#listings">Listings</a>
+      <a href="#services">Services</a>
+      <a href="/mortgage">Mortgage Center</a>
+      <a href="/calculators">Calculators</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Pandey Realty, Inc. · East Bay, California</p>
+      <h1>Your Property. Your Financing. <em>Your Future.</em></h1>
+      <p class="lead">Personalized real estate guidance and intelligent mortgage solutions, all under one roof. Nayan Pandey is a licensed broker <em style="font-style:normal;color:#fff">and</em> a mortgage loan officer, so your home and your loan move on one timeline.</p>
+      <nav class="paths" aria-label="How can I help">
+        <a href="#listings"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search homes</a>
+        <a href="/mortgage"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Mortgage guidance</a>
+        <a href="#contact" data-topic="Selling a home"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-7h6v7"/></svg>Sell your property</a>
+        <a href="#contact" data-topic="Investment property"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Investment opportunities</a>
+        <a href="#contact" class="hl"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book a consultation</a>
+      </nav>
+    </div>
+    <figure class="portrait">
+      <img src="/assets/nayan.jpg" alt="Nayan Pandey" width="480" height="600" fetchpriority="high">
+      <figcaption><i aria-hidden="true"></i><span><b>Nayan Pandey</b>Available 7 days a week</span></figcaption>
+    </figure>
+  </div>
+</div>
+<div class="stats"><div class="wrap">
+  <dl>
+    <div><dd>5.0 <span class="star">★</span></dd><dt>8 Zillow reviews</dt></div>
+    <div><dd>20</dd><dt>Homes closed</dt></div>
+    <div><dd>$280K–$2.2M</dd><dt>Price range served</dt></div>
+    <div><dd>4</dd><dt>Languages spoken</dt></div>
+  </dl>
+</div></div>
+<div class="steps"><div class="wrap">
+  <h2 class="steps-h">Two licenses. One person. <span>No handoff.</span></h2>
+  <article><small>Before you shop</small><h3>Underwritten, not just pre-qualified</h3><p>I pull credit and structure the loan myself, so your offer carries an approval a listing agent takes seriously.</p></article>
+  <article><small>While you shop</small><h3>Every home priced two ways</h3><p>List price and monthly cost, side by side, before you tour. Taxes and insurance for that specific address, not a rough guess.</p></article>
+  <article><small>Under contract</small><h3>One number to call</h3><p>Appraisal, conditions, rate lock, closing disclosure. When something moves, you hear it from me the same day.</p></article>
+</div></div>
+
+<main>
+<section id="listings" class="reveal"><div class="wrap">
+  <div class="lhead">
+    <div><p class="eyebrow">Listings</p><h2>Homes I'm representing</h2></div>
+    <a class="btn ghost" href="#contact" data-topic="Selling a home">Thinking of selling? Get a home value</a>
+  </div>
+  {{LISTING_CARDS}}
+  <h3 style="margin:56px 0 16px">Recent sales</h3>
+  <div class="sold">{{SOLD}}</div>
+</div></section>
+
+<section id="services" class="reveal"><div class="wrap">
+  <p class="eyebrow">What I do</p>
+  <h2>Three ways people work with me</h2>
+  <p class="sub">You are never required to use both services. Take the part you need and leave the rest.</p>
+  <div class="svc">
+    <article>
+      <div class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div>
+      <h3>Buying</h3>
+      <p>Full representation across residential, investment, and commercial property, from the first Saturday of touring to the day you get keys.</p>
+      <ul><li>Search built around your real monthly budget</li><li>Neighborhood guidance</li><li>Offer strategy and negotiation</li><li>Inspection findings and repair credits</li></ul>
+      <a class="btn ghost" href="#contact" data-topic="Buying a home">Start your search</a>
+    </article>
+    <article>
+      <div class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-7h6v7"/><path d="M16 3h5v5"/></svg></div>
+      <h3>Selling</h3>
+      <p>Pricing, prep, and marketing built for how buyers in the East Bay actually search.</p>
+      <ul><li>Comparative market analysis</li><li>Staging and pre-list repair plan</li><li>Professional photography and floor plans</li><li>Buyer financing vetted before you accept</li></ul>
+      <a class="btn ghost" href="#contact" data-topic="Selling a home">Get a home value</a>
+    </article>
+    <article>
+      <div class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg></div>
+      <h3>Financing</h3>
+      <p>Conventional, FHA, VA, and jumbo, structured around your file, not a rate sheet.</p>
+      <ul><li>Purchase and refinance</li><li>First-time buyer and down payment programs</li><li>Self-employed and 1099 income</li><li>Investment, commercial, and second homes</li></ul>
+      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved</a>
+    </article>
+  </div>
+</div></section>
+
+<section id="calculator" class="reveal"><div class="wrap">
+  <p class="eyebrow">Calculators</p>
+  <h2>What would a house actually cost you?</h2>
+  <p class="sub">Quick estimates of your monthly payment and your buying power. Send me an address and I'll replace these defaults with the real numbers. <a href="/calculators">See all 10 calculators →</a></p>
+  <div class="ctabs" role="tablist" aria-label="Calculator">
+    <button role="tab" id="t-pay" aria-selected="true" aria-controls="calcPanel">Monthly payment</button>
+    <button role="tab" id="t-aff" aria-selected="false" aria-controls="calcPanel">What can I afford?</button>
+  </div>
+  <div class="calc" id="calcPanel" role="tabpanel" aria-labelledby="t-pay">
+    <div class="calc-in">
+      <div id="payIn" style="display:grid;gap:18px">
+        <div class="field"><label for="cPrice">Purchase price</label><div class="money"><span>$</span><input type="text" id="cPrice" inputmode="numeric" value="800,000"></div></div>
+        <div class="field"><div class="fl"><span>Loan type</span></div>
+          <div class="seg" id="cLoan" role="group" aria-label="Loan type">
+            <button type="button" data-down="3.5" aria-pressed="false">FHA 3.5%</button><button type="button" data-down="5" aria-pressed="false">Conv. 5%</button><button type="button" data-down="20" aria-pressed="true">20% down</button><button type="button" data-down="25" aria-pressed="false">Investor 25%</button>
+          </div></div>
+        <div class="field"><label for="cDown">Down payment <output id="cDownOut"></output></label><input type="range" id="cDown" min="3" max="50" step="0.5" value="20"></div>
+      </div>
+      <div id="affIn" style="display:none;gap:18px">
+        <div class="field"><label for="aInc">Household income / year</label><div class="money"><span>$</span><input type="text" id="aInc" inputmode="numeric" value="180,000"></div></div>
+        <div class="field"><label for="aDebt">Monthly debts (car, student loans, cards)</label><div class="money"><span>$</span><input type="text" id="aDebt" inputmode="numeric" value="600"></div></div>
+        <div class="field"><label for="aDown">Cash for down payment</label><div class="money"><span>$</span><input type="text" id="aDown" inputmode="numeric" value="80,000"></div></div>
+      </div>
+      <div class="field"><label for="cRate">Interest rate <output id="cRateOut"></output></label><input type="range" id="cRate" min="3" max="10" step="0.125" value="6.5"></div>
+      <div class="row2">
+        <div class="field"><label for="cTerm">Loan term</label><select id="cTerm"><option value="30">30 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div>
+        <div class="field"><label for="cIns">Insurance / mo</label><div class="money"><span>$</span><input type="text" id="cIns" inputmode="numeric" value="175"></div></div>
+      </div>
+    </div>
+    <div class="calc-out" aria-live="polite">
+      <div><p class="eyebrow" id="outLabel" style="margin-bottom:6px">Estimated monthly payment</p><div class="pay" id="cPay">$0</div></div>
+      <div class="bar" aria-hidden="true"><i id="bP" style="background:var(--gold)"></i><i id="bT" style="background:#7fa6c2"></i><i id="bI" style="background:#c9d3e0"></i><i id="bM" style="background:#c98f55"></i></div>
+      <ul class="legend">
+        <li style="--c:var(--gold)"><span>Principal &amp; interest</span><b id="lP"></b></li>
+        <li style="--c:#7fa6c2"><span>Property tax (est. 1.1%)</span><b id="lT"></b></li>
+        <li style="--c:#c9d3e0"><span>Home insurance</span><b id="lI"></b></li>
+        <li style="--c:#c98f55" id="lMrow"><span>Mortgage insurance (est.)</span><b id="lM"></b></li>
+        <li class="net" id="affRow" hidden><span>Estimated monthly payment</span><b id="lAff"></b></li>
+      </ul>
+      <p class="calc-note" id="cSummary"></p>
+      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved with Nayan</a>
+      <p class="calc-note">Estimate only. Tax and insurance figures vary by address, county, and carrier. This is not a loan commitment, a rate lock, or an offer to extend credit. Rates change daily; the numbers above reflect only what you entered. Nayan Pandey NMLS #2436273 · Pandey Realty NMLS #2877353.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="areas" class="reveal"><div class="wrap areas">
+  <div>
+    <p class="eyebrow">Where I work</p>
+    <h2>Rooted in the East Bay, licensed across California</h2>
+    <p class="sub" style="margin-bottom:0">I've driven a lot further than Contra Costa County for the right client.</p>
+    <div class="langs"><span>English</span><span>Hindi</span><span>Punjabi</span><span>Urdu</span></div>
+  </div>
+  <div class="chips">{{AREAS}}</div>
+</div></section>
+
+<section id="about" class="reveal"><div class="wrap about">
+  <div>
+    <p class="eyebrow">About Nayan</p>
+    <h2>I don't sell the product. I explain the logic.</h2>
+    <p>Before real estate and mortgage lending, I spent years in the automotive industry. That experience taught me something that still guides how I work: I don't sell a product. I sell the logic behind a decision.</p>
+    <p>Whether someone is buying a car, a home, an investment property, or a commercial building, the question I care about is not whether I can close the deal. It is whether the deal actually makes sense for that person. I want clients to understand the numbers, the advantages, the risks, and the alternatives, so the decision they make is the right one for them rather than the one that pays me.</p>
+    <p>I get a real kick out of watching someone feel good about a decision I helped them make. That is a large part of why I went deeper into real estate and eventually became both a licensed broker and a mortgage loan originator. The property and the financing are inseparable, yet clients kept ending up between two people who were not thinking together. I wanted to understand and control the whole process so I could give better guidance from the first conversation to the closing table.</p>
+    <p>Today I help people buy, sell, finance, and invest across residential, investment, and commercial property. Sometimes the right answer is to buy. Sometimes it is to sell, refinance, restructure the loan, negotiate differently, or wait. I am not here to talk anyone into a transaction. I am here to explain the logic so they can decide.</p>
+    <div class="quote"><b>Don't sell the product. Explain the logic. Do what's right for the person.</b><span>The philosophy behind Pandey Realty. Home easily, loan smoothly.</span></div>
+  </div>
+  <aside class="lic-card">
+    <img src="/assets/nayan.jpg" alt="Nayan Pandey" loading="lazy">
+    <h3 style="margin-bottom:4px">Licensing</h3>
+    <p class="fine" style="margin-bottom:16px">Verify at <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener">nmlsconsumeraccess.org</a> and <a href="https://www2.dre.ca.gov/publicasp/pplinfo.asp" target="_blank" rel="noopener">dre.ca.gov</a>.</p>
+    <dl>{{LICENSES}}<div><dt>Licensed in</dt><dd>California</dd></div></dl>
+  </aside>
+</div></section>
+
+<section id="reviews" class="reveal"><div class="wrap">
+  <p class="eyebrow">Reviews</p>
+  <h2>What clients say</h2>
+  <div class="rv-head"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><b>5.0 across 8 reviews on Zillow</b><a href="{{ZILLOW}}" target="_blank" rel="noopener">Read all of them →</a></div>
+  <div class="rv">{{REVIEWS}}</div>
+</div></section>
+
+<section id="contact" class="reveal"><div class="wrap">
+  <p class="eyebrow">Contact</p>
+  <h2>Start a conversation</h2>
+  <p class="sub">Tell me where you are in the process. No pressure, no drip campaign.</p>
+  <div class="contact">
+    {{LEAD_FORM}}
+    {{AGENT_CARD}}
+  </div>
+</div></section>
+</main>
+
+{{FOOTER}}
+
+<div class="cta-bar" id="ctaBar">
+  <a class="btn ghost" href="tel:{{PHONE_HREF}}">Call Nayan</a>
+  <a class="btn gold" href="#contact">Send a message</a>
+</div>
+
+<script>
+{{SHARED_JS}}
+(()=>{const {$,num,usd,fmtInput,payment}=PR;
+PR.nav();PR.leadForm({defaultTopic:"Buying a home"});PR.reveal();
+
+/* Calculators */
+let mode="pay";
+function calc(){
+  const rate=+$("cRate").value,years=+$("cTerm").value,ins=num($("cIns").value),taxRate=0.011;
+  $("cRateOut").textContent=rate.toFixed(3).replace(/0+$/,"").replace(/\.$/,"")+"%";
+  let r,price,downPct;
+  if(mode==="pay"){
+    price=num($("cPrice").value);downPct=+$("cDown").value;
+    $("cDownOut").textContent=downPct+"% · "+usd(price*downPct/100);
+    document.querySelectorAll("#cLoan button").forEach(b=>b.setAttribute("aria-pressed",Math.abs(+b.dataset.down-downPct)<0.01));
+    r=payment({price,downPct,rate,years,taxRate,insurance:ins});
+    $("outLabel").textContent="Estimated monthly payment";$("cPay").innerHTML=usd(r.total)+"<small> /mo</small>";
+    $("cSummary").innerHTML=`Loan amount <b>${usd(r.loan)}</b> · Down payment <b>${usd(r.down)}</b>`;
+    $("affRow").hidden=true;
+  }else{
+    // Buying power: monthly housing cost ≤ 28% of gross income and total debts ≤ 43%.
+    const inc=num($("aInc").value)/12,debts=num($("aDebt").value),cash=num($("aDown").value);
+    const maxHousing=Math.max(0,Math.min(inc*0.28,inc*0.43-debts));
+    let lo=0,hi=5e6;
+    for(let i=0;i<60;i++){const mid=(lo+hi)/2;const dp=mid>0?Math.min(100,cash/mid*100):100;const t=payment({price:mid,downPct:dp,rate,years,taxRate,insurance:ins}).total;if(t>maxHousing)hi=mid;else lo=mid;}
+    price=Math.floor(lo/1000)*1000;downPct=price>0?Math.min(100,cash/price*100):0;
+    r=payment({price,downPct,rate,years,taxRate,insurance:ins});
+    $("outLabel").textContent="Estimated home price you could afford";$("cPay").innerHTML=usd(price);
+    $("affRow").hidden=false;$("lAff").textContent=usd(r.total)+" /mo";
+    $("cSummary").innerHTML=`With <b>${usd(cash)}</b> down (${downPct.toFixed(1)}%) and housing costs at about 28% of income. A real pre-approval looks at your full file.`;
+  }
+  $("lP").textContent=usd(r.pi);$("lT").textContent=usd(r.tax);$("lI").textContent=usd(r.ins);$("lM").textContent=usd(r.mi);$("lMrow").hidden=r.mi===0;
+  [["bP",r.pi],["bT",r.tax],["bI",r.ins],["bM",r.mi]].forEach(([id,v])=>$(id).style.width=(r.total?v/r.total*100:0)+"%");
+}
+["cDown","cRate","cTerm"].forEach(id=>$(id).addEventListener("input",calc));
+["cPrice","cIns","aInc","aDebt","aDown"].forEach(id=>{$(id).addEventListener("input",calc);$(id).addEventListener("blur",()=>fmtInput($(id)))});
+document.querySelectorAll("#cLoan button").forEach(b=>b.onclick=()=>{$("cDown").value=b.dataset.down;calc()});
+const setMode=m=>{mode=m;$("t-pay").setAttribute("aria-selected",m==="pay");$("t-aff").setAttribute("aria-selected",m==="aff");$("calcPanel").setAttribute("aria-labelledby",m==="pay"?"t-pay":"t-aff");$("payIn").style.display=m==="pay"?"grid":"none";$("affIn").style.display=m==="aff"?"grid":"none";calc()};
+$("t-pay").onclick=()=>setMode("pay");$("t-aff").onclick=()=>setMode("aff");
+calc();
+})();
+</script>
+</body>
+</html>

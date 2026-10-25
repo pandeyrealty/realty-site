@@ -1,0 +1,100 @@
+{
+  "slug": "1300-garvin",
+  "status": "active",
+  "order": 1,
+  "address": "1300 Garvin Avenue",
+  "shortAddress": "1300 Garvin Ave",
+  "city": "Richmond",
+  "state": "CA",
+  "zip": "94801",
+  "neighborhood": "Belding Woods",
+  "type": "Duplex",
+  "price": 799000,
+  "showPrice": true,
+  "beds": "5 + bonus",
+  "baths": "4",
+  "sqft": "2,452",
+  "lot": "3,201 sq ft",
+  "yearBuilt": "1992",
+  "customDomain": "1300garvin.com",
+  "cardPhoto": "01.jpg",
+  "summary": "Corner-lot duplex with two separate units, an attached garage, and gated parking.",
+  "stats": [
+    ["Price", "$799,000"],
+    ["Units", "2"],
+    ["Bedrooms", "5 + bonus"],
+    ["Bathrooms", "4"],
+    ["Living area", "2,452 sf"],
+    ["Built", "1992"]
+  ],
+  "hero": [
+    [1, "Front of the property"],
+    [27, "Upper unit kitchen"],
+    [24, "Upper unit living room"],
+    [9, "Lower unit kitchen"],
+    [33, "Upper primary bedroom"],
+    [5, "Corner lot"]
+  ],
+  "about": {
+    "title": "Two homes, one address",
+    "lead": "A two-story duplex on a corner lot in Richmond's Belding Woods neighborhood, with a separate entrance for each unit, an attached garage, and gated parking.",
+    "paragraphs": [
+      "The upper unit is reached by its own private staircase. It has three bedrooms and two full baths, a bright living room with a nook that works as a home office, and a kitchen with granite counters, white cabinets, a stainless double-oven range, recessed lighting, and a tall built-in pantry shelf."
+    ],
+    "more": [
+      "The primary bedroom is a large corner room with windows on two sides, a big closet, and its own bathroom. The other two bedrooms both have sliding glass doors to the balcony. A second full bath and a laundry room finish the unit.",
+      "The lower unit has fresh white paint and plank flooring throughout, a long open living room, and an updated kitchen with quartzite counters, stainless appliances, a dishwasher, a French-door refrigerator, and a skylight. There are two bedrooms, a bonus room with its own door to the outside, an updated bathroom with a tiled tub surround and matte black fixtures, a second full bath with a double-sink vanity, extra storage space, and its own laundry room.",
+      "Outside, the yard is fully fenced, and there's easy freeway access. Live in one unit and rent out the other, or rent both as an investment property."
+    ],
+    "highlights": [
+      "Corner lot, fully fenced",
+      "Separate entrance for each unit",
+      "Laundry room in each unit",
+      "Attached garage + gated parking",
+      "Plank flooring throughout",
+      "Balcony off the upper bedrooms",
+      "Lower-unit bonus room with outside door"
+    ]
+  },
+  "video": "",
+  "videoPoster": 24,
+  "units": [
+    {
+      "key": "upper", "tab": "Upper unit", "title": "3 bedrooms · 2 bathrooms", "filter": "Upper Unit",
+      "photos": [24, 27, 33, 31, 29, 35, 23, 37],
+      "rooms": [
+        ["Entry", "Private entrance and staircase"],
+        ["Living room", "Bright, with an office nook"],
+        ["Kitchen", "Granite counters, double-oven range, pantry shelf"],
+        ["Primary bedroom", "Corner room, big closet, own bathroom"],
+        ["Bedroom 2", "Closet, sliding door to balcony"],
+        ["Bedroom 3", "Ceiling fan, closet, balcony door"],
+        ["Bathrooms", "2 full baths with tub/shower"],
+        ["Laundry", "Laundry room in the unit"]
+      ]
+    },
+    {
+      "key": "lower", "tab": "Lower unit", "title": "2 bedrooms + bonus room · 2 bathrooms", "filter": "Lower Unit",
+      "photos": [9, 10, 17, 15, 18, 20, 8, 22],
+      "rooms": [
+        ["Living room", "Long and open, fresh white paint"],
+        ["Kitchen", "Updated: quartzite counters, stainless appliances, skylight"],
+        ["Primary bedroom", "Natural light, closet, outside access"],
+        ["Bedroom 2", "Closet and natural light"],
+        ["Bonus room", "Own outside door; office, gym, or guest room"],
+        ["Bathrooms", "Updated tiled bath + double-sink bath"],
+        ["Storage", "Extra multi-purpose space"],
+        ["Laundry", "Laundry room in the unit"]
+      ]
+    }
+  ],
+  "photos": [
+    ["Exterior", "Front of the property", 1], ["Exterior", "Street view", 2], ["Exterior", "Gated parking", 3], ["Exterior", "Unit entrances & garage", 4], ["Exterior", "Corner lot view", 5], ["Exterior", "Rear of the building", 6], ["Exterior", "Side of the building & balcony", 7],
+    ["Upper Unit", "Private entry staircase", 23], ["Upper Unit", "Living room", 24], ["Upper Unit", "Living room · office nook", 25], ["Upper Unit", "Living room toward kitchen", 26], ["Upper Unit", "Kitchen", 27], ["Upper Unit", "Hallway", 28], ["Upper Unit", "Primary bedroom", 33], ["Upper Unit", "Primary bedroom · closet & bath", 34], ["Upper Unit", "Bathroom", 35], ["Upper Unit", "Bedroom 2 · balcony door", 31], ["Upper Unit", "Bedroom 2 · closet", 32], ["Upper Unit", "Bedroom 3 · balcony door", 29], ["Upper Unit", "Bedroom 3 · closet", 30], ["Upper Unit", "Bathroom", 36], ["Upper Unit", "Laundry room", 37],
+    ["Lower Unit", "Living room", 10], ["Lower Unit", "Living room toward kitchen", 8], ["Lower Unit", "Kitchen", 9], ["Lower Unit", "Hallway", 11], ["Lower Unit", "Primary bedroom · outside access", 17], ["Lower Unit", "Bedroom", 12], ["Lower Unit", "Bedroom closet", 13], ["Lower Unit", "Bedroom", 14], ["Lower Unit", "Bonus room with walk-in closet", 15], ["Lower Unit", "Bonus room", 16], ["Lower Unit", "Updated bathroom", 18], ["Lower Unit", "Updated bathroom · tiled tub", 19], ["Lower Unit", "Second bathroom · double sinks", 20], ["Lower Unit", "Second bathroom", 21], ["Lower Unit", "Laundry room", 22],
+    ["Yard", "Back yard", 38], ["Yard", "Side yard", 39]
+  ],
+  "calculator": { "taxRate": 0.0125, "insurance": 175, "rentField": true },
+  "locationText": "In the Belding Woods neighborhood of Richmond, Contra Costa County, on the east shore of San Francisco Bay, with easy freeway access.",
+  "factsNote": "Square footage, lot size, and year built are from public records and have not been independently measured."
+}
