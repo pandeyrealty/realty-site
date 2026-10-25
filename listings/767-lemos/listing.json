@@ -17,22 +17,59 @@
   "lot": "",
   "yearBuilt": "1957",
   "agent": "nayan-pandey",
+  "brokerage": {
+    "name": "Everest Realty Group",
+    "license": ""
+  },
   "cardPhoto": "01.jpg",
   "summary": "Three-bedroom, two-bath home in South Salinas with a pool, a fireplace, and a well-equipped kitchen.",
   "stats": [
-    ["Price", "$899,000"],
-    ["Bedrooms", "3"],
-    ["Bathrooms", "2"],
-    ["Living area", "1,303 sf"],
-    ["Pool", "Yes"],
-    ["Built", "1957"]
+    [
+      "Price",
+      "$899,000"
+    ],
+    [
+      "Bedrooms",
+      "3"
+    ],
+    [
+      "Bathrooms",
+      "2"
+    ],
+    [
+      "Living area",
+      "1,303 sf"
+    ],
+    [
+      "Pool",
+      "Yes"
+    ],
+    [
+      "Built",
+      "1957"
+    ]
   ],
   "hero": [
-    [1, "Front of the home"],
-    [2, "Living room"],
-    [3, "Kitchen"],
-    [4, "Back yard and pool"],
-    [5, "Pool"]
+    [
+      1,
+      "Front of the home"
+    ],
+    [
+      2,
+      "Living room"
+    ],
+    [
+      3,
+      "Kitchen"
+    ],
+    [
+      4,
+      "Back yard and pool"
+    ],
+    [
+      5,
+      "Pool"
+    ]
   ],
   "about": {
     "title": "A South Salinas home with a pool",
@@ -56,13 +93,37 @@
   "video": "https://www.youtube.com/watch?v=LjkyHnqCnKE",
   "videoPoster": 1,
   "photos": [
-    ["Exterior", "Front of the home", 1],
-    ["Interior", "Living room", 2],
-    ["Interior", "Kitchen", 3],
-    ["Yard", "Back yard and pool", 4],
-    ["Yard", "Pool", 5]
+    [
+      "Exterior",
+      "Front of the home",
+      1
+    ],
+    [
+      "Interior",
+      "Living room",
+      2
+    ],
+    [
+      "Interior",
+      "Kitchen",
+      3
+    ],
+    [
+      "Yard",
+      "Back yard and pool",
+      4
+    ],
+    [
+      "Yard",
+      "Pool",
+      5
+    ]
   ],
-  "calculator": { "taxRate": 0.0115, "insurance": 175, "rentField": false },
+  "calculator": {
+    "taxRate": 0.0115,
+    "insurance": 175,
+    "rentField": false
+  },
   "locationText": "In the College Manor neighborhood of South Salinas, Monterey County.",
   "factsNote": "Square footage and year built are from public records and have not been independently measured."
 }

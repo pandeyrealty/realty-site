@@ -42,14 +42,14 @@ const FOOTER = `<footer><div class="wrap">
   <div style="display:flex;flex-wrap:wrap;gap:8px 20px"><span>© ${new Date().getFullYear()} ${esc(site.company)}</span><a href="/privacy">Privacy policy</a><a href="/terms">Terms of use</a><a href="/mortgage">Mortgage Center</a><a href="/calculators">Calculators</a></div>
 </div></footer>`;
 
-const memberCard = (m) => `<aside class="agent">
+const memberCard = (m, brk) => `<aside class="agent">
   <img class="agent-logo" src="/assets/logo.png" alt="Pandey Realty" loading="lazy">
   <div class="who"><img class="avatar" src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy"><div><p class="name"><a href="${memberUrl(m)}" style="color:inherit;text-decoration:none">${esc(m.name)}</a></p><p class="role">${esc(m.role)}<br>${esc(site.company)}</p></div></div>
   <div class="line"><div><small>Call or text</small><a href="tel:${esc(m.phoneHref)}">${esc(m.phone)}</a></div></div>
   <div class="line"><div><small>Email</small><a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div></div>
   ${m.emailMortgage ? `<div class="line"><div><small>Mortgage</small><a href="mailto:${esc(m.emailMortgage)}">${esc(m.emailMortgage)}</a></div></div>` : ""}
   ${m.preapprovalUrl ? `<a class="btn gold" href="${esc(m.preapprovalUrl)}" target="_blank" rel="noopener">Secure pre-approval application</a>` : ""}
-  <div class="lic">${m.licenses.map(([k, v]) => `<span>${esc(m.name)} · ${esc(k)} ${esc(v)}</span>`).join("")}<span>${esc(site.company)} · CA DRE Corp. #02446715 · NMLS #2877353</span></div>
+  <div class="lic">${m.licenses.map(([k, v]) => `<span>${esc(m.name)} · ${esc(k)} ${esc(v)}</span>`).join("")}${brk ? `<span><b>Listing brokerage:</b> ${esc(brk.name)}${brk.license ? ` · CA DRE #${esc(brk.license)}` : ""}</span>` : ""}<span>${esc(site.company)} · CA DRE Corp. #02446715 · NMLS #2877353</span></div>
 </aside>`;
 const companyCard = (withPreapproval = true) => `<aside class="agent">
   <img class="agent-logo" src="/assets/logo.png" alt="Pandey Realty" loading="lazy" style="width:190px">
@@ -119,11 +119,11 @@ for (const L of listings) {
   const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
   const canonical = `https://www.pandey.realty${L.url}`;
   const ogImg = `https://www.pandey.realty${L.url}/photos/${L.cardPhoto || "01.jpg"}`;
-  const desc = `${L.type ? L.type + " " : ""}${label.toLowerCase()} at ${L.address}, ${L.city}, ${L.state} ${L.zip}. ${L.summary || ""} Listed by ${agent.name}, Pandey Realty, ${agent.licenses[0].join(" ")}.`.trim();
+  const desc = `${L.type ? L.type + " " : ""}${label.toLowerCase()} at ${L.address}, ${L.city}, ${L.state} ${L.zip}. ${L.summary || ""} Listed by ${agent.name}, ${agent.licenses[0].join(" ")}, ${L.brokerage ? "with " + L.brokerage.name : "Pandey Realty"}.`.trim();
   const data = { ...L, dir: undefined };
   write(`${L.urlPath}/index.html`, fill(listingTpl, {
     ...common,
-    AGENT_CARD: memberCard(agent), AGENT_NAME: esc(agent.name), AGENT_FIRST: esc(agent.name.split(" ")[0]), AGENT_PHOTO: esc(agent.photo), AGENT_PHONE_HREF: esc(agent.phoneHref), AGENT_URL: memberUrl(agent),
+    AGENT_CARD: memberCard(agent, L.brokerage), PRESENTER_ORG: esc(L.brokerage ? L.brokerage.name : "Pandey Realty"), AGENT_NAME: esc(agent.name), AGENT_FIRST: esc(agent.name.split(" ")[0]), AGENT_PHOTO: esc(agent.photo), AGENT_PHONE_HREF: esc(agent.phoneHref), AGENT_URL: memberUrl(agent),
     LEAD_FORM: leadForm(["Schedule a showing", "Get more info", "Get pre-approved"], { showWhen: true, submitLabel: "Send request", placeholder: "Questions, how you plan to use the property, etc." }),
     TITLE: esc(`${L.shortAddress || L.address}, ${L.city} ${L.state}${priceTxt ? " | " + priceTxt : ""} | Pandey Realty`),
     OG_TITLE: esc(`${L.shortAddress || L.address}, ${L.city} ${L.state}: ${L.type || "Home"} ${label.toLowerCase()}`),
