@@ -25,7 +25,7 @@ window.PR = (() => {
     return { loan, pi, tax, ins: insurance, mi, total: pi + tax + insurance + mi, down: price * downPct / 100 };
   }
 
-  function leadForm({ listing = "", defaultTopic = "", whenTopic = "" } = {}) {
+  function leadForm({ listing = "", agent = "", defaultTopic = "", whenTopic = "" } = {}) {
     const form = $("leadForm"); if (!form) return;
     const status = $("fStatus"), submit = $("fSubmit"), started = Date.now();
     let topic = defaultTopic;
@@ -47,19 +47,19 @@ window.PR = (() => {
       e.preventDefault();
       const name = $("fName").value.trim(), email = $("fEmail").value.trim(), phone = $("fPhone").value.trim();
       if (!name || !phone || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say("Please enter your name, phone number, and a valid email address.", "err"); return; }
-      if ($("fConsent") && !$("fConsent").checked) { say("Please check the box so Nayan can contact you about your request.", "err"); return; }
+      if ($("fConsent") && !$("fConsent").checked) { say("Please check the box so we can contact you about your request.", "err"); return; }
       submit.disabled = true; submit.textContent = "Sending…"; status.hidden = true;
       const showWhen = $("whenRow") && !$("whenRow").hidden;
       try {
         const res = await fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-          topic, listing, page: location.href, name, email, phone,
+          topic, listing, agent, page: location.href, name, email, phone,
           date: showWhen && $("fDate") ? $("fDate").value : "", time: showWhen && $("fTime") ? $("fTime").value : "",
           message: $("fMsg").value.trim(), preapproval: !!($("fLoan") && $("fLoan").checked), consent: !!($("fConsent") && $("fConsent").checked),
           website: $("fWeb").value, elapsed: Date.now() - started }) });
         const data = await res.json().catch(() => ({}));
-        if (res.ok && data.ok) { form.reset(); if (first) setTopic(first); say("Thanks, " + name.split(" ")[0] + "! Your message was sent. Nayan will get back to you shortly.", "ok"); submit.textContent = "Sent"; return; }
+        if (res.ok && data.ok) { form.reset(); if (first) setTopic(first); say("Thanks, " + name.split(" ")[0] + "! Your message was sent. A member of our team will get back to you shortly.", "ok"); submit.textContent = "Sent"; return; }
         throw new Error(data.error || "send failed");
-      } catch (err) { say("Sorry, your message couldn't be sent. Please call or text Nayan at (469) 407-5853.", "err"); submit.disabled = false; submit.textContent = "Send message"; }
+      } catch (err) { say("Sorry, your message couldn't be sent. Please call or text us at (469) 407-5853.", "err"); submit.disabled = false; submit.textContent = "Send message"; }
     });
   }
 

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Team | Pandey Realty</title>
+<meta name="description" content="Meet the licensed real estate agents and mortgage loan officers of Pandey Realty, Inc., serving the East Bay.">
+<meta property="og:title" content="Our Team | Pandey Realty">
+<meta property="og:image" content="https://pandey.realty/assets/og.jpg">
+<link rel="canonical" href="https://pandey.realty/team">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+.phero{background:var(--navy);color:var(--on-navy)}
+.phero .wrap{padding-block:60px 52px}
+.phero .eyebrow{color:var(--gold)}
+.phero h1{font-weight:800;font-size:clamp(38px,5.6vw,66px);line-height:1;color:#fff}
+.phero p{color:var(--on-navy-muted);font-size:19px;max-width:60ch;margin:18px 0 0}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:20px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,29,51,.12)}
+.tcard img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 22%;background:#e9ecef;display:block}
+.tcard .tb{padding:18px 20px 20px;display:grid;gap:2px}
+.tcard .tb b{font-family:var(--display);font-size:21px}
+.tcard .tb span{color:var(--muted);font-size:15px}
+.tcard .tb small{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tcard .tb i{font-style:normal;font-weight:700;color:var(--gold-ink);margin-top:8px}
+.tcard.join{background:var(--navy);color:var(--on-navy);border-color:var(--navy);padding:28px;gap:10px;justify-content:center}
+.tcard.join b{font-family:var(--display);font-size:24px;color:#fff}
+.tcard.join span{color:var(--on-navy-muted)}
+.tcard.join i{font-style:normal;font-weight:700;color:var(--gold)}
+.jicon{width:52px;height:52px;border-radius:999px;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:28px;font-weight:300}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.why h3{font-size:20px;margin-bottom:8px}
+.why p{margin:0;color:var(--muted)}
+.paths2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.paths2 article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.paths2 ul{margin:0;padding-left:20px;color:var(--muted);display:grid;gap:6px}
+.contact{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+@media (max-width:900px){.why,.paths2,.contact{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{{NAV}}
+<div class="phero"><div class="wrap">
+  <p class="eyebrow">Our team</p>
+  <h1>Agents and loan officers who work as one.</h1>
+  <p>Every Pandey Realty client gets a team that understands both the property and the financing. Meet the people behind it.</p>
+</div></div>
+<main>
+<section style="padding-top:56px" class="reveal"><div class="wrap">
+  <div class="team-grid">{{TEAM_CARDS}}
+    <a class="tcard join" href="/join"><span class="jicon" aria-hidden="true">+</span><b>Your profile here</b><span>We're growing. Licensed agents and mortgage loan officers, let's talk.</span><i>Join Pandey Realty →</i></a>
+  </div>
+</div></section>
+</main>
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+PR.nav();PR.reveal();
+</script>
+</body>
+</html>

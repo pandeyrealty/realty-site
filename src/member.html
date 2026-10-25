@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{NAME}} · {{ROLE}} | Pandey Realty</title>
+<meta name="description" content="{{SUMMARY}}">
+<link rel="canonical" href="https://pandey.realty/team/{{SLUG}}">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+.mhero{background:var(--navy);color:var(--on-navy)}
+.mhero .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;padding-block:56px}
+.mhero img{width:180px;height:180px;border-radius:999px;object-fit:cover;object-position:50% 20%;border:4px solid var(--gold)}
+.mhero .eyebrow{color:var(--gold)}
+.mhero h1{font-weight:800;font-size:clamp(38px,5.6vw,62px);color:#fff}
+.mhero p{color:var(--on-navy-muted);max-width:60ch;margin:12px 0 0;font-size:18px}
+.mgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:start}
+.langs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 24px}
+.langs span{background:var(--gold-soft);color:var(--gold-ink);border-radius:6px;padding:4px 10px;font-weight:700;font-size:14px}
+.mlist{display:grid;gap:6px;margin-bottom:28px}
+@media (max-width:860px){.mhero .wrap{grid-template-columns:1fr}.mgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{{NAV}}
+<div class="mhero"><div class="wrap"><img src="{{PHOTO}}" alt="{{NAME}}"><div><p class="eyebrow">Pandey Realty team</p><h1>{{NAME}}</h1><p>{{ROLE}}</p><p>{{SUMMARY}}</p></div></div></div>
+<main><section style="padding-top:56px"><div class="wrap mgrid">
+  <div>{{BIO}}<h3>Languages</h3><div class="langs">{{LANGS}}</div><h3>Listings</h3><div class="mlist">{{LISTINGS}}</div>{{LEAD_FORM}}</div>
+  {{AGENT_CARD}}
+</div></section></main>
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+PR.nav();PR.leadForm();
+</script>
+</body>
+</html>

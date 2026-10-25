@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nayan Pandey · Broker & Mortgage Loan Officer | Pandey Realty</title>
-<meta name="description" content="Nayan Pandey is a California real estate broker and mortgage loan officer serving Richmond and the East Bay. Buy, sell, and finance with one person accountable for both. DRE #02174678 · NMLS #2436273.">
+<title>Pandey Realty · East Bay Real Estate & Mortgage</title>
+<meta name="description" content="Pandey Realty, Inc. is an East Bay real estate brokerage and mortgage company. Buy, sell, finance, and invest with one team. CA DRE #02446715 · NMLS #2877353.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pandey Realty · Nayan Pandey, Broker & Mortgage Loan Officer">
-<meta property="og:description" content="Two licenses. One person. No handoff. Real estate and mortgage in the East Bay.">
+<meta property="og:title" content="Pandey Realty · Real Estate & Mortgage, Under One Roof">
+<meta property="og:description" content="Your Property. Your Financing. Your Future. Real estate and mortgage in the East Bay.">
 <meta property="og:image" content="https://pandey.realty/assets/og.jpg">
 <meta property="og:url" content="https://pandey.realty/">
 <link rel="canonical" href="https://pandey.realty/">
@@ -28,6 +28,15 @@
 .paths a:hover{background:rgba(255,255,255,.12);border-color:var(--gold)}
 .paths a.hl{background:var(--gold);border-color:var(--gold);color:#0f1d33}
 .paths a.hl svg{color:#0f1d33}
+.feature{position:relative;align-self:end;justify-self:end;width:min(460px,100%);display:block;text-decoration:none;color:inherit;margin-bottom:-1px}
+.feature .fimg{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px 14px 0 0}
+.feature .ftag{position:absolute;left:16px;top:16px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;background:var(--gold);color:#0f1d33;padding:6px 10px;border-radius:6px}
+.feature .fcard{position:absolute;left:-28px;right:28px;bottom:28px;background:var(--surface);color:var(--fg);border-radius:12px;padding:16px 18px;box-shadow:0 18px 40px rgba(0,0,0,.3);display:grid;gap:2px}
+.feature .fcard b{font-family:var(--display);font-size:24px;letter-spacing:-.01em}
+.feature .fcard span{color:var(--muted);font-size:15px}
+.feature .fcard i{font-style:normal;font-weight:700;color:var(--gold-ink);font-size:15px;margin-top:4px}
+.feature.logo{background:rgba(255,255,255,.04);border-radius:14px;padding:40px;align-self:center}
+@media (max-width:900px){.feature{justify-self:center;width:min(380px,92%)}.feature .fcard{left:-10px;right:10px}}
 .portrait{position:relative;align-self:end;justify-self:end;width:min(420px,100%)}
 .portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:14px 14px 0 0;background:#e9ecef}
 .portrait figcaption{position:absolute;left:-28px;bottom:36px;background:var(--surface);color:var(--fg);border-radius:12px;padding:12px 16px;box-shadow:0 18px 40px rgba(0,0,0,.28);display:flex;gap:12px;align-items:center}
@@ -134,6 +143,21 @@
 .lic-card dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
 @media (max-width:900px){.about{grid-template-columns:1fr;gap:32px}.lic-card{position:static}}
 
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:20px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,29,51,.12)}
+.tcard img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 22%;background:#e9ecef;display:block}
+.tcard .tb{padding:18px 20px 20px;display:grid;gap:2px}
+.tcard .tb b{font-family:var(--display);font-size:21px}
+.tcard .tb span{color:var(--muted);font-size:15px}
+.tcard .tb small{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tcard .tb i{font-style:normal;font-weight:700;color:var(--gold-ink);margin-top:8px}
+.tcard.join{background:var(--navy);color:var(--on-navy);border-color:var(--navy);padding:28px;gap:10px;justify-content:center}
+.tcard.join b{font-family:var(--display);font-size:24px;color:#fff}
+.tcard.join span{color:var(--on-navy-muted)}
+.tcard.join i{font-style:normal;font-weight:700;color:var(--gold)}
+.jicon{width:52px;height:52px;border-radius:999px;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:28px;font-weight:300}
 /* Reviews */
 .rv-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-bottom:26px}
 .stars{color:var(--gold);font-size:22px;letter-spacing:2px}
@@ -160,7 +184,8 @@
       <a href="#services">Services</a>
       <a href="/mortgage">Mortgage Center</a>
       <a href="/calculators">Calculators</a>
-      <a href="#about">About</a>
+      <a href="/team">Our Team</a>
+      <a href="/founder">Founder</a>
       <a href="#contact">Contact</a>
       <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved</a>
     </nav>
@@ -170,10 +195,10 @@
 <div class="hero" id="top">
   <div class="wrap">
     <div>
-      <p class="eyebrow">Pandey Realty, Inc. · East Bay, California</p>
+      <p class="eyebrow">Pandey Realty, Inc. · Real Estate &amp; Mortgage · East Bay</p>
       <h1>Your Property. Your Financing. <em>Your Future.</em></h1>
-      <p class="lead">Personalized real estate guidance and intelligent mortgage solutions, all under one roof. Nayan Pandey is a licensed broker <em style="font-style:normal;color:#fff">and</em> a mortgage loan officer, so your home and your loan move on one timeline.</p>
-      <nav class="paths" aria-label="How can I help">
+      <p class="lead">Personalized real estate guidance and intelligent mortgage solutions, all under one roof. Our licensed agents and mortgage loan officers work as one team, so your home and your loan move on one timeline.</p>
+      <nav class="paths" aria-label="How can we help">
         <a href="#listings"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search homes</a>
         <a href="/mortgage"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Mortgage guidance</a>
         <a href="#contact" data-topic="Selling a home"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-7h6v7"/></svg>Sell your property</a>
@@ -181,32 +206,29 @@
         <a href="#contact" class="hl"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book a consultation</a>
       </nav>
     </div>
-    <figure class="portrait">
-      <img src="/assets/nayan.jpg" alt="Nayan Pandey" width="480" height="600" fetchpriority="high">
-      <figcaption><i aria-hidden="true"></i><span><b>Nayan Pandey</b>Available 7 days a week</span></figcaption>
-    </figure>
+    {{HERO_FEATURE}}
   </div>
 </div>
 <div class="stats"><div class="wrap">
   <dl>
-    <div><dd>5.0 <span class="star">★</span></dd><dt>8 Zillow reviews</dt></div>
-    <div><dd>20</dd><dt>Homes closed</dt></div>
-    <div><dd>$280K–$2.2M</dd><dt>Price range served</dt></div>
+    <div><dd>1 team</dd><dt>Buy, sell &amp; finance under one roof</dt></div>
+    <div><dd>5.0 <span class="star">★</span></dd><dt>Zillow client rating</dt></div>
+    <div><dd>15</dd><dt>East Bay cities served</dt></div>
     <div><dd>4</dd><dt>Languages spoken</dt></div>
   </dl>
 </div></div>
 <div class="steps"><div class="wrap">
-  <h2 class="steps-h">Two licenses. One person. <span>No handoff.</span></h2>
-  <article><small>Before you shop</small><h3>Underwritten, not just pre-qualified</h3><p>I pull credit and structure the loan myself, so your offer carries an approval a listing agent takes seriously.</p></article>
+  <h2 class="steps-h">Real estate and lending. One team. <span>No handoff.</span></h2>
+  <article><small>Before you shop</small><h3>Underwritten, not just pre-qualified</h3><p>We review credit and structure the loan in-house, so your offer carries an approval listing agents take seriously.</p></article>
   <article><small>While you shop</small><h3>Every home priced two ways</h3><p>List price and monthly cost, side by side, before you tour. Taxes and insurance for that specific address, not a rough guess.</p></article>
-  <article><small>Under contract</small><h3>One number to call</h3><p>Appraisal, conditions, rate lock, closing disclosure. When something moves, you hear it from me the same day.</p></article>
+  <article><small>Under contract</small><h3>One number to call</h3><p>Appraisal, conditions, rate lock, closing disclosure. When something moves, you hear it from us the same day.</p></article>
 </div></div>
 
 <main>
 <section id="listings" class="reveal"><div class="wrap">
   <div class="lhead">
-    <div><p class="eyebrow">Listings</p><h2>Homes I'm representing</h2></div>
-    <a class="btn ghost" href="#contact" data-topic="Selling a home">Thinking of selling? Get a home value</a>
+    <div><p class="eyebrow">Listings</p><h2>Featured listings</h2></div>
+    <a class="btn ghost" href="#contact" data-topic="Selling a home">Thinking of selling? Request a home value</a>
   </div>
   {{LISTING_CARDS}}
   <h3 style="margin:56px 0 16px">Recent sales</h3>
@@ -214,8 +236,8 @@
 </div></section>
 
 <section id="services" class="reveal"><div class="wrap">
-  <p class="eyebrow">What I do</p>
-  <h2>Three ways people work with me</h2>
+  <p class="eyebrow">What we do</p>
+  <h2>Three ways clients work with us</h2>
   <p class="sub">You are never required to use both services. Take the part you need and leave the rest.</p>
   <div class="svc">
     <article>
@@ -245,7 +267,7 @@
 <section id="calculator" class="reveal"><div class="wrap">
   <p class="eyebrow">Calculators</p>
   <h2>What would a house actually cost you?</h2>
-  <p class="sub">Quick estimates of your monthly payment and your buying power. Send me an address and I'll replace these defaults with the real numbers. <a href="/calculators">See all 10 calculators →</a></p>
+  <p class="sub">Quick estimates of your monthly payment and your buying power. Send us an address and we'll replace these defaults with real numbers. <a href="/calculators">See all 10 calculators →</a></p>
   <div class="ctabs" role="tablist" aria-label="Calculator">
     <button role="tab" id="t-pay" aria-selected="true" aria-controls="calcPanel">Monthly payment</button>
     <button role="tab" id="t-aff" aria-selected="false" aria-controls="calcPanel">What can I afford?</button>
@@ -282,54 +304,43 @@
         <li class="net" id="affRow" hidden><span>Estimated monthly payment</span><b id="lAff"></b></li>
       </ul>
       <p class="calc-note" id="cSummary"></p>
-      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved with Nayan</a>
-      <p class="calc-note">Estimate only. Tax and insurance figures vary by address, county, and carrier. This is not a loan commitment, a rate lock, or an offer to extend credit. Rates change daily; the numbers above reflect only what you entered. Nayan Pandey NMLS #2436273 · Pandey Realty NMLS #2877353.</p>
+      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Start your pre-approval</a>
+      <p class="calc-note">Estimate only. Tax and insurance figures vary by address, county, and carrier. This is not a loan commitment, a rate lock, or an offer to extend credit. Rates change daily; the numbers above reflect only what you entered. Pandey Realty NMLS #2877353.</p>
     </div>
   </div>
 </div></section>
 
 <section id="areas" class="reveal"><div class="wrap areas">
   <div>
-    <p class="eyebrow">Where I work</p>
+    <p class="eyebrow">Where we work</p>
     <h2>Rooted in the East Bay, licensed across California</h2>
-    <p class="sub" style="margin-bottom:0">I've driven a lot further than Contra Costa County for the right client.</p>
+    <p class="sub" style="margin-bottom:0">Our team serves buyers, sellers, borrowers, and investors across Contra Costa and Alameda counties and throughout California, in four languages.</p>
     <div class="langs"><span>English</span><span>Hindi</span><span>Punjabi</span><span>Urdu</span></div>
   </div>
   <div class="chips">{{AREAS}}</div>
 </div></section>
 
-<section id="about" class="reveal"><div class="wrap about">
-  <div>
-    <p class="eyebrow">About Nayan</p>
-    <h2>I don't sell the product. I explain the logic.</h2>
-    <p>Before real estate and mortgage lending, I spent years in the automotive industry. That experience taught me something that still guides how I work: I don't sell a product. I sell the logic behind a decision.</p>
-    <p>Whether someone is buying a car, a home, an investment property, or a commercial building, the question I care about is not whether I can close the deal. It is whether the deal actually makes sense for that person. I want clients to understand the numbers, the advantages, the risks, and the alternatives, so the decision they make is the right one for them rather than the one that pays me.</p>
-    <p>I get a real kick out of watching someone feel good about a decision I helped them make. That is a large part of why I went deeper into real estate and eventually became both a licensed broker and a mortgage loan originator. The property and the financing are inseparable, yet clients kept ending up between two people who were not thinking together. I wanted to understand and control the whole process so I could give better guidance from the first conversation to the closing table.</p>
-    <p>Today I help people buy, sell, finance, and invest across residential, investment, and commercial property. Sometimes the right answer is to buy. Sometimes it is to sell, refinance, restructure the loan, negotiate differently, or wait. I am not here to talk anyone into a transaction. I am here to explain the logic so they can decide.</p>
-    <div class="quote"><b>Don't sell the product. Explain the logic. Do what's right for the person.</b><span>The philosophy behind Pandey Realty. Home easily, loan smoothly.</span></div>
+<section id="team" class="reveal"><div class="wrap">
+  <div class="lhead"><div><p class="eyebrow">Our team</p><h2>The people behind Pandey Realty</h2></div><a class="btn ghost" href="/team">Meet the team</a></div>
+  <div class="team-grid">{{TEAM_CARDS}}
+    <a class="tcard join" href="/join"><span class="jicon" aria-hidden="true">+</span><b>Join Pandey Realty</b><span>We're growing. Licensed agents and mortgage loan officers, let's talk.</span><i>Careers →</i></a>
   </div>
-  <aside class="lic-card">
-    <img src="/assets/nayan.jpg" alt="Nayan Pandey" loading="lazy">
-    <h3 style="margin-bottom:4px">Licensing</h3>
-    <p class="fine" style="margin-bottom:16px">Verify at <a href="https://www.nmlsconsumeraccess.org/" target="_blank" rel="noopener">nmlsconsumeraccess.org</a> and <a href="https://www2.dre.ca.gov/publicasp/pplinfo.asp" target="_blank" rel="noopener">dre.ca.gov</a>.</p>
-    <dl>{{LICENSES}}<div><dt>Licensed in</dt><dd>California</dd></div></dl>
-  </aside>
 </div></section>
 
 <section id="reviews" class="reveal"><div class="wrap">
   <p class="eyebrow">Reviews</p>
   <h2>What clients say</h2>
-  <div class="rv-head"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><b>5.0 across 8 reviews on Zillow</b><a href="{{ZILLOW}}" target="_blank" rel="noopener">Read all of them →</a></div>
+  <div class="rv-head"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><b>5.0 across 8 Zillow reviews of our founder, Nayan Pandey</b><a href="{{ZILLOW}}" target="_blank" rel="noopener">Read all of them →</a></div>
   <div class="rv">{{REVIEWS}}</div>
 </div></section>
 
 <section id="contact" class="reveal"><div class="wrap">
   <p class="eyebrow">Contact</p>
   <h2>Start a conversation</h2>
-  <p class="sub">Tell me where you are in the process. No pressure, no drip campaign.</p>
+  <p class="sub">Tell us where you are in the process. A licensed member of our team will get back to you. No pressure, no drip campaign.</p>
   <div class="contact">
     {{LEAD_FORM}}
-    {{AGENT_CARD}}
+    {{COMPANY_CARD}}
   </div>
 </div></section>
 </main>
@@ -337,8 +348,8 @@
 {{FOOTER}}
 
 <div class="cta-bar" id="ctaBar">
-  <a class="btn ghost" href="tel:{{PHONE_HREF}}">Call Nayan</a>
-  <a class="btn gold" href="#contact">Send a message</a>
+  <a class="btn ghost" href="tel:{{PHONE_HREF}}">Call us</a>
+  <a class="btn gold" href="#contact">Contact us</a>
 </div>
 
 <script>

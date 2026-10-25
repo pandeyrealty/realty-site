@@ -1,0 +1,21 @@
+[
+  {
+    "slug": "nayan-pandey",
+    "name": "Nayan Pandey",
+    "role": "Founder & Broker · Mortgage Loan Officer",
+    "short": "Founder & Broker",
+    "kind": ["agent", "mlo"],
+    "founder": true,
+    "photo": "/assets/nayan.jpg",
+    "phone": "(469) 407-5853",
+    "phoneHref": "+14694075853",
+    "email": "pandeyrealty7@gmail.com",
+    "emailMortgage": "pandeyloan7@gmail.com",
+    "licenses": [["CA DRE Broker", "#02174678"], ["NMLS", "#2436273"]],
+    "languages": ["English", "Hindi", "Punjabi", "Urdu"],
+    "zillowUrl": "https://www.zillow.com/profile/pandeyrealtymortgage",
+    "preapprovalUrl": "https://www.blink.mortgage/app/signup/p/pandeyrealty/nayanpandey",
+    "summary": "Licensed broker and mortgage loan originator who founded Pandey Realty so clients could buy, sell, and finance with one accountable team.",
+    "stats": [["5.0 ★", "8 Zillow reviews"], ["20", "Homes closed"], ["$280K–$2.2M", "Price range served"], ["4", "Languages spoken"]]
+  }
+]

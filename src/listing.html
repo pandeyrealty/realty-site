@@ -166,7 +166,7 @@
       <a class="btn light" href="#contact">Schedule a showing</a>
       <a class="btn glass" href="#photos">View all {{PHOTO_COUNT}} photos</a>
     </div>
-    <a class="presenter" href="#contact"><img src="/assets/nayan.jpg" alt=""><span>Presented by<b>Nayan Pandey · Pandey Realty</b></span></a>
+    <a class="presenter" href="#contact"><img src="{{AGENT_PHOTO}}" alt=""><span>Presented by<b>{{AGENT_NAME}} · Pandey Realty</b></span></a>
   </div></div>
   <div class="hero-ctl"><div class="dots" id="dots"></div><button id="hPrev" aria-label="Previous photo">‹</button><button id="hNext" aria-label="Next photo">›</button></div>
 </div>
@@ -196,7 +196,7 @@
 
 <section id="video" class="reveal"><div class="wrap">
   <p class="eyebrow">Video tour</p>
-  <h2>Walk through with Nayan</h2>
+  <h2>Walk through with {{AGENT_FIRST}}</h2>
   <div class="video" id="videoBox">
     <img class="poster" id="videoPoster" alt="">
     <div class="soon"><div class="play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><b>Video tour coming soon</b><span>Want a live walkthrough now? <a href="#contact" style="color:#fff">Schedule a showing</a>.</span></div>
@@ -250,8 +250,8 @@
         <li class="net" id="netRow" hidden><span>After rent from other unit</span><b id="lNet"></b></li>
       </ul>
       <p class="calc-note">Loan amount <b id="cLoanAmt"></b> · Down payment <b id="cDownAmt"></b></p>
-      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Get pre-approved with Nayan</a>
-      <p class="calc-note">Estimates only, not a loan offer or commitment to lend. Your rate, taxes, insurance, and mortgage insurance will vary. Nayan Pandey NMLS #2436273 · Pandey Realty NMLS #2877353.</p>
+      <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Start your pre-approval</a>
+      <p class="calc-note">Estimates only, not a loan offer or commitment to lend. Your rate, taxes, insurance, and mortgage insurance will vary. Pandey Realty NMLS #2877353.</p>
     </div>
   </div>
 </div></section>
@@ -281,7 +281,7 @@
 {{FOOTER}}
 <p class="fine wrap" style="padding-block:0 24px;margin-top:-72px;position:relative">{{FACTS_NOTE}}</p>
 
-<div class="cta-bar" id="ctaBar"><a class="btn ghost" href="tel:{{PHONE_HREF}}">Call Nayan</a><a class="btn gold" href="#contact">Book a showing</a></div>
+<div class="cta-bar" id="ctaBar"><a class="btn ghost" href="tel:{{AGENT_PHONE_HREF}}">Call {{AGENT_FIRST}}</a><a class="btn gold" href="#contact">Book a showing</a></div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
   <div class="lb-top"><span class="lb-num" id="lbNum"></span><button class="close" id="lbClose">Close</button></div>
@@ -299,7 +299,7 @@ const ALL=L.photos.map(p=>({sec:p[0],cap:p[1],src:img(p[2]),n:p[2]}));
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const nav=$("nav");PR.nav(()=>nav.classList.toggle("solid",scrollY>40||$("links").classList.contains("open")));
-PR.leadForm({listing:`${L.address}, ${L.city}, ${L.state} ${L.zip}`,whenTopic:"Schedule a showing"});
+PR.leadForm({listing:`${L.address}, ${L.city}, ${L.state} ${L.zip}`,agent:L.agentSlug,whenTopic:"Schedule a showing"});
 
 /* Hero */
 const slidesEl=$("slides"),dotsEl=$("dots");let hi=0,timer=null;

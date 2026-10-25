@@ -7,6 +7,7 @@
 const clean = (v, max) => String(v ?? "").replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, max);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TEAM = require("../data/team.json");
 
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
@@ -27,6 +28,7 @@ module.exports = async (req, res) => {
   const lead = {
     topic: clean(body.topic, 60) || "General inquiry",
     listing: clean(body.listing, 120),
+    agent: clean(body.agent, 60),
     page: clean(body.page, 200),
     name: clean(body.name, 100),
     email: clean(body.email, 150),
@@ -47,13 +49,17 @@ module.exports = async (req, res) => {
     console.error("RESEND_API_KEY is not set");
     return res.status(500).json({ ok: false, error: "Email is not configured yet." });
   }
-  const to = process.env.LEAD_TO_EMAIL || "pandeyrealty7@gmail.com";
+  const recipients = (process.env.LEAD_TO_EMAIL || "pandeyrealty7@gmail.com").split(",").map((s) => s.trim()).filter(Boolean);
+  // Also notify the listing agent (looked up from data/team.json, never from the request).
+  const member = TEAM.find((m) => m.slug === lead.agent);
+  if (member && member.email && !recipients.includes(member.email)) recipients.push(member.email);
   const from = process.env.LEAD_FROM_EMAIL || "Pandey Realty Website <onboarding@resend.dev>";
 
   const about = lead.listing || "pandey.realty";
   const rows = [
     ["Request", lead.topic],
     ["Property", lead.listing || "—"],
+    ["Agent", member ? member.name : "—"],
     ["Name", lead.name],
     ["Phone", lead.phone],
     ["Email", lead.email],
@@ -82,7 +88,7 @@ module.exports = async (req, res) => {
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from,
-        to: to.split(",").map((s) => s.trim()).filter(Boolean),
+        to: recipients,
         reply_to: lead.email,
         subject: `New lead – ${about}: ${lead.name} (${lead.topic})`,
         html,

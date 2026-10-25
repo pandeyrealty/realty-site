@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Join Pandey Realty · Careers for Agents & Loan Officers</title>
+<meta name="description" content="Pandey Realty, Inc. is growing. Licensed real estate agents and mortgage loan officers in the East Bay: learn about joining our brokerage.">
+<meta property="og:title" content="Join Pandey Realty · Careers for Agents & Loan Officers">
+<meta property="og:image" content="https://pandey.realty/assets/og.jpg">
+<link rel="canonical" href="https://pandey.realty/join">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+.phero{background:var(--navy);color:var(--on-navy)}
+.phero .wrap{padding-block:60px 52px}
+.phero .eyebrow{color:var(--gold)}
+.phero h1{font-weight:800;font-size:clamp(38px,5.6vw,66px);line-height:1;color:#fff}
+.phero p{color:var(--on-navy-muted);font-size:19px;max-width:60ch;margin:18px 0 0}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:20px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,29,51,.12)}
+.tcard img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 22%;background:#e9ecef;display:block}
+.tcard .tb{padding:18px 20px 20px;display:grid;gap:2px}
+.tcard .tb b{font-family:var(--display);font-size:21px}
+.tcard .tb span{color:var(--muted);font-size:15px}
+.tcard .tb small{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tcard .tb i{font-style:normal;font-weight:700;color:var(--gold-ink);margin-top:8px}
+.tcard.join{background:var(--navy);color:var(--on-navy);border-color:var(--navy);padding:28px;gap:10px;justify-content:center}
+.tcard.join b{font-family:var(--display);font-size:24px;color:#fff}
+.tcard.join span{color:var(--on-navy-muted)}
+.tcard.join i{font-style:normal;font-weight:700;color:var(--gold)}
+.jicon{width:52px;height:52px;border-radius:999px;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:28px;font-weight:300}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.why h3{font-size:20px;margin-bottom:8px}
+.why p{margin:0;color:var(--muted)}
+.paths2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.paths2 article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.paths2 ul{margin:0;padding-left:20px;color:var(--muted);display:grid;gap:6px}
+.contact{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+@media (max-width:900px){.why,.paths2,.contact{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{{NAV}}
+<div class="phero"><div class="wrap">
+  <p class="eyebrow">Careers</p>
+  <h1>Build your business with real estate and lending under one roof.</h1>
+  <p>Pandey Realty is growing. We're looking for licensed agents and mortgage loan officers who want to serve clients with honesty, clear numbers, and no handoffs.</p>
+</div></div>
+<main>
+<section style="padding-top:56px" class="reveal"><div class="wrap">
+  <p class="eyebrow">Why Pandey Realty</p>
+  <h2>A brokerage designed around the whole transaction</h2>
+  <div class="why">
+    <article><h3>In-house mortgage partner</h3><p>Agents work alongside licensed loan officers, so buyers get financing answers fast and offers are stronger.</p></article>
+    <article><h3>Modern marketing</h3><p>Every listing gets its own property website, payment estimator, and lead capture that routes inquiries to you.</p></article>
+    <article><h3>Founder who still practices</h3><p>Learn directly from a broker who is also a licensed loan originator and works with clients every day.</p></article>
+  </div>
+</div></section>
+<section class="reveal"><div class="wrap">
+  <div class="paths2">
+    <article><p class="eyebrow">Real estate agents</p><h3>Join as an agent</h3><ul><li>Active California DRE salesperson or broker license</li><li>Focus on the East Bay and Northern California</li><li>Residential, investment, or commercial experience welcome</li></ul></article>
+    <article><p class="eyebrow">Mortgage loan officers</p><h3>Join as a loan officer</h3><ul><li>Active NMLS license with California authorization</li><li>Purchase, refinance, and non-QM experience a plus</li><li>Want to work closely with listing and buyer agents</li></ul></article>
+  </div>
+</div></section>
+<section id="contact" class="reveal"><div class="wrap">
+  <p class="eyebrow">Start a conversation</p>
+  <h2>Let's talk confidentially</h2>
+  <p class="sub">Tell us about your license, experience, and goals. Nayan will reach out personally.</p>
+  <div class="contact">{{LEAD_FORM}}{{COMPANY_CARD}}</div>
+</div></section>
+</main>
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+PR.nav();PR.leadForm();PR.reveal();
+</script>
+</body>
+</html>
