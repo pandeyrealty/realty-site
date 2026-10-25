@@ -67,8 +67,8 @@
       "Covered patio room"
     ],
     [
-      20,
-      "Bedroom"
+      26,
+      "Primary bedroom"
     ]
   ],
   "about": {
@@ -79,7 +79,7 @@
     ],
     "more": [
       "The updated kitchen has white shaker cabinets, light quartz counters, a stainless gas range with a vent hood, a dishwasher, a built-in microwave, and a side-by-side refrigerator.",
-      "There are three bedrooms and two updated bathrooms: one with a glass-enclosed shower, and one with a long single-sink vanity and a tub with sliding glass doors.",
+      "The primary bedroom has hardwood floors, recessed lighting, and a window for natural light, with room for a full bedroom set. The second bedroom has mirrored sliding closet doors, and the third bedroom works well as a guest room or home office. The two updated bathrooms include one with a glass-enclosed shower and one with a long single-sink vanity and a tub with sliding glass doors.",
       "Out back, the pool has a safety fence and a wide concrete deck. A covered patio room with a translucent roof and glass panels looks out over the pool, and a built-in BBQ island with stainless storage sits nearby. The garage has a laundry area with a utility sink and wall cabinets."
     ],
     "highlights": [
@@ -88,6 +88,7 @@
       "Built-in BBQ island",
       "Updated kitchen with gas range",
       "Hardwood floors throughout",
+      "Primary bedroom + 2 more bedrooms",
       "Brick fireplace",
       "2 updated bathrooms",
       "Garage laundry with utility sink"
@@ -193,17 +194,17 @@
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Bedroom 2",
       20
     ],
     [
       "Bedrooms & baths",
-      "Bedroom with mirrored closet",
+      "Bedroom 2 \u00b7 mirrored closet",
       21
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Bedroom 2",
       22
     ],
     [
@@ -223,27 +224,27 @@
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Primary bedroom",
       26
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Primary bedroom",
       27
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Primary bedroom \u00b7 nightstand side",
       28
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Bedroom 3",
       29
     ],
     [
       "Bedrooms & baths",
-      "Bedroom",
+      "Bedroom 3",
       30
     ],
     [
