@@ -98,7 +98,9 @@ const NAV = `<header class="nav">
   </div>
 </header>`;
 const CTA_BAR = `<div class="cta-bar" id="ctaBar"><a class="btn ghost" href="tel:${site.phoneHref}">Call us</a><a class="btn gold" href="${esc(site.preapprovalUrl)}" target="_blank" rel="noopener">Get pre-approved</a></div>`;
-const common = { NAV, CTA_BAR, COMPANY_CARD, TEAM_CARDS, CSS, SHARED_JS, HEAD_COMMON, FOOTER, AGENT_CARD: memberCard(founder), PREAPPROVAL: esc(site.preapprovalUrl), ZILLOW: esc(site.zillowUrl), PHONE_HREF: site.phoneHref };
+const R = Number(site.calcRate || 7), r3 = (x) => String(Math.round(x * 1000) / 1000);
+const RATE_VARS = { MARKET_RATE: r3(R), RATE_POINTS: r3(R - 0.5), RATE_INVEST: r3(R + 0.75), RATE_TEXT: `${R.toFixed(2)}%` };
+const common = { ...RATE_VARS, NAV, CTA_BAR, COMPANY_CARD, TEAM_CARDS, CSS, SHARED_JS, HEAD_COMMON, FOOTER, AGENT_CARD: memberCard(founder), PREAPPROVAL: esc(site.preapprovalUrl), ZILLOW: esc(site.zillowUrl), PHONE_HREF: site.phoneHref };
 const write = (rel, html) => { const f = path.join(OUT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); };
 
 // ---------- Listings ----------

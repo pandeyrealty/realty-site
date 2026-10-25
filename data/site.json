@@ -94,5 +94,7 @@
     "Danville",
     "Fremont",
     "Livermore"
-  ]
+  ],
+  "calcRate": 7.0,
+  "calcRateUpdated": "Oct 25, 2026"
 }

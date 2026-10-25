@@ -244,7 +244,7 @@
       <div class="field"><div class="fl"><span>Loan type</span></div>
         <div class="seg" id="cLoan" role="group" aria-label="Loan type"><button type="button" data-down="3.5" aria-pressed="false">FHA 3.5%</button><button type="button" data-down="5" aria-pressed="false">Conv. 5%</button><button type="button" data-down="20" aria-pressed="true">20% down</button><button type="button" data-down="25" aria-pressed="false">Investor 25%</button></div></div>
       <div class="field"><label for="cDown">Down payment <output id="cDownOut"></output></label><input type="range" id="cDown" min="3" max="50" step="0.5" value="20"></div>
-      <div class="field"><label for="cRate">Interest rate <output id="cRateOut"></output></label><input type="range" id="cRate" min="3" max="10" step="0.125" value="6.5"></div>
+      <div class="field"><label for="cRate">Interest rate <output id="cRateOut"></output></label><input type="range" id="cRate" min="3" max="10" step="0.125" value="{{MARKET_RATE}}"></div>
       <div class="row2">
         <div class="field"><label for="cTerm">Loan term</label><select id="cTerm"><option value="30">30 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div>
         <div class="field"><label for="cIns">Insurance / mo</label><div class="money"><span>$</span><input type="text" id="cIns" inputmode="numeric"></div></div>
@@ -263,7 +263,7 @@
       </ul>
       <p class="calc-note">Loan amount <b id="cLoanAmt"></b> · Down payment <b id="cDownAmt"></b></p>
       <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Start your pre-approval</a>
-      <p class="calc-note">Estimates only, not a loan offer or commitment to lend. Your rate, taxes, insurance, and mortgage insurance will vary. Pandey Realty NMLS #2877353.</p>
+      <p class="calc-note">The rate starts at {{RATE_TEXT}} as an example of current market rates; move the slider to try your own. Estimates only, not a rate quote, loan offer, or commitment to lend. Your rate, taxes, insurance, and mortgage insurance will vary. Pandey Realty NMLS #2877353.</p>
     </div>
   </div>
 </div></section>

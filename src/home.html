@@ -287,7 +287,7 @@
         <div class="field"><label for="aDebt">Monthly debts (car, student loans, cards)</label><div class="money"><span>$</span><input type="text" id="aDebt" inputmode="numeric" value="600"></div></div>
         <div class="field"><label for="aDown">Cash for down payment</label><div class="money"><span>$</span><input type="text" id="aDown" inputmode="numeric" value="80,000"></div></div>
       </div>
-      <div class="field"><label for="cRate">Interest rate <output id="cRateOut"></output></label><input type="range" id="cRate" min="3" max="10" step="0.125" value="6.5"></div>
+      <div class="field"><label for="cRate">Interest rate <output id="cRateOut"></output></label><input type="range" id="cRate" min="3" max="10" step="0.125" value="{{MARKET_RATE}}"></div>
       <div class="row2">
         <div class="field"><label for="cTerm">Loan term</label><select id="cTerm"><option value="30">30 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div>
         <div class="field"><label for="cIns">Insurance / mo</label><div class="money"><span>$</span><input type="text" id="cIns" inputmode="numeric" value="175"></div></div>
@@ -305,7 +305,7 @@
       </ul>
       <p class="calc-note" id="cSummary"></p>
       <a class="btn gold" href="{{PREAPPROVAL}}" target="_blank" rel="noopener">Start your pre-approval</a>
-      <p class="calc-note">Estimate only. Tax and insurance figures vary by address, county, and carrier. This is not a loan commitment, a rate lock, or an offer to extend credit. Rates change daily; the numbers above reflect only what you entered. Pandey Realty NMLS #2877353.</p>
+      <p class="calc-note">The rate starts at {{RATE_TEXT}} as an example of current market rates; move the slider to try your own. Estimate only. Tax and insurance figures vary by address, county, and carrier. This is not a loan commitment, a rate lock, or an offer to extend credit. Rates change daily; the numbers above reflect only what you entered. Pandey Realty NMLS #2877353.</p>
     </div>
   </div>
 </div></section>
