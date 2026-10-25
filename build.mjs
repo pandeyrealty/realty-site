@@ -117,8 +117,8 @@ for (const L of listings) {
   const agent = team.find((m) => m.slug === L.agent) || founder;
   L.agentSlug = agent.slug;
   const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
-  const canonical = `https://pandey.realty${L.url}`;
-  const ogImg = `https://pandey.realty${L.url}/photos/${L.cardPhoto || "01.jpg"}`;
+  const canonical = `https://www.pandey.realty${L.url}`;
+  const ogImg = `https://www.pandey.realty${L.url}/photos/${L.cardPhoto || "01.jpg"}`;
   const desc = `${L.type ? L.type + " " : ""}${label.toLowerCase()} at ${L.address}, ${L.city}, ${L.state} ${L.zip}. ${L.summary || ""} Listed by ${agent.name}, Pandey Realty, ${agent.licenses[0].join(" ")}.`.trim();
   const data = { ...L, dir: undefined };
   write(`${L.urlPath}/index.html`, fill(listingTpl, {
@@ -206,6 +206,6 @@ for (const m of team.filter((x) => !x.founder)) {
   }));
 }
 const urls = ["/", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url)];
-write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
-write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://pandey.realty/sitemap.xml\n");
+write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://www.pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
+write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://www.pandey.realty/sitemap.xml\n");
 console.log(`Built ${listings.length} listing(s): ${listings.map((l) => l.url).join(", ")}`);
