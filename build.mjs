@@ -109,6 +109,7 @@ const listings = fs.readdirSync(path.join(ROOT, "listings"), { withFileTypes: tr
   .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 
 const listingTpl = read("src/listing.html");
+for (const L of listings) { const [, pfx] = STATUS[L.status] || STATUS.active; L.url = `/${pfx}/${L.slug}`; }
 for (const L of listings) {
   const [label, prefix] = STATUS[L.status] || STATUS.active;
   L.urlPath = `${prefix}/${L.slug}`;
@@ -131,6 +132,7 @@ for (const L of listings) {
     SHORT_ADDRESS: esc(L.shortAddress || L.address), ADDRESS: esc(L.address), CITY: esc(L.city), STATE: esc(L.state), ZIP: esc(L.zip),
     KICKER: esc([L.type, L.neighborhood, `${L.city}, ${L.state}`].filter(Boolean).join(" · ")),
     CITY_LINE: esc(`${L.city}, ${L.state === "CA" ? "California" : L.state} ${L.zip}`),
+    MORE_LISTINGS: (() => { const o = listings.filter((x) => x.status !== "sold" && x.slug !== L.slug); return o.length ? `<div class="more-l">${o.map((x) => `<a href="${x.url}"><img src="${x.url}/photos/${esc(x.cardPhoto || "01.jpg")}" alt="${esc(x.address)}" loading="lazy"><div class="mb">${x.showPrice !== false && x.price ? `<b>${usd(x.price)}</b>` : ""}<span>${esc(x.address)}, ${esc(x.city)}</span><span>${esc([x.beds && x.beds + " bd", x.baths && x.baths + " ba", x.sqft && x.sqft + " sq ft"].filter(Boolean).join(" · "))}</span><i>View this home →</i></div></a>`).join("")}</div>` : ""; })(),
     STATUS_LABEL: esc(label), PRICE_HTML: priceTxt ? `<span class="price">${priceTxt}</span>` : "",
     PHOTO_COUNT: String(L.photos.length),
     STAT_COUNT: String(L.stats.length), STATS_HTML: L.stats.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""),
