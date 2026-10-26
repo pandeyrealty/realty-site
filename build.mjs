@@ -169,14 +169,14 @@ for (const L of listings) {
   const plate = ([ref, cap]) => { const p = pic(ref); return `<figure class="plate"><img src="${p.src}" alt="${esc(cap)}${p.staged ? ", virtually staged with AI" : ""}" loading="lazy">${p.staged ? `<span class="stg">Virtually staged · AI</span>` : ""}<figcaption>${esc(cap)}</figcaption></figure>`; };
   const anyStaged = S.chapters.some((c) => c.photos.some(([r]) => String(r).startsWith("s")));
   const CHAPTERS = S.chapters.map((c, i) => `<section class="chapter reveal" id="ch${i + 1}"><div class="wrap">
-  <div class="ch-head"><span class="ch-num" aria-hidden="true">${i + 1}</span><span class="ch-kicker">Chapter ${i + 1} · ${esc(c.kicker)}</span><h2>${esc(c.title)}</h2></div>
-  <div class="spread"><div class="prose">${c.paras.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="plates">${c.photos.map(plate).join("")}</div></div>
+  <div class="ch-head"><span class="ch-num" aria-hidden="true">${i + 1}</span><span class="ch-kicker">Chapter ${i + 1} · ${esc(c.kicker)}</span><h2 data-say data-pre="Chapter ${i + 1}. ${esc(c.kicker)}.">${esc(c.title)}</h2></div>
+  <div class="spread"><div class="prose">${c.paras.map((p) => `<p data-say>${esc(p)}</p>`).join("")}</div><div class="plates">${c.photos.map(plate).join("")}</div></div>
   ${i === S.chapters.length - 1 && anyStaged && S.stagedNote ? `<p class="stg-note">${esc(S.stagedNote)}</p>` : ""}
 </div></section>`).join("\n");
   const STOPS = S.stops.map((s, i) => `<li class="stop reveal"><span class="stop-n">${i + 1}</span><div class="stop-grid">
   <div class="stop-pics">${s.photos.map((r) => `<img src="${pic(r).src}" alt="${esc(s.room)}" loading="lazy">`).join("")}</div>
-  <div><h3>${esc(s.room)}</h3><p class="what">${esc(s.text)}</p>
-  <div class="take"><img src="${esc(agent.photo)}" alt=""><div><small>${esc(agent.name.split(" ")[0])}'s take</small><p>${esc(s.take)}</p></div></div></div>
+  <div><h3 data-say data-pre="Stop ${i + 1}.">${esc(s.room)}</h3><p class="what" data-say>${esc(s.text)}</p>
+  <div class="take"><img src="${esc(agent.photo)}" alt=""><div><small>${esc(agent.name.split(" ")[0])}'s take</small><p data-say data-pre="My take.">${esc(s.take)}</p></div></div></div>
 </div></li>`).join("\n");
   const TOC = [...S.chapters.map((c, i) => `<li><a href="#ch${i + 1}"><span>${i + 1}</span>${esc(c.kicker)}</a></li>`), `<li><a href="#walk"><span>${S.chapters.length + 1}</span>The walk-through</a></li>`, `<li><a href="#take"><span>${S.chapters.length + 2}</span>My take</a></li>`].join("");
   const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
@@ -193,8 +193,8 @@ for (const L of listings) {
     AGENT_LIC: esc(agent.licenses.map(([k, v]) => `${k} ${v}`).join(" · ")),
     PRESENTER_ORG: esc(L.brokerage ? L.brokerage.name : "Pandey Realty"),
     TOC, CHAPTERS, STOPS, WALK_INTRO: esc(S.walkIntro),
-    STANDOUTS: S.standouts.map((x) => `<li>${CHECK_SVG}${esc(x)}</li>`).join(""),
-    CHECKS_INTRO: esc(S.checksIntro), CHECKS: S.checks.map(([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join(""),
+    STANDOUTS: S.standouts.map((x) => `<li data-say>${CHECK_SVG}${esc(x)}</li>`).join(""),
+    CHECKS_INTRO: esc(S.checksIntro), CHECKS: S.checks.map(([t, d]) => `<div><dt data-say>${esc(t)}</dt><dd data-say>${esc(d)}</dd></div>`).join(""),
     CLOSING: esc(S.closing), LISTING_URL: L.url,
     PRICE_LINE: priceTxt ? `<b>${priceTxt}</b> · ` : "",
     FACTS_LINE: esc([L.type, L.beds && `${L.beds} bd`, L.baths && `${L.baths} ba`, L.sqft && `${L.sqft} sq ft`, `${L.address}, ${L.city}, ${L.state} ${L.zip}`].filter(Boolean).join(" · ")),

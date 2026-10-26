@@ -101,7 +101,20 @@ body{background:var(--paper)}
 .ending .facts b{color:#fff}
 .ending .row{display:flex;flex-wrap:wrap;gap:12px}
 .ending + footer{margin-top:0;border-top:1px solid rgba(255,255,255,.08)}
-@media print{.nav,.toc,.cta-bar{display:none!important}.cover{min-height:0;color:#000}.cover img{position:static;height:auto}.cover::after{display:none}.reveal.pre{opacity:1;transform:none}}
+
+/* Narration: reads the story aloud with the device's own voice (Web Speech API) */
+.listen-start{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font:inherit;font-weight:700;font-size:16px;color:#0f1d33;background:var(--gold);border:0;border-radius:999px;padding:12px 22px 12px 18px;cursor:pointer;text-shadow:none}
+.listen-start:hover{filter:brightness(1.08)}
+.player{position:fixed;z-index:40;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));width:min(560px,calc(100% - 24px));background:var(--navy);color:#fff;border-radius:16px;box-shadow:0 18px 40px rgba(8,14,26,.35);padding:10px 12px;display:grid;grid-template-columns:auto auto 1fr auto auto;gap:8px;align-items:center}
+.player button{font:inherit;color:#fff;background:rgba(255,255,255,.1);border:0;border-radius:999px;width:42px;height:42px;display:grid;place-items:center;cursor:pointer}
+.player button.main{background:var(--gold);color:#0f1d33;width:48px;height:48px}
+.player .now{min-width:0;font-size:14px;line-height:1.3}
+.player .now small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#e6c477;font-weight:700}
+.player .now span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .rate{width:auto;padding:0 12px;font-size:14px;font-weight:700}
+@media (max-width:700px){.player{bottom:calc(78px + env(safe-area-inset-bottom,0px))}}
+.speaking{background:color-mix(in srgb,var(--gold) 22%,transparent);border-radius:6px;box-shadow:0 0 0 6px color-mix(in srgb,var(--gold) 22%,transparent)}
+@media print{.player,.listen-start{display:none!important}.nav,.toc,.cta-bar{display:none!important}.cover{min-height:0;color:#000}.cover img{position:static;height:auto}.cover::after{display:none}.reveal.pre{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -112,8 +125,9 @@ body{background:var(--paper)}
   <span class="cover-cap">{{COVER_ALT}}</span>
   <div class="wrap">
     <p class="eyebrow">The story of {{SHORT_ADDRESS}} · {{CITY}}, {{STATE}}</p>
-    <h1>{{STORY_TITLE}}</h1>
-    <p class="dek">{{STORY_DEK}}</p>
+    <h1 data-say>{{STORY_TITLE}}</h1>
+    <p class="dek" data-say>{{STORY_DEK}}</p>
+    <button type="button" class="listen-start" id="listenStart" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Listen to the story</button>
     <div class="byline"><img src="{{AGENT_PHOTO}}" alt=""><span><b>Told by {{AGENT_NAME}}</b>{{AGENT_ROLE}}, {{PRESENTER_ORG}}</span></div>
   </div>
 </header>
@@ -126,8 +140,8 @@ body{background:var(--paper)}
 <section class="walk" id="walk"><div class="wrap">
   <div class="walk-head reveal">
     <p class="eyebrow">The walk-through</p>
-    <h2>Walk it with me</h2>
-    <p>{{WALK_INTRO}}</p>
+    <h2 data-say data-pre="The walk-through.">Walk it with me</h2>
+    <p data-say>{{WALK_INTRO}}</p>
   </div>
   <ol class="route">{{STOPS}}</ol>
 </div></section>
@@ -137,12 +151,12 @@ body{background:var(--paper)}
   <h2>What I'd tell my own buyers</h2>
   <div class="verdict-grid">
     <div class="panel">
-      <h3>What stands out</h3>
+      <h3 data-say data-pre="My take.">What stands out</h3>
       <p>Why this home would make my buyers' short list.</p>
       <ul class="wins">{{STANDOUTS}}</ul>
     </div>
     <div class="panel">
-      <h3>What I'd check before an offer</h3>
+      <h3 data-say>What I'd check before an offer</h3>
       <p>{{CHECKS_INTRO}}</p>
       <dl class="checks">{{CHECKS}}</dl>
     </div>
@@ -152,7 +166,7 @@ body{background:var(--paper)}
 
 <section class="ending" id="visit"><div class="wrap">
   <p class="eyebrow">The last page</p>
-  <p class="last">{{CLOSING}}</p>
+  <p class="last" data-say>{{CLOSING}}</p>
   <div class="facts">{{PRICE_LINE}}{{FACTS_LINE}}</div>
   <div class="row">
     <a class="btn gold" href="{{LISTING_URL}}#contact">Schedule a showing</a>
@@ -167,6 +181,63 @@ body{background:var(--paper)}
 <script>
 {{SHARED_JS}}
 PR.nav(); PR.reveal();
+(() => {
+  const synth = window.speechSynthesis; if (!synth || !window.SpeechSynthesisUtterance) return;
+  const start = document.getElementById("listenStart"); start.hidden = false;
+  const els = [...document.querySelectorAll("[data-say]")];
+  // one item per sentence, so long paragraphs don't get cut off in some browsers
+  const items = [];
+  els.forEach((el) => {
+    const pre = el.dataset.pre ? el.dataset.pre + " " : "";
+    const text = (pre + el.textContent).replace(/\s+/g, " ").trim().replace(/ · /g, ", ").replace(/\bAve\b\.?/g, "Avenue").replace(/\bsq ft\b/gi, "square feet").replace(/\bK\b/g, " thousand");
+    (text.match(/[^.!?]+[.!?]*["”]?\s*/g) || [text]).forEach((t) => t.trim() && items.push({ el, t: t.trim() }));
+  });
+  const label = (el) => { const c = el.closest(".chapter"), s = el.closest(".stop"); if (c) return c.querySelector(".ch-kicker").textContent; if (s) return "Stop " + s.querySelector(".stop-n").textContent + " · " + s.querySelector("h3").textContent; if (el.closest("#take")) return "My take"; if (el.closest("#walk")) return "The walk-through"; if (el.closest(".ending")) return "The last page"; return "Introduction"; };
+  let voice = null;
+  const pick = () => {
+    const vs = synth.getVoices().filter((v) => /^en[-_]US/i.test(v.lang) || /^en/i.test(v.lang));
+    const prefs = [/natural/i, /premium|enhanced/i, /google us english/i, /samantha|alex|aaron|nathan|evan|daniel/i, /microsoft (guy|aria|jenny)/i];
+    for (const re of prefs) { const v = vs.find((x) => re.test(x.name) && /^en[-_]US/i.test(x.lang)) || vs.find((x) => re.test(x.name)); if (v) return v; }
+    return vs.find((v) => /^en[-_]US/i.test(v.lang)) || vs[0] || null;
+  };
+  voice = pick(); synth.onvoiceschanged = () => { voice = pick(); };
+  let i = 0, playing = false, rate = 1, bar = null, lastEl = null;
+  const ui = () => {
+    if (!bar) {
+      bar = document.createElement("div"); bar.className = "player"; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Story narration");
+      bar.innerHTML = '<button type="button" id="pPrev" aria-label="Back one section"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button><button type="button" class="main" id="pPlay" aria-label="Pause"></button><div class="now"><small>Listening</small><span id="pNow"></span></div><button type="button" class="rate" id="pRate" aria-label="Reading speed">1×</button><button type="button" id="pClose" aria-label="Stop and close"><svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.6" fill="none"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+      document.body.appendChild(bar);
+      bar.querySelector("#pPlay").onclick = () => (playing ? pause() : play());
+      bar.querySelector("#pPrev").onclick = () => { const cur = items[i] && items[i].el; let j = i; while (j > 0 && items[j - 1].el === cur) j--; if (j > 0) { j--; const p = items[j].el; while (j > 0 && items[j - 1].el === p) j--; } i = j; if (playing) { synth.cancel(); speak(); } else mark(); };
+      bar.querySelector("#pRate").onclick = (e) => { rate = rate === 1 ? 1.25 : rate === 1.25 ? 0.9 : 1; e.currentTarget.textContent = rate + "×"; if (playing) { synth.cancel(); speak(); } };
+      bar.querySelector("#pClose").onclick = () => { stop(); bar.remove(); bar = null; };
+    }
+    bar.querySelector("#pPlay").innerHTML = playing ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>' : '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    bar.querySelector("#pPlay").setAttribute("aria-label", playing ? "Pause" : "Play");
+  };
+  const mark = () => {
+    const it = items[i]; if (!it) return;
+    if (lastEl && lastEl !== it.el) lastEl.classList.remove("speaking");
+    if (lastEl !== it.el) { it.el.classList.add("speaking"); const r = it.el.getBoundingClientRect(); if (r.top < 90 || r.bottom > innerHeight - 140) it.el.scrollIntoView({ behavior: PR.reduce ? "auto" : "smooth", block: "center" }); }
+    lastEl = it.el; if (bar) bar.querySelector("#pNow").textContent = label(it.el);
+  };
+  const speak = () => {
+    if (i >= items.length) { stop(); i = 0; return; }
+    mark();
+    const u = new SpeechSynthesisUtterance(items[i].t);
+    if (voice) u.voice = voice; u.lang = voice ? voice.lang : "en-US"; u.rate = rate; u.pitch = 1;
+    u.onend = () => { if (!playing) return; i++; speak(); };
+    u.onerror = (e) => { if (e.error === "interrupted" || e.error === "canceled") return; if (playing) { i++; speak(); } };
+    synth.speak(u);
+  };
+  const play = () => { playing = true; ui(); synth.cancel(); speak(); };
+  const pause = () => { playing = false; synth.cancel(); ui(); };
+  const stop = () => { playing = false; synth.cancel(); if (lastEl) lastEl.classList.remove("speaking"); lastEl = null; if (bar) ui(); };
+  start.onclick = () => { i = 0; play(); };
+  // start reading from any paragraph the visitor double-clicks
+  els.forEach((el) => el.addEventListener("dblclick", () => { const j = items.findIndex((x) => x.el === el); if (j >= 0) { i = j; play(); } }));
+  addEventListener("pagehide", () => synth.cancel());
+})();
 </script>
 </body>
 </html>
