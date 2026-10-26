@@ -405,5 +405,30 @@
     "rentField": true
   },
   "locationText": "In the Belding Woods neighborhood of Richmond, Contra Costa County, on the east shore of San Francisco Bay, with easy freeway access.",
-  "factsNote": "Square footage, lot size, and year built are from public records and have not been independently measured."
+  "factsNote": "Square footage, lot size, and year built are from public records and have not been independently measured.",
+  "staged": [
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    26,
+    27,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ]
 }
