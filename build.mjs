@@ -202,7 +202,7 @@ for (const L of listings) {
   }));
   // link the story from the listing page
   const lf = path.join(OUT, L.urlPath, "index.html");
-  fs.writeFileSync(lf, fs.readFileSync(lf, "utf8").replace("{{STORY_BTN}}", `<a class="story-card" href="${L.story}"><img src="${cover.src}" alt="" loading="lazy"><span><small>New · The story of this home</small><b>${esc(S.title)}</b><span style="display:block;color:var(--muted);font-size:15px">Live a day here, then walk it room by room with ${esc(agent.name.split(" ")[0])}.</span></span><span class="go" aria-hidden="true">→</span></a>`));
+  fs.writeFileSync(lf, fs.readFileSync(lf, "utf8").replace("{{STORY_NAV}}", `<a class="sb" href="${L.story}">Storybook</a>`).replace("{{STORY_BTN}}", `<a class="story-card" href="${L.story}"><img src="${cover.src}" alt="" loading="lazy"><span><small>New · The story of this home</small><b>${esc(S.title)}</b><span style="display:block;color:var(--muted);font-size:15px">Live a day here, then walk it room by room with ${esc(agent.name.split(" ")[0])}.</span></span><span class="go" aria-hidden="true">→</span></a>`));
 }
 
 // Listing pages can be served on their own domain (e.g. 767lemos.com), where "/" is the listing itself,
@@ -210,7 +210,7 @@ for (const L of listings) {
 for (const L of listings) {
   for (const f of [path.join(OUT, L.urlPath, "index.html"), path.join(OUT, L.urlPath, "story", "index.html")]) {
     if (!fs.existsSync(f)) continue;
-    fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace("{{STORY_BTN}}", "").replaceAll('href="/"', 'href="https://www.pandey.realty/"').replaceAll('href="/#', 'href="https://www.pandey.realty/#'));
+    fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace("{{STORY_BTN}}", "").replace("{{STORY_NAV}}", "").replaceAll('href="/"', 'href="https://www.pandey.realty/"').replaceAll('href="/#', 'href="https://www.pandey.realty/#'));
   }
 }
 
