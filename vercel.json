@@ -49,7 +49,7 @@
       "permanent": false
     },
     {
-      "source": "/:path((?!active-listing/767-lemos/|assets/|api/|_vercel/|favicon|robots\\.txt).+)",
+      "source": "/:path((?!active-listing/767-lemos/|story$|assets/|api/|_vercel/|favicon|robots\\.txt).+)",
       "has": [
         {
           "type": "host",
@@ -66,6 +66,16 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/story",
+      "has": [
+        {
+          "type": "host",
+          "value": "767lemos.com"
+        }
+      ],
+      "destination": "/active-listing/767-lemos/story"
+    },
     {
       "source": "/",
       "has": [

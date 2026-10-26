@@ -1,0 +1,77 @@
+{
+  "title": "A Day on Lemos Avenue",
+  "dek": "What it's like to live at 767 Lemos Ave, and what I noticed walking it room by room, the way I'd walk it with my own buyers.",
+  "cover": 46,
+  "coverCaption": "The pool and back yard",
+  "chapters": [
+    {
+      "kicker": "Arriving",
+      "title": "One level, start to finish",
+      "paras": [
+        "You pull into the driveway of a single-story home in College Manor, one of South Salinas's established mid-century neighborhoods. The lawn is out front, the garage is right there, and there isn't a single stair between the car and the kitchen.",
+        "That's the first thing to understand about 767 Lemos: everything happens on one floor. Groceries, laundry, the back yard, the bedrooms. It's an easy house to live in every day."
+      ],
+      "photos": [[3, "Front of the home"], [4, "Driveway and garage"]]
+    },
+    {
+      "kicker": "Morning",
+      "title": "Coffee, hardwood, and a desk that isn't in the bedroom",
+      "paras": [
+        "Mornings start in the kitchen. White shaker cabinets, light quartz counters, and a stainless gas range with a real vent hood. The microwave is built in, so the counters stay clear for the coffee maker and whatever's for breakfast.",
+        "Light comes through the blinds onto hardwood floors that run through the whole living and dining area. The dining area has a nook with room for a desk, so the workday can start ten steps from the coffee without taking over a bedroom."
+      ],
+      "photos": [[18, "Kitchen with gas range"], [14, "Dining area and office nook"]]
+    },
+    {
+      "kicker": "Afternoon",
+      "title": "The room by the pool",
+      "paras": [
+        "Out back is the part of the house people remember. A covered patio room with a translucent roof and glass panels looks straight out at the pool. It's bright but sheltered, a place to read, take a call, or set out lunch for friends.",
+        "A few steps away, the pool sits inside a safety fence with a wide concrete deck around it. On a warm afternoon, the patio room and the deck work together: shade on one side, sun on the other."
+      ],
+      "photos": [[39, "Patio room toward the pool"], [44, "Pool"]]
+    },
+    {
+      "kicker": "Evening",
+      "title": "Grill out, then light the fireplace",
+      "paras": [
+        "When the light goes gold, the built-in BBQ island is ready, with stainless storage built into it so the tools live where you cook. Dinner can go straight from the grill to the table in the patio room.",
+        "When the evening turns cool, the brick fireplace anchors the living room. It's the kind of room where the furniture arranges itself: sofa facing the fireplace, a chair or two beside it, and that's the night."
+      ],
+      "photos": [[50, "BBQ island"], [7, "Living room with brick fireplace"]]
+    }
+  ],
+  "walkIntro": "Here's the home in the order you'd walk it on a showing. The photos show what's there; the notes are what I'd point out to my own buyers if I were seeing it for the first time.",
+  "stops": [
+    {"room": "Front & driveway", "photos": [2, 4], "text": "Single-story home with a front lawn, driveway, and garage.", "take": "No stairs anywhere, inside or out. That matters to more buyers than you'd think, and it makes moving in easy."},
+    {"room": "Living room", "photos": [7, 9], "text": "Hardwood floors, recessed lighting, and a brick fireplace.", "take": "The fireplace gives the room a natural focal point, and the hardwood carries straight through to the dining area, so the house reads larger than its 1,303 square feet."},
+    {"room": "Dining area & office nook", "photos": [13, 14], "text": "Open to the living room, with space for a full dining table and a desk.", "take": "The nook is the quiet win here. A home office that doesn't use up a bedroom is one of the first things buyers ask me about now."},
+    {"room": "Kitchen", "photos": [17, 18], "text": "White shaker cabinets, light quartz counters, stainless gas range with vent hood, dishwasher, built-in microwave, side-by-side refrigerator.", "take": "Gas cooking with a vented hood is what cooks look for, and these are the finishes buyers want today. Open the cabinets on your tour and count the storage."},
+    {"room": "Primary bedroom", "photos": [20, 21], "text": "Hardwood floors, recessed lighting, and mirrored sliding closet doors.", "take": "There's room for a full bedroom set: bed, dresser, and nightstands. The mirrored closet doors bounce light around and make the room feel wider."},
+    {"room": "Bathroom with shower", "photos": [24, 23], "text": "Updated bath with a glass-enclosed shower.", "take": "Clean, updated, and nothing to redo. Ask me which bedroom it's closest to; I'll walk you through the layout."},
+    {"room": "Bedroom 2", "photos": [26, 27], "text": "Hardwood floors and a large window for natural light.", "take": "A good-size second bedroom with real light. It works for guests, a hobby room, or a second office."},
+    {"room": "Bedroom 3", "photos": [30, 29], "text": "Hardwood floors, closet, and natural light.", "take": "Flexible space. With the office nook out front, this room can stay a guest room instead of becoming the office."},
+    {"room": "Bathroom with tub", "photos": [32, 34], "text": "Long single-sink vanity and a tub with sliding glass doors.", "take": "Two full, updated baths in a three-bedroom home is the right ratio. Nobody waits in the morning."},
+    {"room": "Garage & laundry", "photos": [35, 36], "text": "Laundry area with a utility sink and wall cabinets.", "take": "Laundry in the garage keeps the noise and the mess out of the living space, and the utility sink is handy for pool towels and yard work."},
+    {"room": "Covered patio room", "photos": [38, 40], "text": "Translucent roof and glass panels, facing the pool.", "take": "This is the room I think sells the house. It's usable far more of the year than an open patio. As I would on any covered addition, I'd ask for the permit history."},
+    {"room": "Pool", "photos": [46, 47], "text": "Pool with a safety fence and a wide concrete deck.", "take": "The safety fence is already in place. Your home inspector will also note the pool's safety features, which California requires inspectors to do, so you'll see exactly what's there."},
+    {"room": "BBQ island & back yard", "photos": [49, 55], "text": "Built-in BBQ island with stainless storage, next to the pool and patio room.", "take": "Pool, covered patio room, and a built-in grill in one yard is a complete outdoor setup. You won't need to add anything to start hosting."}
+  ],
+  "standouts": [
+    "Single-level living, start to finish",
+    "Pool, covered patio room, and built-in BBQ in one yard",
+    "Remodeled inside and move-in ready",
+    "Two updated full bathrooms",
+    "Office nook so a bedroom stays a bedroom",
+    "Brick fireplace and hardwood throughout"
+  ],
+  "checksIntro": "This is the list I'd hand my own buyers before writing an offer on any home like this one. Ask me for any of it; I'd rather you have the answers up front.",
+  "checks": [
+    ["Disclosures and permits", "Ask for the seller disclosures and the permit history for the remodel and the covered patio room."],
+    ["Pool equipment", "Ask for the age of the pump and filter and any service records. Plan a pool inspection alongside the home inspection."],
+    ["A 1957 home's systems", "Ask what's been updated: electrical panel, plumbing, roof, and sewer line. A sewer-line camera inspection is a smart, inexpensive add-on for a home this age."],
+    ["Square footage", "The 1,303 sq ft comes from public records and hasn't been independently measured. If an exact number matters to you, have it measured."],
+    ["Monthly cost", "Run the numbers with the payment calculator on the listing page, and include pool upkeep in your monthly budget."]
+  ],
+  "closing": "If this sounds like the way you want to live, come see it in person. The patio room and the pool make a lot more sense when you're standing in them."
+}

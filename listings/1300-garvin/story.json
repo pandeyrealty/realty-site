@@ -1,0 +1,79 @@
+{
+  "title": "Two Front Doors on Garvin",
+  "dek": "What it's like to own 1300 Garvin Ave, a vacant corner-lot duplex in Richmond, and what I noticed walking both units, the way I'd walk them with my own buyers.",
+  "cover": 1,
+  "coverCaption": "Front of the property",
+  "stagedNote": "Some photos in the story chapters are virtually staged with AI and are marked. The furniture and decor are not included; both units are vacant. The walkthrough below uses the original, unedited photos.",
+  "chapters": [
+    {
+      "kicker": "Arriving",
+      "title": "A corner lot with two ways in",
+      "paras": [
+        "The building sits on a corner in Richmond's Belding Woods neighborhood, behind a white fence, with a gated parking area off the side. Up front, two doors sit side by side next to an attached garage: one for each home.",
+        "That's the idea behind 1300 Garvin. It's one address with two separate homes, each with its own entrance, its own kitchen, and its own laundry room. And right now, both are empty and ready."
+      ],
+      "photos": [[3, "Gated parking and fence"], [4, "Unit entrances and garage"]]
+    },
+    {
+      "kicker": "Upstairs",
+      "title": "Three bedrooms above the street",
+      "paras": [
+        "The upper unit has its own private staircase. At the top, the living room is bright, with a nook that fits a desk, and the kitchen has granite counters, white cabinets, a stainless double-oven range, and a tall built-in pantry shelf.",
+        "The primary bedroom is a corner room with windows on two sides, a big closet, and its own bathroom. The other two bedrooms both open onto the balcony through sliding glass doors."
+      ],
+      "photos": [["s27", "Upper unit kitchen"], ["s33", "Upper unit primary bedroom"]]
+    },
+    {
+      "kicker": "Downstairs",
+      "title": "A second home with a skylit kitchen",
+      "paras": [
+        "The lower unit feels new: fresh white paint, plank flooring throughout, and a long, open living room. The updated kitchen has quartzite counters, stainless appliances, a French-door refrigerator, and a skylight that brings daylight onto the counters.",
+        "Down the hall are two bedrooms, an updated tiled bath, a second bath with a double-sink vanity, and a bonus room with its own door to the outside: an office with its own entrance, a gym, or a guest room."
+      ],
+      "photos": [["s9", "Lower unit kitchen"], ["s10", "Lower unit living room"]]
+    },
+    {
+      "kicker": "How it works",
+      "title": "Live in one, rent the other, or rent both",
+      "paras": [
+        "Because both units are vacant, the plan is yours from day one. Many buyers live upstairs in the three-bedroom unit and rent out the lower one. Others live downstairs and rent the larger unit. An investor can set rents on both at once.",
+        "Since 2022 the owners have put about $82,000 into the building: new flooring, paint, water heaters, stoves, refrigerators, and washers and dryers in both units; new windows and a remodeled bath in the lower unit; and new exterior paint, fence, and garage door outside."
+      ],
+      "photos": [[5, "Corner lot"], [7, "Side of the building and balcony"]]
+    }
+  ],
+  "walkIntro": "Here's the property in the order you'd walk it on a showing: outside first, then the upper unit, then the lower unit. These are the original photos. The notes are what I'd point out to my own buyers if I were seeing it for the first time.",
+  "stops": [
+    {"room": "Corner lot & parking", "photos": [1, 3], "text": "Corner lot, fully fenced, with gated parking.", "take": "Off-street parking matters a lot in a duplex, for you and your tenant. The gated area plus the attached garage gives each unit somewhere to park."},
+    {"room": "Two entrances", "photos": [4, 7], "text": "Separate front doors for each unit, next to the attached garage.", "take": "Separate entrances are what make this work as two real homes. Nobody walks through anybody else's space."},
+    {"room": "Upper unit · stairs & living room", "photos": [23, 24], "text": "Private staircase up to a bright living room with an office nook.", "take": "The upper unit gets the light and the views of the street. The nook is a ready-made desk spot."},
+    {"room": "Upper unit · kitchen", "photos": [27, 26], "text": "Granite counters, white cabinets, stainless double-oven range, recessed lighting, tall pantry shelf.", "take": "A double-oven range and a real pantry are features renters and owners both notice. The kitchen opens to the living room, so it doesn't feel closed in."},
+    {"room": "Upper unit · primary bedroom", "photos": [33, 34], "text": "Corner room with windows on two sides, a big closet, and its own bathroom.", "take": "A primary bedroom with its own bath is a strong point for the unit you live in, and it can support a higher rent for the unit you lease."},
+    {"room": "Upper unit · bedrooms 2 & 3", "photos": [31, 29], "text": "Both bedrooms have closets and sliding glass doors to the balcony.", "take": "Balcony access from two bedrooms is unusual. It gives the upper unit outdoor space without sharing the yard."},
+    {"room": "Upper unit · bath & laundry", "photos": [36, 37], "text": "Second full bath and a laundry room inside the unit.", "take": "In-unit laundry in both units is one of the best features for renting. Tenants ask about it first."},
+    {"room": "Lower unit · living room", "photos": [10, 8], "text": "Long, open living room with fresh white paint and plank flooring.", "take": "This unit is move-in ready today: new paint and flooring throughout, nothing to touch before you lease it or live in it."},
+    {"room": "Lower unit · kitchen", "photos": [9, 11], "text": "Quartzite counters, stainless appliances, dishwasher, French-door refrigerator, skylight.", "take": "The skylight makes a big difference to a ground-floor kitchen. A dishwasher in a rental kitchen is a plus as well."},
+    {"room": "Lower unit · bedrooms", "photos": [17, 12], "text": "Primary bedroom with outside access, plus a second bedroom with a closet.", "take": "The outside door from the primary bedroom is a nice touch. Ask me where it leads; I'll show you on the tour."},
+    {"room": "Lower unit · bonus room", "photos": [15, 16], "text": "Bonus room with its own outside door and a walk-in closet.", "take": "It's marketed as a bonus room, not a bedroom, and that's the right way to think about it. As an office with its own entrance, it's a real asset."},
+    {"room": "Lower unit · bathrooms & laundry", "photos": [19, 20], "text": "Updated tiled bath with matte black fixtures, a second bath with a double-sink vanity, and a laundry room.", "take": "The remodeled bath is one of the newer upgrades. Two full baths and in-unit laundry make this unit easy to rent."},
+    {"room": "Yard", "photos": [38, 39], "text": "Fully fenced back and side yard.", "take": "Low-maintenance and fenced. Decide early whether the yard goes with one unit or is shared, and put it in the lease."}
+  ],
+  "standouts": [
+    "Vacant: both units ready now",
+    "Separate entrances and in-unit laundry for each unit",
+    "About $82K in upgrades since 2022",
+    "Corner lot with gated parking and an attached garage",
+    "Primary bedroom with its own bath upstairs",
+    "Lower-unit bonus room with its own outside door"
+  ],
+  "checksIntro": "This is the list I'd hand my own buyers before writing an offer on any duplex like this one. Ask me for any of it; I'd rather you have the answers up front.",
+  "checks": [
+    ["Richmond's rent rules", "Richmond has its own rent and just-cause eviction ordinance. Check with the Richmond Rent Program how it applies to this building before you set rents or sign leases."],
+    ["Utilities", "Ask whether gas, electric, and water are separately metered for each unit, and who pays which bills."],
+    ["Upgrade records", "Ask for the invoices and any permits for the roughly $82,000 in upgrades since 2022."],
+    ["Rents", "Ask me for a current rent comparison for each unit before you finalize your numbers."],
+    ["Financing", "With owner occupancy, a two-unit home may qualify for low-down-payment loans, and rent from the other unit may count toward qualifying, depending on the loan program and approval. Talk to me as your loan officer before you write an offer."],
+    ["Square footage", "The 2,452 sq ft comes from public records and hasn't been independently measured."]
+  ],
+  "closing": "If owning two homes at one address fits your plans, come walk both units with me. It's easy to picture once you've climbed those stairs and stood in that skylit kitchen."
+}

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{OG_TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{{CANONICAL}}">
+{{HEAD_COMMON}}
+<style>
+{{CSS}}
+/* ---------- Storybook: a home told in chapters, then walked room by room ---------- */
+:root{--paper:#fbf9f4;--ink:#1c2230;--rule:#e4ddcf;--note:#f6efe0}
+@media (prefers-color-scheme:dark){:root{--paper:#0e1728;--ink:#e8edf4;--rule:#26344d;--note:#1c2536}}
+body{background:var(--paper)}
+.read{max-width:640px}
+.cover{position:relative;min-height:min(88svh,860px);display:flex;align-items:flex-end;color:#fff;background:#0f1d33;overflow:hidden}
+.cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,26,.35) 0%,rgba(8,14,26,0) 26%,rgba(8,14,26,.45) 50%,rgba(8,14,26,.9) 100%),linear-gradient(90deg,rgba(8,14,26,.45) 0%,rgba(8,14,26,0) 65%)}
+.cover .wrap{text-shadow:0 1px 18px rgba(0,0,0,.35)}
+.cover .wrap{position:relative;z-index:1;padding-block:120px 56px;width:100%}
+.cover .eyebrow{color:#e6c477}
+.cover h1{font-weight:800;font-size:clamp(46px,8vw,104px);line-height:.95;letter-spacing:-.035em;max-width:14ch}
+.cover .dek{font-size:clamp(18px,2.1vw,22px);line-height:1.5;max-width:44ch;margin:20px 0 0;opacity:.95}
+.byline{display:flex;align-items:center;gap:12px;margin-top:26px;font-size:15px;line-height:1.3}
+.byline img{width:48px;height:48px;border-radius:999px;object-fit:cover;border:2px solid var(--gold)}
+.byline b{display:block;font-size:16px}
+.cover-cap{position:absolute;z-index:1;top:calc(88px + env(safe-area-inset-top,0px));right:max(20px,env(safe-area-inset-right,0px));font-size:13px;font-weight:600;background:rgba(8,14,26,.45);padding:5px 10px;border-radius:999px;color:#fff}
+
+.toc{border-bottom:1px solid var(--rule);background:var(--surface)}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:12px}
+.toc a{display:flex;align-items:baseline;gap:8px;white-space:nowrap;text-decoration:none;color:var(--fg);font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px;border:1px solid var(--rule)}
+.toc a:hover{border-color:var(--gold)}
+.toc a span{font-family:var(--display);color:var(--gold-ink);font-variant-numeric:tabular-nums}
+
+.chapter{padding-block:96px 0}
+.ch-head{display:grid;grid-template-columns:auto 1fr;gap:4px 26px;align-items:end;margin-bottom:34px}
+.ch-num{grid-row:span 2;font-family:var(--display);font-weight:800;font-size:clamp(84px,12vw,150px);line-height:.8;color:var(--gold);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.ch-kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.ch-head h2{margin:0;font-size:clamp(30px,4.2vw,48px);max-width:20ch}
+.spread{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.chapter:nth-of-type(even) .spread .prose{order:2}
+.prose p{margin:0 0 18px;font-size:19px;line-height:1.75;color:var(--ink);max-width:60ch}
+.prose p:first-child::first-letter{float:left;font-family:var(--display);font-weight:800;font-size:76px;line-height:.82;padding:6px 10px 0 0;color:var(--gold-ink)}
+.plates{display:grid;gap:16px}
+.plate{margin:0;position:relative}
+.plate img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px;background:var(--stucco)}
+.plate:first-child img{aspect-ratio:4/3}
+.plate figcaption{font-size:13px;color:var(--muted);margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stg{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;background:#0f1d33;color:#fff;padding:3px 8px;border-radius:4px}
+.plate .stg{position:absolute;top:10px;left:10px}
+.stg-note{margin:22px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+@media (max-width:880px){.spread{grid-template-columns:1fr;gap:28px}.chapter:nth-of-type(even) .spread .prose{order:0}.ch-head{grid-template-columns:1fr}.ch-num{grid-row:auto;font-size:84px}}
+
+.walk{padding-block:110px 0}
+.walk-head{max-width:720px;margin-bottom:40px}
+.walk-head p{color:var(--muted);font-size:18px;margin:0}
+.route{list-style:none;margin:0;padding:0;counter-reset:stop;position:relative}
+.route::before{content:"";position:absolute;left:21px;top:8px;bottom:8px;width:2px;background:var(--rule)}
+.stop{position:relative;padding-left:72px;padding-bottom:56px}
+.stop:last-child{padding-bottom:0}
+.stop-n{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:999px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;border:3px solid var(--paper)}
+.stop-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+.stop-pics{display:grid;grid-template-columns:1.6fr 1fr;gap:10px}
+.stop-pics img{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;background:var(--stucco)}
+.stop h3{margin:6px 0 6px;font-size:24px}
+.stop .what{margin:0 0 18px;color:var(--muted)}
+.take{background:var(--note);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.take img{width:40px;height:40px;border-radius:999px;object-fit:cover;border:2px solid var(--gold)}
+.take small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-ink);margin-bottom:4px}
+.take p{margin:0;font-size:16.5px;line-height:1.6}
+@media (max-width:880px){.stop-grid{grid-template-columns:1fr;gap:18px}.stop{padding-left:58px}.route::before{left:17px}.stop-n{width:36px;height:36px;font-size:15px}}
+@media (max-width:480px){.stop-pics{grid-template-columns:1fr}.stop-pics img:nth-child(2){display:none}}
+
+.verdict{padding-block:110px 0}
+.verdict-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:30px}
+.panel h3{margin-bottom:6px}
+.panel>p{color:var(--muted);margin:0 0 18px}
+.wins{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.wins li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
+.wins svg{flex:none;margin-top:3px;color:var(--gold-ink)}
+.checks{margin:0;display:grid;gap:0}
+.checks>div{padding:16px 0;border-top:1px solid var(--rule)}
+.checks>div:first-child{border-top:0;padding-top:0}
+.checks dt{font-weight:700}
+.checks dd{margin:4px 0 0;color:var(--muted)}
+@media (max-width:880px){.verdict-grid{grid-template-columns:1fr}.panel{padding:22px}}
+
+.ending{margin-top:110px;background:var(--navy);color:var(--on-navy)}
+.ending .wrap{padding-block:80px;display:grid;gap:22px;justify-items:start}
+.ending .eyebrow{color:var(--gold)}
+.ending p.last{font-family:var(--display);font-size:clamp(26px,3.6vw,40px);line-height:1.2;letter-spacing:-.02em;max-width:28ch;margin:0;color:#fff;text-wrap:balance}
+.ending .facts{color:var(--on-navy-muted);font-size:16px}
+.ending .facts b{color:#fff}
+.ending .row{display:flex;flex-wrap:wrap;gap:12px}
+.ending + footer{margin-top:0;border-top:1px solid rgba(255,255,255,.08)}
+@media print{.nav,.toc,.cta-bar{display:none!important}.cover{min-height:0;color:#000}.cover img{position:static;height:auto}.cover::after{display:none}.reveal.pre{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+{{NAV}}
+
+<header class="cover" id="top">
+  <img src="{{COVER_IMG}}" alt="{{COVER_ALT}}" fetchpriority="high">
+  <span class="cover-cap">{{COVER_ALT}}</span>
+  <div class="wrap">
+    <p class="eyebrow">The story of {{SHORT_ADDRESS}} · {{CITY}}, {{STATE}}</p>
+    <h1>{{STORY_TITLE}}</h1>
+    <p class="dek">{{STORY_DEK}}</p>
+    <div class="byline"><img src="{{AGENT_PHOTO}}" alt=""><span><b>Told by {{AGENT_NAME}}</b>{{AGENT_ROLE}}, {{PRESENTER_ORG}}</span></div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Chapters"><div class="wrap"><ol>{{TOC}}</ol></div></nav>
+
+<main>
+{{CHAPTERS}}
+
+<section class="walk" id="walk"><div class="wrap">
+  <div class="walk-head reveal">
+    <p class="eyebrow">The walk-through</p>
+    <h2>Walk it with me</h2>
+    <p>{{WALK_INTRO}}</p>
+  </div>
+  <ol class="route">{{STOPS}}</ol>
+</div></section>
+
+<section class="verdict reveal" id="take"><div class="wrap">
+  <p class="eyebrow">My take</p>
+  <h2>What I'd tell my own buyers</h2>
+  <div class="verdict-grid">
+    <div class="panel">
+      <h3>What stands out</h3>
+      <p>Why this home would make my buyers' short list.</p>
+      <ul class="wins">{{STANDOUTS}}</ul>
+    </div>
+    <div class="panel">
+      <h3>What I'd check before an offer</h3>
+      <p>{{CHECKS_INTRO}}</p>
+      <dl class="checks">{{CHECKS}}</dl>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<section class="ending" id="visit"><div class="wrap">
+  <p class="eyebrow">The last page</p>
+  <p class="last">{{CLOSING}}</p>
+  <div class="facts">{{PRICE_LINE}}{{FACTS_LINE}}</div>
+  <div class="row">
+    <a class="btn gold" href="{{LISTING_URL}}#contact">Schedule a showing</a>
+    <a class="btn on-dark" href="{{LISTING_URL}}">See the full listing</a>
+    <a class="btn on-dark" href="tel:{{AGENT_PHONE_HREF}}">Call or text {{AGENT_FIRST}}</a>
+  </div>
+  <p class="fine" style="color:var(--on-navy-muted);max-width:80ch">{{FACTS_NOTE}} The notes in this story are the listing broker's observations and are not a substitute for your own inspections and review of the disclosures. Listed by {{AGENT_NAME}} · {{AGENT_LIC}} · {{PRESENTER_ORG}}.</p>
+</div></section>
+
+{{FOOTER}}
+{{CTA_BAR}}
+<script>
+{{SHARED_JS}}
+PR.nav(); PR.reveal();
+</script>
+</body>
+</html>

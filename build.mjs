@@ -155,11 +155,63 @@ for (const L of listings) {
   }));
 }
 
+// ---------- Listing storybooks (listings/<slug>/story.json → /<status>/<slug>/story) ----------
+const storyTpl = read("src/story.html");
+const CHECK_SVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>`;
+for (const L of listings) {
+  const sf = path.join(ROOT, "listings", L.dir, "story.json");
+  if (!fs.existsSync(sf)) continue;
+  const S = JSON.parse(fs.readFileSync(sf, "utf8"));
+  L.story = `${L.url}/story`;
+  const agent = team.find((m) => m.slug === L.agentSlug) || founder;
+  // photo refs: 12 → original photo 12; "s12" → virtually staged version of photo 12
+  const pic = (ref) => { const s = String(ref).startsWith("s"); const n = String(parseInt(String(ref).replace("s", ""), 10)).padStart(2, "0"); return { src: `${L.url}/photos/${s ? "staged/" : ""}${n}.jpg`, staged: s }; };
+  const plate = ([ref, cap]) => { const p = pic(ref); return `<figure class="plate"><img src="${p.src}" alt="${esc(cap)}${p.staged ? ", virtually staged with AI" : ""}" loading="lazy">${p.staged ? `<span class="stg">Virtually staged · AI</span>` : ""}<figcaption>${esc(cap)}</figcaption></figure>`; };
+  const anyStaged = S.chapters.some((c) => c.photos.some(([r]) => String(r).startsWith("s")));
+  const CHAPTERS = S.chapters.map((c, i) => `<section class="chapter reveal" id="ch${i + 1}"><div class="wrap">
+  <div class="ch-head"><span class="ch-num" aria-hidden="true">${i + 1}</span><span class="ch-kicker">Chapter ${i + 1} · ${esc(c.kicker)}</span><h2>${esc(c.title)}</h2></div>
+  <div class="spread"><div class="prose">${c.paras.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="plates">${c.photos.map(plate).join("")}</div></div>
+  ${i === S.chapters.length - 1 && anyStaged && S.stagedNote ? `<p class="stg-note">${esc(S.stagedNote)}</p>` : ""}
+</div></section>`).join("\n");
+  const STOPS = S.stops.map((s, i) => `<li class="stop reveal"><span class="stop-n">${i + 1}</span><div class="stop-grid">
+  <div class="stop-pics">${s.photos.map((r) => `<img src="${pic(r).src}" alt="${esc(s.room)}" loading="lazy">`).join("")}</div>
+  <div><h3>${esc(s.room)}</h3><p class="what">${esc(s.text)}</p>
+  <div class="take"><img src="${esc(agent.photo)}" alt=""><div><small>${esc(agent.name.split(" ")[0])}'s take</small><p>${esc(s.take)}</p></div></div></div>
+</div></li>`).join("\n");
+  const TOC = [...S.chapters.map((c, i) => `<li><a href="#ch${i + 1}"><span>${i + 1}</span>${esc(c.kicker)}</a></li>`), `<li><a href="#walk"><span>${S.chapters.length + 1}</span>The walk-through</a></li>`, `<li><a href="#take"><span>${S.chapters.length + 2}</span>My take</a></li>`].join("");
+  const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
+  const cover = pic(S.cover);
+  write(`${L.urlPath}/story/index.html`, fill(storyTpl, {
+    ...common,
+    TITLE: esc(`${S.title} | ${L.shortAddress || L.address}, ${L.city} | Pandey Realty`),
+    OG_TITLE: esc(`${S.title}: the story of ${L.shortAddress || L.address}, ${L.city}`),
+    DESCRIPTION: esc(S.dek), CANONICAL: `https://www.pandey.realty${L.story}`,
+    OG_IMAGE: `https://www.pandey.realty${cover.src}`, COVER_IMG: cover.src, COVER_ALT: esc(S.coverCaption || L.address),
+    SHORT_ADDRESS: esc(L.shortAddress || L.address), CITY: esc(L.city), STATE: esc(L.state),
+    STORY_TITLE: esc(S.title), STORY_DEK: esc(S.dek),
+    AGENT_NAME: esc(agent.name), AGENT_FIRST: esc(agent.name.split(" ")[0]), AGENT_PHOTO: esc(agent.photo), AGENT_ROLE: esc(agent.role), AGENT_PHONE_HREF: esc(agent.phoneHref),
+    AGENT_LIC: esc(agent.licenses.map(([k, v]) => `${k} ${v}`).join(" · ")),
+    PRESENTER_ORG: esc(L.brokerage ? L.brokerage.name : "Pandey Realty"),
+    TOC, CHAPTERS, STOPS, WALK_INTRO: esc(S.walkIntro),
+    STANDOUTS: S.standouts.map((x) => `<li>${CHECK_SVG}${esc(x)}</li>`).join(""),
+    CHECKS_INTRO: esc(S.checksIntro), CHECKS: S.checks.map(([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join(""),
+    CLOSING: esc(S.closing), LISTING_URL: L.url,
+    PRICE_LINE: priceTxt ? `<b>${priceTxt}</b> · ` : "",
+    FACTS_LINE: esc([L.type, L.beds && `${L.beds} bd`, L.baths && `${L.baths} ba`, L.sqft && `${L.sqft} sq ft`, `${L.address}, ${L.city}, ${L.state} ${L.zip}`].filter(Boolean).join(" · ")),
+    FACTS_NOTE: esc(L.factsNote || "Information deemed reliable but not guaranteed."),
+  }));
+  // link the story from the listing page
+  const lf = path.join(OUT, L.urlPath, "index.html");
+  fs.writeFileSync(lf, fs.readFileSync(lf, "utf8").replace("{{STORY_BTN}}", `<a class="story-card" href="${L.story}"><img src="${cover.src}" alt="" loading="lazy"><span><small>New · The story of this home</small><b>${esc(S.title)}</b><span style="display:block;color:var(--muted);font-size:15px">Live a day here, then walk it room by room with ${esc(agent.name.split(" ")[0])}.</span></span><span class="go" aria-hidden="true">→</span></a>`));
+}
+
 // Listing pages can be served on their own domain (e.g. 767lemos.com), where "/" is the listing itself,
 // so links back to the company homepage must be absolute.
 for (const L of listings) {
-  const f = path.join(OUT, L.urlPath, "index.html");
-  fs.writeFileSync(f, fs.readFileSync(f, "utf8").replaceAll('href="/"', 'href="https://www.pandey.realty/"').replaceAll('href="/#', 'href="https://www.pandey.realty/#'));
+  for (const f of [path.join(OUT, L.urlPath, "index.html"), path.join(OUT, L.urlPath, "story", "index.html")]) {
+    if (!fs.existsSync(f)) continue;
+    fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace("{{STORY_BTN}}", "").replaceAll('href="/"', 'href="https://www.pandey.realty/"').replaceAll('href="/#', 'href="https://www.pandey.realty/#'));
+  }
 }
 
 // ---------- Homepage ----------
@@ -225,7 +277,7 @@ for (const m of team.filter((x) => !x.founder)) {
     LEAD_FORM: leadForm(["Buying a home", "Selling a home", "Financing or refinancing", "Other"]),
   }));
 }
-const urls = ["/", "/home-value", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url)];
+const urls = ["/", "/home-value", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url), ...listings.filter((l) => l.story).map((l) => l.story)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://www.pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
 write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://www.pandey.realty/sitemap.xml\n");
 console.log(`Built ${listings.length} listing(s): ${listings.map((l) => l.url).join(", ")}`);

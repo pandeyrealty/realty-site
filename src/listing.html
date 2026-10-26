@@ -72,6 +72,12 @@
 .about p.lead{color:var(--fg);font-size:21px;line-height:1.5}
 .more{overflow:hidden;transition:max-height .5s ease}
 .more.closed{max-height:0}
+.story-card{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;margin-top:28px;padding:16px 20px 16px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);text-decoration:none;color:inherit;max-width:560px;transition:border-color .2s,transform .2s}
+.story-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.story-card img{width:84px;height:64px;object-fit:cover;border-radius:8px}
+.story-card small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.story-card b{font-family:var(--display);font-size:20px;line-height:1.2}
+.story-card span.go{font-weight:700;color:var(--gold-ink);font-size:22px}
 .read-btn{font:inherit;font-weight:700;color:var(--gold-ink);background:none;border:0;padding:0;cursor:pointer}
 .feat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
 .feat ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
@@ -210,6 +216,7 @@
     {{ABOUT_PARAS}}
     <div class="more closed" id="more">{{ABOUT_MORE}}</div>
     <button class="read-btn" id="readBtn" aria-expanded="false" aria-controls="more">Keep reading ↓</button>
+    {{STORY_BTN}}
   </div>
   <aside class="feat">
     <h3>Highlights</h3>
