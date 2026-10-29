@@ -1,6 +1,7 @@
 {
   "slug": "1300-garvin",
   "status": "active",
+  "openHouse": { "text": "Open house Sat Oct 31 & Sun Nov 1 · 12–4 PM", "short": "Open house Sat & Sun 12–4", "ends": "2026-11-01T16:00:00-08:00" },
   "order": 1,
   "address": "1300 Garvin Avenue",
   "shortAddress": "1300 Garvin Ave",

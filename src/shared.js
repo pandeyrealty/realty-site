@@ -63,6 +63,9 @@ window.PR = (() => {
     });
   }
 
+  // Hide time-limited notices (open houses) once they end.
+  document.querySelectorAll("[data-ends]").forEach((el) => { const t = Date.parse(el.dataset.ends); if (t && Date.now() > t) el.hidden = true; });
+
   function reveal() {
     if (!("IntersectionObserver" in window) || reduce) return;
     const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.remove("pre"); io.unobserve(en.target); } }), { rootMargin: "0px 0px -10% 0px" });

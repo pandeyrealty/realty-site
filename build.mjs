@@ -142,6 +142,7 @@ for (const L of listings) {
     CITY_LINE: esc(`${L.city}, ${L.state === "CA" ? "California" : L.state} ${L.zip}`),
     MORE_LISTINGS: (() => { const o = listings.filter((x) => x.status !== "sold" && x.slug !== L.slug); return o.length ? `<div class="more-l">${o.map((x) => `<a href="${x.url}"><img src="${x.url}/photos/${esc(x.cardPhoto || "01.jpg")}" alt="${esc(x.address)}" loading="lazy"><div class="mb">${x.showPrice !== false && x.price ? `<b>${usd(x.price)}</b>` : ""}<span>${esc(x.address)}, ${esc(x.city)}</span><span>${esc([x.beds && x.beds + " bd", x.baths && x.baths + " ba", x.sqft && x.sqft + " sq ft"].filter(Boolean).join(" · "))}</span><i>View this home →</i></div></a>`).join("")}</div>` : ""; })(),
     BROCHURE_BTN: L.brochure ? `<a href="${L.brochure}" target="_blank" rel="noopener">Print brochure (PDF)</a>` : `<button type="button" onclick="window.print()">Print brochure</button>`,
+    OPEN_HOUSE: L.openHouse ? `<a class="ohbar" href="#contact" data-ends="${esc(L.openHouse.ends)}">${esc(L.openHouse.text)}</a>` : "",
     STATUS_LABEL: esc(label), PRICE_HTML: priceTxt ? `<span class="price">${priceTxt}</span>` : "",
     PHOTO_COUNT: String(L.photos.length),
     STAT_COUNT: String(L.stats.length), STATS_HTML: L.stats.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join(""),
@@ -219,13 +220,13 @@ const active = listings.filter((l) => l.status !== "sold");
 const feat = active[0];
 const SHOW_FEATURED = false; // homepage hero shows the logo, not a featured listing
 const HERO_FEATURE = SHOW_FEATURED && feat
-  ? `<a class="feature" href="${feat.url}"><img class="fimg" src="${feat.url}/photos/${esc(feat.cardPhoto || "01.jpg")}" alt="${esc(feat.address)}" fetchpriority="high"><span class="ftag">Featured listing</span><span class="fcard">${feat.showPrice !== false && feat.price ? `<b>${usd(feat.price)}</b>` : ""}<span>${esc(feat.address)}, ${esc(feat.city)}</span><i>View this home →</i></span></a>`
+  ? `<a class="feature" href="${feat.url}"><img class="fimg" src="${feat.url}/photos/${esc(feat.cardPhoto || "01.jpg")}" alt="${esc(feat.address)}" fetchpriority="high"><span class="ftag">Featured listing</span>${feat.openHouse ? `<span class="ftag" style="top:52px;background:#fff" data-ends="${esc(feat.openHouse.ends)}">${esc(feat.openHouse.short)}</span>` : ""}<span class="fcard">${feat.showPrice !== false && feat.price ? `<b>${usd(feat.price)}</b>` : ""}<span>${esc(feat.address)}, ${esc(feat.city)}</span><i>View this home →</i></span></a>`
   : `<div class="feature logo"><img src="/assets/logo.png" alt="Pandey Realty" style="width:100%;height:auto"></div>`;
 const LISTING_CARDS = active.length
   ? `<div class="lcards${active.length === 1 ? " solo" : ""}">${active.map((L) => {
       const [label] = STATUS[L.status] || STATUS.active;
       return `<a class="lcard" href="${L.url}">
-  <div class="ph"><img src="${L.url}/photos/${esc(L.cardPhoto || "01.jpg")}" alt="${esc(L.address)}" loading="lazy"><span class="pill ${esc(L.status)}">${esc(label)}</span></div>
+  <div class="ph"><img src="${L.url}/photos/${esc(L.cardPhoto || "01.jpg")}" alt="${esc(L.address)}" loading="lazy"><span class="pill ${esc(L.status)}">${esc(label)}</span>${L.openHouse ? `<span class="pill" style="top:52px;background:#fff;color:#0f1d33" data-ends="${esc(L.openHouse.ends)}">${esc(L.openHouse.short)}</span>` : ""}</div>
   <div class="body">${L.showPrice !== false && L.price ? `<div class="price">${usd(L.price)}</div>` : ""}
     <div class="addr">${esc(L.address)}</div><div class="city">${esc([L.neighborhood, `${L.city}, ${L.state} ${L.zip}`].filter(Boolean).join(" · "))}</div>
     <div class="facts">${[L.type && `<span><b>${esc(L.type)}</b></span>`, L.beds && `<span><b>${esc(L.beds)}</b> bd</span>`, L.baths && `<span><b>${esc(L.baths)}</b> ba</span>`, L.sqft && `<span><b>${esc(L.sqft)}</b> sq ft</span>`].filter(Boolean).join("")}</div>
