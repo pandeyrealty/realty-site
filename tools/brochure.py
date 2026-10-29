@@ -15,6 +15,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.colors import HexColor, white
+from reportlab.lib import colors
 from reportlab.platypus import Paragraph, Frame, Table, TableStyle
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.graphics.barcode import qr
@@ -56,13 +57,13 @@ class Brochure:
         self.page_no = 0
 
     # ---------- helpers ----------
-    def photo(self, num):
-        return os.path.join(self.dir, "photos", f"{int(num):02d}.jpg")
+    def photo(self, num, staged=False):
+        return os.path.join(self.dir, "photos", "staged" if staged else "", f"{int(num):02d}.jpg")
 
-    def crop(self, num, w, h, focus_y=0.5):
+    def crop(self, num, w, h, focus_y=0.5, staged=False):
         """Crop photo to the w:h box and save a JPEG sized for ~220 dpi print."""
         self.n += 1
-        im = ImageOps.exif_transpose(Image.open(self.photo(num))).convert("RGB")
+        im = ImageOps.exif_transpose(Image.open(self.photo(num, staged))).convert("RGB")
         tw, th = int(w * 220 / 72), int(h * 220 / 72)
         r = w / h
         iw, ih = im.size
@@ -76,9 +77,9 @@ class Brochure:
         im.save(p, quality=84, optimize=True, progressive=True)
         return p
 
-    def img(self, c, num, x, y, w, h, radius=0, focus_y=0.5):
+    def img(self, c, num, x, y, w, h, radius=0, focus_y=0.5, staged=False):
         self.used = getattr(self, "used", set()); self.used.add(int(num))
-        p = self.crop(num, w, h, focus_y)
+        p = self.crop(num, w, h, focus_y, staged)
         if radius:
             c.saveState(); path = c.beginPath(); path.roundRect(x, y, w, h, radius); c.clipPath(path, stroke=0, fill=0)
             c.drawImage(p, x, y, w, h); c.restoreState()
@@ -204,7 +205,7 @@ class Brochure:
             if not sections or sections[-1][0] != sec:
                 sections.append([sec, []])
             sections[-1][1].append((cap, num))
-        want = 9   # one photo-tour page (3 x 3), so the brochure is 4 pages
+        want = 12  # one photo-tour page (3 x 4), so the brochure is 4 pages
         total = len(photos) or 1
         picks = []
         for sec, items in sections:
@@ -228,17 +229,39 @@ class Brochure:
                 if len(out) >= want: break
                 if it[0] not in caps and it[1] not in used: out.append(it); caps.add(it[0])
         picks = out[:want]
-        per, cols, gap, capgap = 9, 3, 12, 30
+        # explicit choice: "brochurePhotos": [photo#, ...] (or [photo#, "caption"]) in listing.json
+        if self.L.get("brochurePhotos"):
+            capmap = {}
+            for sec, cap, num in photos:
+                capmap[num] = (sec.split()[0].capitalize() + " · " + cap) if sec.lower().endswith("unit") else cap
+            picks = [((b[1] if isinstance(b, list) and len(b) > 1 else capmap.get(b[0] if isinstance(b, list) else b, "")),
+                      b[0] if isinstance(b, list) else b) for b in self.L["brochurePhotos"]][:want]
+        # "brochureStaged": true in listing.json shows the AI-staged version where one exists,
+        # each labeled, with a note that the originals are online (California AB 723)
+        stg = set(self.L.get("staged", [])) if self.L.get("brochureStaged") else set()
+        if stg and not all(os.path.exists(self.photo(n, True)) for n in stg): stg = {n for n in stg if os.path.exists(self.photo(n, True))}
+        per, cols, gap, capgap = 12, 3, 12, 24
+        rows = math.ceil(per / cols)
         for pg in range(math.ceil(len(picks) / per)):
             chunk = picks[pg * per:(pg + 1) * per]
             self.header(c, "Photo tour" + (f" · {pg + 1} of {math.ceil(len(picks) / per)}" if len(picks) > per else ""))
-            top = H - 54 - 26
-            gw = (W - 2 * M - (cols - 1) * gap) / cols; gh = (top - 86 - 3 * capgap) / 3
+            top = H - 54 - 22
+            note = 26 if any(n in stg for _, n in chunk) else 0
+            gw = (W - 2 * M - (cols - 1) * gap) / cols; gh = (top - 80 - note - rows * capgap) / rows
             for i, (cap, num) in enumerate(chunk):
                 col, row = i % cols, i // cols
                 x = M + col * (gw + gap); y = top - (row + 1) * gh - row * capgap
-                self.img(c, num, x, y, gw, gh, radius=8)
-                c.setFillColor(FG); c.setFont("Inter-SemiBold", 9.5); c.drawString(x + 2, y - 14, cap)
+                st = num in stg
+                self.img(c, num, x, y, gw, gh, radius=8, staged=st)
+                if st:
+                    c.setFont("Inter-Bold", 7.5); tw = c.stringWidth("VIRTUALLY STAGED · AI", "Inter-Bold", 7.5)
+                    c.setFillColor(colors.Color(15/255, 29/255, 51/255, 0.88)); c.roundRect(x + 6, y + gh - 20, tw + 12, 14, 7, stroke=0, fill=1)
+                    c.setFillColor(colors.white); c.drawString(x + 12, y + gh - 15.5, "VIRTUALLY STAGED · AI")
+                c.setFillColor(FG); c.setFont("Inter-SemiBold", 9); c.drawString(x + 2, y - 12, cap)
+            if note:
+                c.setFillColor(colors.HexColor("#5d6370")); c.setFont("Inter", 8)
+                c.drawString(M, 66, "Photos marked \u201cVirtually staged \u00b7 AI\u201d were digitally furnished with AI; furniture and decor are not included and the")
+                c.drawString(M, 56, f"rooms are vacant. Unedited original photos of every room are at {self.url_label}.")
             self.footer(c); c.showPage()
 
     def details(self, c):

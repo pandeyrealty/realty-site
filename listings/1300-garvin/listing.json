@@ -477,6 +477,20 @@
       39
     ]
   ],
+  "brochurePhotos": [
+    4,
+    5,
+    23,
+    24,
+    27,
+    33,
+    31,
+    10,
+    9,
+    15,
+    18,
+    38
+  ],
   "calculator": {
     "taxRate": 0.0125,
     "insurance": 175,
@@ -508,5 +522,6 @@
     34,
     35,
     36
-  ]
+  ],
+  "brochureStaged": true
 }

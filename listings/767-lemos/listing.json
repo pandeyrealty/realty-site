@@ -454,6 +454,26 @@
       56
     ]
   ],
+  "brochurePhotos": [
+    1,
+    9,
+    14,
+    17,
+    20,
+    26,
+    [
+      23,
+      "Bathroom · glass shower"
+    ],
+    [
+      31,
+      "Second bathroom · tub"
+    ],
+    38,
+    46,
+    50,
+    35
+  ],
   "calculator": {
     "taxRate": 0.0115,
     "insurance": 175,
