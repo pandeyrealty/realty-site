@@ -7,6 +7,7 @@
 Shots come from "tour": {"shots": [[photo#, "caption", "motion"?], ...]} in listing.json,
 or default to the hero photos plus the first photos of each unit. Motions: in, out, left, right, up.
 Uses the ORIGINAL photos (never AI-staged ones), so no AB 723 staging label is needed.
+Adds original synthesized background music (tools/music.py); pass --silent for none.
 Re-run after changing photos, then commit.
 """
 import json, math, os, subprocess, sys
@@ -156,4 +157,12 @@ for f in range(int(total * FPS)):
     ff.stdin.write(e.tobytes())
 ff.stdin.close(); ff.wait()
 if not VERT and poster: poster.save(f"{LD}/tour.jpg", quality=86)
+# original background music (tools/music.py), a different key per listing, mixed to -16 LUFS
+if "--silent" not in sys.argv:
+    wav = out[:-4] + ".music.wav"; tmp = out[:-4] + ".tmp.mp4"
+    import zlib; h = zlib.crc32(slug.encode()); key = h % 5 - 2
+    subprocess.run([sys.executable, f"{ROOT}/tools/music.py", wav, "--seconds", f"{total:.2f}", "--key", str(key), "--seed", str(h % 1000)], check=True, stdout=subprocess.DEVNULL)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", out, "-i", wav, "-map", "0:v", "-map", "1:a", "-c:v", "copy",
+                    "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-shortest", "-movflags", "+faststart", tmp], check=True)
+    os.replace(tmp, out); os.remove(wav)
 print(out, f"{total:.1f}s", f"{os.path.getsize(out) / 1e6:.1f} MB", f"{N} shots")
