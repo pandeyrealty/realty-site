@@ -156,6 +156,8 @@
 .lb-cap b{display:block}
 .lb-cap span,.lb-num{opacity:.75;font-variant-numeric:tabular-nums}
 @media (max-width:600px){.lb-stage{padding:0 6px}.lb .arr{top:auto;bottom:-56px;transform:none}}
+.vtabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.vtabs button{font:inherit;font-weight:600;font-size:.9rem;padding:9px 16px;border-radius:999px;border:1px solid rgba(15,29,51,.18);background:#fff;color:#0f1d33;cursor:pointer}.vtabs button[aria-selected=true]{background:#0f1d33;color:#fff;border-color:#0f1d33}
+.video video{width:100%;height:100%;object-fit:cover;display:block;background:#0f1d33}.vsound{position:absolute;right:14px;bottom:14px;font:inherit;font-size:.82rem;font-weight:600;padding:8px 14px;border-radius:999px;border:0;background:rgba(255,255,255,.92);color:#0f1d33;cursor:pointer}
 @media print{.nav,.hero-ctl,.cta-bar,.lb,#video,.filters,.share,form,.map{display:none!important}.hero{height:auto;max-height:none}.slide{position:static;opacity:1}.slide:not(:first-child){display:none}.hero-copy{position:static;color:#000}.hero::after{display:none}.reveal.pre{opacity:1;transform:none}}
 
 /* Virtual staging: Original / AI staged carousel on each staged photo (CA AB 723 labeling) */
@@ -240,6 +242,7 @@
 <section id="video" class="reveal"><div class="wrap">
   <p class="eyebrow">Video tour</p>
   <h2>Walk through with {{AGENT_FIRST}}</h2>
+  <div class="vtabs" id="vTabs" role="tablist" hidden></div>
   <div class="video" id="videoBox">
     <img class="poster" id="videoPoster" alt="">
     <div class="soon"><div class="play" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><b>Video tour coming soon</b><span>Want a live walkthrough now? <a href="#contact" style="color:#fff">Schedule a showing</a>.</span></div>
@@ -370,6 +373,15 @@ $("copyBtn").onclick=async()=>{try{await navigator.clipboard.writeText(url);$("c
 
 /* Video */
 (()=>{const box=$("videoBox"),V=L.video;$("videoPoster").src=img(L.videoPoster||L.hero[0][0]);
+  if(L.tourVideo){const tabs=$("vTabs"),yt=V&&V.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([\w-]{11})/);
+    const tour=()=>{box.style.aspectRatio="16/9";box.innerHTML=`<video src="${esc(L.tourVideo)}" poster="${esc(L.tourVideo.replace(/mp4$/,"jpg"))}" muted loop playsinline preload="none" aria-label="Cinematic photo tour"></video><button class="vsound" type="button">Tap for full screen</button>`;
+      const v=box.querySelector("video");box.querySelector(".vsound").onclick=()=>{(v.requestFullscreen||v.webkitEnterFullscreen||(()=>{})).call(v);v.play()};
+      new IntersectionObserver(([e])=>{e.isIntersecting?v.play().catch(()=>{}):v.pause()},{threshold:.35}).observe(v)};
+    const full=()=>{box.style.aspectRatio="";box.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${yt[1]}?rel=0&autoplay=1" title="Video tour" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`};
+    tour();
+    if(yt){tabs.hidden=false;tabs.innerHTML=`<button role="tab" aria-selected="true">Cinematic tour · 1 min</button><button role="tab" aria-selected="false">Full walkthrough with {{AGENT_FIRST}}</button>`;
+      const b=tabs.querySelectorAll("button");b.forEach((x,i)=>x.onclick=()=>{b.forEach(y=>y.setAttribute("aria-selected",y===x));i?full():tour()})}
+    return}
   if(!V&&!L.videoComingSoon){$("video").hidden=true;$("navVideo").hidden=true;return}if(!V)return;let m;
   if((m=V.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([\w-]{11})/)))box.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${m[1]}?rel=0" title="Video tour" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   else if((m=V.match(/vimeo\.com\/(\d+)/)))box.innerHTML=`<iframe src="https://player.vimeo.com/video/${m[1]}" title="Video tour" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>`;

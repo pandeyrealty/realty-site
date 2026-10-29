@@ -1,7 +1,11 @@
 {
   "slug": "1300-garvin",
   "status": "active",
-  "openHouse": { "text": "Open house Sat Oct 31 & Sun Nov 1 · 12–4 PM", "short": "Open house Sat & Sun 12–4", "ends": "2026-11-01T16:00:00-08:00" },
+  "openHouse": {
+    "text": "Open house Sat Oct 31 & Sun Nov 1 · 12–4 PM",
+    "short": "Open house Sat & Sun 12–4",
+    "ends": "2026-11-01T16:00:00-08:00"
+  },
   "order": 1,
   "address": "1300 Garvin Avenue",
   "shortAddress": "1300 Garvin Ave",
@@ -106,6 +110,74 @@
   },
   "video": "https://youtu.be/kVLNg-PVoSc",
   "videoPoster": 24,
+  "tour": {
+    "shots": [
+      [
+        1,
+        ""
+      ],
+      [
+        5,
+        "Corner lot · fully fenced"
+      ],
+      [
+        4,
+        "Separate entrances · attached garage"
+      ],
+      [
+        23,
+        "Upper unit · Private entry"
+      ],
+      [
+        24,
+        ""
+      ],
+      [
+        27,
+        ""
+      ],
+      [
+        33,
+        ""
+      ],
+      [
+        31,
+        ""
+      ],
+      [
+        35,
+        ""
+      ],
+      [
+        10,
+        ""
+      ],
+      [
+        9,
+        ""
+      ],
+      [
+        17,
+        ""
+      ],
+      [
+        15,
+        ""
+      ],
+      [
+        18,
+        ""
+      ],
+      [
+        20,
+        ""
+      ],
+      [
+        38,
+        "Fenced back yard"
+      ]
+    ]
+  },
   "units": [
     {
       "key": "upper",

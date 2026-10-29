@@ -123,6 +123,9 @@ for (const L of listings) {
   const brochureName = `${(L.shortAddress || L.address).replace(/[^A-Za-z0-9]+/g, "-")}-Brochure.pdf`;
   L.brochure = fs.existsSync(brochureSrc) ? `/${L.urlPath}/${brochureName}` : "";
   if (L.brochure) fs.copyFileSync(brochureSrc, path.join(OUT, L.urlPath, brochureName));
+  // Cinematic photo tour made by tools/tour.py (tour.mp4 + tour.jpg poster)
+  L.tourVideo = fs.existsSync(path.join(ROOT, "listings", L.dir, "tour.mp4")) ? `/${L.urlPath}/tour.mp4` : "";
+  if (L.tourVideo) for (const f of ["tour.mp4", "tour.jpg"]) if (fs.existsSync(path.join(ROOT, "listings", L.dir, f))) fs.copyFileSync(path.join(ROOT, "listings", L.dir, f), path.join(OUT, L.urlPath, f));
   const agent = team.find((m) => m.slug === L.agent) || founder;
   L.agentSlug = agent.slug;
   const priceTxt = L.showPrice !== false && L.price ? usd(L.price) : "";
