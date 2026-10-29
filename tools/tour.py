@@ -17,7 +17,7 @@ slug = sys.argv[1]
 VERT = "--vertical" in sys.argv
 W, H = (1080, 1920) if VERT else (1920, 1080)
 FPS, D, T, END = 30, 3.4, 0.8, 4.5          # shot length, crossfade, end card seconds
-S = W / 1920 if not VERT else 1080 / 1920 * 1.55   # text scale
+S = W / 1920 if not VERT else 1.3   # text scale (bigger on phones)
 
 LD = f"{ROOT}/listings/{slug}"
 L = json.load(open(f"{LD}/listing.json"))
@@ -76,9 +76,9 @@ def caption_overlay(text):
 
 def title_overlay():
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
-    g0 = int(H * (0.45 if not VERT else 0.5))
+    g0 = int(H * (0.45 if not VERT else 0.38))
     for y in range(g0, H):  # dark gradient at the bottom
-        d.line([(0, y), (W, y)], fill=NAVY + (int(215 * (y - g0) / (H - g0)),))
+        d.line([(0, y), (W, y)], fill=NAVY + (int(225 * min(1, (y - g0) / ((H - g0) * (1 if not VERT else 0.45)))),))
     lines = [(L.get("type", "").upper(), F("Inter-Bold.ttf", 30), GOLD),
              (L.get("shortAddress", L["address"]), F("InterDisplay-ExtraBold.ttf", 96), WHITE),
              (f'{L.get("neighborhood", "")} · {L["city"]}, {L["state"]}'.strip(" ·"), F("Inter-Medium.ttf", 40), WHITE),
@@ -103,14 +103,20 @@ def end_card(bg):
             (url, F("Inter-Bold.ttf", 44), WHITE),
             (f"Pandey Realty, Inc. · DRE #02446715 · {agent['name']} {lic}", F("Inter-Regular.ttf", 24), MUTED),
             ("Equal Housing Opportunity · Information deemed reliable but not guaranteed", F("Inter-Regular.ttf", 24), MUTED)]
-    if VERT:  # long legal line wraps on a narrow frame
-        rows[3:4] = [("Pandey Realty, Inc. · DRE #02446715", rows[3][1], MUTED), (f"{agent['name']} {lic}", rows[3][1], MUTED)]
+    if VERT:  # long lines wrap on a narrow frame
+        rows[0:1] = [("Schedule a", rows[0][1], WHITE), ("private showing", rows[0][1], WHITE)]
+        rows[4:5] = [("Pandey Realty, Inc. · DRE #02446715", rows[4][1], MUTED), (f"{agent['name']} {lic}", rows[4][1], MUTED)]
+        rows[6:7] = [("Equal Housing Opportunity", rows[6][1], MUTED), ("Information deemed reliable but not guaranteed", rows[6][1], MUTED)]
+    def fit(t, f):  # shrink any line wider than 90% of the frame
+        while d.textlength(t, font=f) > W * 0.9: f = f.font_variant(size=f.size - 2)
+        return f
+    rows = [(t, fit(t, f), c) for t, f, c in rows]
     hs = [f.getbbox(t)[3] - f.getbbox(t)[1] for t, f, _ in rows]
     total = logo.height + 60 * S + sum(hs) + 34 * S * (len(rows) - 1) + 40 * S
     y = (H - total) / 2
     im.alpha_composite(logo, (int((W - logo.width) / 2), int(y))); y += logo.height + 60 * S
     for i, ((t, f, c), h) in enumerate(zip(rows, hs)):
-        if i == 3: y += 40 * S
+        if t.startswith("Pandey Realty, Inc."): y += 40 * S
         d.text(((W - text_w(d, t, f)) / 2, y - f.getbbox(t)[1]), t, font=f, fill=c); y += h + 34 * S
     return im.convert("RGB")
 

@@ -44,3 +44,6 @@ After adding a listing or changing its price, text, or photos, rebuild the broch
     python3 tools/brochure.py <slug>     # or: python3 tools/brochure.py --all
 
 Fonts (Inter, SIL Open Font License) are in `tools/fonts/`.
+
+## Cinematic photo tour
+`python3 tools/tour.py <slug>` makes `listings/<slug>/tour.mp4` + `tour.jpg` (16:9, ~1 min). The listing page shows it automatically (autoplays muted when scrolled into view, with a tab for the full YouTube walkthrough). Shots come from `"tour": {"shots": [[photo#, "caption", "motion"]]}` in listing.json (motions: in, out, left, right, up), or default to hero + unit photos. Uses original photos only. Add `--vertical` for a 9:16 Reels/TikTok version (move it to `src/assets/social/<slug>/`).
