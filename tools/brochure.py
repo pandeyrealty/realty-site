@@ -204,7 +204,7 @@ class Brochure:
             if not sections or sections[-1][0] != sec:
                 sections.append([sec, []])
             sections[-1][1].append((cap, num))
-        want = 12
+        want = 9   # one photo-tour page (3 x 3), so the brochure is 4 pages
         total = len(photos) or 1
         picks = []
         for sec, items in sections:
@@ -219,15 +219,24 @@ class Brochure:
             for i in range(k):
                 it = cand[min(len(cand) - 1, int(i * step))]
                 if it not in picks: picks.append(it)
-        picks = picks[:want] if len(picks) >= want else picks
-        per = 6
+        # no repeated room captions; top up with other rooms if needed
+        out, caps = [], set()
+        for it in picks:
+            if it[0] not in caps: out.append(it); caps.add(it[0])
+        for sec, items in sections:
+            for it in items:
+                if len(out) >= want: break
+                if it[0] not in caps and it[1] not in used: out.append(it); caps.add(it[0])
+        picks = out[:want]
+        per, cols, gap, capgap = 9, 3, 12, 30
         for pg in range(math.ceil(len(picks) / per)):
             chunk = picks[pg * per:(pg + 1) * per]
             self.header(c, "Photo tour" + (f" · {pg + 1} of {math.ceil(len(picks) / per)}" if len(picks) > per else ""))
-            gw = (W - 2 * M - 14) / 2; gh = 188; top = H - 54 - 26
+            top = H - 54 - 26
+            gw = (W - 2 * M - (cols - 1) * gap) / cols; gh = (top - 86 - 3 * capgap) / 3
             for i, (cap, num) in enumerate(chunk):
-                col, row = i % 2, i // 2
-                x = M + col * (gw + 14); y = top - (row + 1) * gh - row * 40
+                col, row = i % cols, i // cols
+                x = M + col * (gw + gap); y = top - (row + 1) * gh - row * capgap
                 self.img(c, num, x, y, gw, gh, radius=8)
                 c.setFillColor(FG); c.setFont("Inter-SemiBold", 9.5); c.drawString(x + 2, y - 14, cap)
             self.footer(c); c.showPage()
