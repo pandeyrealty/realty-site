@@ -27,7 +27,7 @@
       "title": "The room by the pool",
       "paras": [
         "Out back is the part of the house people remember. A covered patio room with a translucent roof and glass panels looks straight out at the pool. It's bright but sheltered, a place to read, take a call, or set out lunch for friends.",
-        "A few steps away, the pool sits inside a safety fence with a wide concrete deck around it. On a warm afternoon, the patio room and the deck work together: shade on one side, sun on the other."
+        "A few steps away, the pool sits inside a safety fence. On a warm afternoon, the patio room and the pool work together: shade on one side, sun on the other."
       ],
       "photos": [[39, "Patio room toward the pool"], [44, "Pool"]]
     },
@@ -54,7 +54,7 @@
     {"room": "Bathroom with tub", "photos": [32, 34], "text": "Long single-sink vanity and a tub with sliding glass doors.", "take": "Two full, updated baths in a three-bedroom home is the right ratio. Nobody waits in the morning."},
     {"room": "Garage & laundry", "photos": [35, 36], "text": "Laundry area with a utility sink and wall cabinets.", "take": "Laundry in the garage keeps the noise and the mess out of the living space, and the utility sink is handy for pool towels and yard work."},
     {"room": "Covered patio room", "photos": [38, 40], "text": "Translucent roof and glass panels, facing the pool.", "take": "This is the room I think sells the house. It's usable far more of the year than an open patio. As I would on any covered addition, I'd ask for the permit history."},
-    {"room": "Pool", "photos": [46, 47], "text": "Pool with a safety fence and a wide concrete deck.", "take": "The safety fence is already in place. Your home inspector will also note the pool's safety features, which California requires inspectors to do, so you'll see exactly what's there."},
+    {"room": "Pool", "photos": [46, 47], "text": "Pool with a safety fence.", "take": "The safety fence is already in place. Your home inspector will also note the pool's safety features, which California requires inspectors to do, so you'll see exactly what's there."},
     {"room": "BBQ island & back yard", "photos": [49, 55], "text": "Built-in BBQ island with stainless storage, next to the pool and patio room.", "take": "Pool, covered patio room, and a built-in grill in one yard is a complete outdoor setup. You won't need to add anything to start hosting."}
   ],
   "standouts": [
