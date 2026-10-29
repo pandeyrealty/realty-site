@@ -1,6 +1,11 @@
 {
   "slug": "767-lemos",
   "status": "active",
+  "openHouse": {
+    "text": "Open house Sat Oct 31 & Sun Nov 1 · 12–4 PM",
+    "short": "Open house Sat & Sun 12–4",
+    "ends": "2026-11-01T16:00:00-08:00"
+  },
   "order": 1,
   "address": "767 Lemos Avenue",
   "shortAddress": "767 Lemos Ave",
@@ -99,6 +104,74 @@
   },
   "video": "https://www.youtube.com/watch?v=LjkyHnqCnKE",
   "videoPoster": 46,
+  "tour": {
+    "shots": [
+      [
+        1,
+        ""
+      ],
+      [
+        46,
+        "Pool with safety fence"
+      ],
+      [
+        7,
+        "Living room"
+      ],
+      [
+        9,
+        "Brick fireplace"
+      ],
+      [
+        12,
+        "Dining area"
+      ],
+      [
+        17,
+        "Updated kitchen"
+      ],
+      [
+        18,
+        ""
+      ],
+      [
+        20,
+        "Primary bedroom"
+      ],
+      [
+        23,
+        "Updated bathroom"
+      ],
+      [
+        26,
+        "Bedroom 2"
+      ],
+      [
+        31,
+        "Second bathroom"
+      ],
+      [
+        38,
+        "Covered patio room"
+      ],
+      [
+        40,
+        "Patio room facing the pool"
+      ],
+      [
+        44,
+        "Pool"
+      ],
+      [
+        50,
+        "Built-in BBQ island"
+      ],
+      [
+        55,
+        "Back yard"
+      ]
+    ]
+  },
   "photos": [
     [
       "Exterior",
@@ -202,7 +275,7 @@
     ],
     [
       "Bedrooms & baths",
-      "Primary bedroom \u00b7 mirrored closet",
+      "Primary bedroom · mirrored closet",
       21
     ],
     [
