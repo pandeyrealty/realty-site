@@ -47,3 +47,5 @@ Fonts (Inter, SIL Open Font License) are in `tools/fonts/`.
 
 ## Cinematic photo tour
 `python3 tools/tour.py <slug>` makes `listings/<slug>/tour.mp4` + `tour.jpg` (16:9, ~1 min). The listing page shows it automatically (autoplays muted when scrolled into view, with a tab for the full YouTube walkthrough). Shots come from `"tour": {"shots": [[photo#, "caption", "motion"]]}` in listing.json (motions: in, out, left, right, up), or default to hero + unit photos. Uses original photos only. Add `--vertical` for a 9:16 Reels/TikTok version (move it to `src/assets/social/<slug>/`).
+
+Tours get original, copyright-free background music automatically (`tools/music.py`, synthesized from scratch, a different key per listing, mixed to -16 LUFS); add `--silent` to skip it. On the page the tour autoplays muted; visitors tap "🔊 Tap for sound".
