@@ -12,18 +12,18 @@
 {{HEAD_COMMON}}
 <style>
 {{CSS}}
-.phero{background:var(--navy);color:var(--on-navy)}
+.phero{background:var(--navy);border-bottom:1px solid var(--line);color:var(--on-navy)}
 .phero .wrap{padding-block:64px 56px;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:end}
 .phero .eyebrow{color:var(--gold)}
-.phero h1{font-weight:800;font-size:clamp(40px,5.6vw,68px);line-height:.98;color:#fff}
+.phero h1{font-weight:800;font-size:clamp(40px,5.6vw,68px);line-height:.98;color:var(--on-navy)}
 .phero p{color:var(--on-navy-muted);font-size:19px;max-width:56ch;margin:20px 0 0}
-.phero .box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:22px;display:grid;gap:12px}
-.phero .box b{color:#fff;font-family:var(--display);font-size:20px}
+.phero .box{background:var(--surface);border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.06);border-radius:14px;padding:22px;display:grid;gap:12px}
+.phero .box b{color:var(--on-navy);font-family:var(--display);font-size:20px}
 .phero .box span{font-size:15px}
 @media (max-width:860px){.phero .wrap{grid-template-columns:1fr}}
 .goals{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
 .goals button{font:inherit;font-size:15px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
-.goals button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.goals button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .progs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:18px}
 .prog{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px}
 .prog h3{font-size:21px}
@@ -34,7 +34,7 @@
 .prog dd{margin:2px 0 0;color:var(--muted)}
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;list-style:none;margin:0;padding:0}
 .steps li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative}
-.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--gold);color:#0f1d33;font-weight:800;margin-bottom:12px}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--gold);color:#111111;font-weight:800;margin-bottom:12px}
 .steps h3{font-size:19px;margin-bottom:6px}
 .steps p{margin:0;color:var(--muted);font-size:16px}
 @media (max-width:860px){.steps{grid-template-columns:1fr}}

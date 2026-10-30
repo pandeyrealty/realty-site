@@ -16,11 +16,10 @@
 <style>
 {{CSS}}
 /* ---------- Storybook: a home told in chapters, then walked room by room ---------- */
-:root{--paper:#fbf9f4;--ink:#1c2230;--rule:#e4ddcf;--note:#f6efe0}
-@media (prefers-color-scheme:dark){:root{--paper:#0e1728;--ink:#e8edf4;--rule:#26344d;--note:#1c2536}}
+:root{--paper:#ffffff;--ink:#111111;--rule:#e4ddcf;--note:#f6efe0}
 body{background:var(--paper)}
 .read{max-width:640px}
-.cover{position:relative;min-height:min(88svh,860px);display:flex;align-items:flex-end;color:#fff;background:#0f1d33;overflow:hidden}
+.cover{position:relative;min-height:min(88svh,860px);display:flex;align-items:flex-end;color:#fff;background:#111111;overflow:hidden}
 .cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,26,.35) 0%,rgba(8,14,26,0) 26%,rgba(8,14,26,.45) 50%,rgba(8,14,26,.9) 100%),linear-gradient(90deg,rgba(8,14,26,.45) 0%,rgba(8,14,26,0) 65%)}
 .cover .wrap{text-shadow:0 1px 18px rgba(0,0,0,.35)}
@@ -53,7 +52,7 @@ body{background:var(--paper)}
 .plate img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px;background:var(--stucco)}
 .plate:first-child img{aspect-ratio:4/3}
 .plate figcaption{font-size:13px;color:var(--muted);margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.stg{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;background:#0f1d33;color:#fff;padding:3px 8px;border-radius:4px}
+.stg{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;background:#111111;color:#fff;padding:3px 8px;border-radius:4px}
 .plate .stg{position:absolute;top:10px;left:10px}
 .stg-note{margin:22px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
 @media (max-width:880px){.spread{grid-template-columns:1fr;gap:28px}.chapter:nth-of-type(even) .spread .prose{order:0}.ch-head{grid-template-columns:1fr}.ch-num{grid-row:auto;font-size:84px}}
@@ -65,7 +64,7 @@ body{background:var(--paper)}
 .route::before{content:"";position:absolute;left:21px;top:8px;bottom:8px;width:2px;background:var(--rule)}
 .stop{position:relative;padding-left:72px;padding-bottom:56px}
 .stop:last-child{padding-bottom:0}
-.stop-n{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:999px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;border:3px solid var(--paper)}
+.stop-n{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:999px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;border:3px solid var(--paper)}
 .stop-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
 .stop-pics{display:grid;grid-template-columns:1.6fr 1fr;gap:10px}
 .stop-pics img{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;background:var(--stucco)}
@@ -93,21 +92,21 @@ body{background:var(--paper)}
 .checks dd{margin:4px 0 0;color:var(--muted)}
 @media (max-width:880px){.verdict-grid{grid-template-columns:1fr}.panel{padding:22px}}
 
-.ending{margin-top:110px;background:var(--navy);color:var(--on-navy)}
+.ending{margin-top:110px;background:var(--navy);border-top:1px solid var(--line);color:var(--on-navy)}
 .ending .wrap{padding-block:80px;display:grid;gap:22px;justify-items:start}
 .ending .eyebrow{color:var(--gold)}
-.ending p.last{font-family:var(--display);font-size:clamp(26px,3.6vw,40px);line-height:1.2;letter-spacing:-.02em;max-width:28ch;margin:0;color:#fff;text-wrap:balance}
+.ending p.last{font-family:var(--display);font-size:clamp(26px,3.6vw,40px);line-height:1.2;letter-spacing:-.02em;max-width:28ch;margin:0;color:var(--on-navy);text-wrap:balance}
 .ending .facts{color:var(--on-navy-muted);font-size:16px}
-.ending .facts b{color:#fff}
+.ending .facts b{color:var(--on-navy)}
 .ending .row{display:flex;flex-wrap:wrap;gap:12px}
-.ending + footer{margin-top:0;border-top:1px solid rgba(255,255,255,.08)}
+.ending + footer{margin-top:0;border-top:1px solid var(--line)}
 
 /* Narration: reads the story aloud with the device's own voice (Web Speech API) */
-.listen-start{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font:inherit;font-weight:700;font-size:16px;color:#0f1d33;background:var(--gold);border:0;border-radius:999px;padding:12px 22px 12px 18px;cursor:pointer;text-shadow:none}
+.listen-start{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font:inherit;font-weight:700;font-size:16px;color:#111111;background:var(--gold);border:0;border-radius:999px;padding:12px 22px 12px 18px;cursor:pointer;text-shadow:none}
 .listen-start:hover{filter:brightness(1.08)}
-.player{position:fixed;z-index:40;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));width:min(560px,calc(100% - 24px));background:var(--navy);color:#fff;border-radius:16px;box-shadow:0 18px 40px rgba(8,14,26,.35);padding:10px 12px;display:grid;grid-template-columns:auto auto 1fr auto auto;gap:8px;align-items:center}
-.player button{font:inherit;color:#fff;background:rgba(255,255,255,.1);border:0;border-radius:999px;width:42px;height:42px;display:grid;place-items:center;cursor:pointer}
-.player button.main{background:var(--gold);color:#0f1d33;width:48px;height:48px}
+.player{position:fixed;z-index:40;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom,0px));width:min(560px,calc(100% - 24px));background:var(--ink);color:#fff;border-radius:16px;box-shadow:0 18px 40px rgba(8,14,26,.35);padding:10px 12px;display:grid;grid-template-columns:auto auto 1fr auto auto;gap:8px;align-items:center}
+.player button{font:inherit;color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:999px;width:42px;height:42px;display:grid;place-items:center;cursor:pointer}
+.player button.main{background:var(--gold);color:#111111;width:48px;height:48px}
 .player .now{min-width:0;font-size:14px;line-height:1.3}
 .player .now small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#e6c477;font-weight:700}
 .player .now span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

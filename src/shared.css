@@ -1,18 +1,14 @@
-/* Pandey Realty brand: deep navy + logo gold. Display: Bricolage Grotesque. Body: Figtree. */
+/* Pandey Realty brand: white + black + logo gold. Display: Bricolage Grotesque. Body: Figtree. */
 :root{
-  --bg:#faf8f3; --surface:#ffffff; --fg:#1c2230; --muted:#5d6370; --line:#e7e2d7;
-  --navy:#0f1d33; --navy-2:#16284a; --on-navy:#eef2f8; --on-navy-muted:#a9b5c9;
+  --bg:#ffffff; --surface:#ffffff; --fg:#111111; --muted:#555555; --line:#e7e2d7; --ink:#111111;
+  --navy:#ffffff; --navy-2:#ffffff; --on-navy:#111111; --on-navy-muted:#555555;
   --gold:#c9a45a; --gold-ink:#86662a; --gold-soft:#f4ecdb;
-  --accent:#0f1d33; --accent-ink:#ffffff; --accent-soft:#e7ecf4;
-  --ok:#2f7a4d; --err:#b23b3b; --scrim:rgba(8,12,20,.94); --stucco:#d7dde5;
+  --accent:#111111; --accent-ink:#ffffff; --accent-soft:#f3f3f3;
+  --ok:#2f7a4d; --err:#b23b3b; --scrim:rgba(8,12,20,.94); --stucco:#e6e6e6;
+  color-scheme:light;
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme:dark){:root{
-  --bg:#0b1322; --surface:#121d31; --fg:#e8edf4; --muted:#9aa7bb; --line:#23314a;
-  --navy:#08101d; --navy-2:#101c31; --gold-ink:#e3bd62; --gold-soft:#2a2414;
-  --accent:#d4a63a; --accent-ink:#0f1d33; --accent-soft:#1b2944; --stucco:#22324d;
-  --ok:#6cc893; --err:#ef8a8a; color-scheme:dark}}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
@@ -34,11 +30,12 @@ section{padding-block:88px 0}
 .btn:hover{filter:brightness(1.1)}
 @media (max-width:480px){.btn{white-space:normal;text-align:center;max-width:100%}}
 .btn:active{transform:translateY(1px)}
-.btn.gold{background:var(--gold);color:#0f1d33}
+.btn.gold{background:var(--gold);color:#111111}
 .btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
 .btn.ghost:hover{border-color:var(--gold)}
-.btn.on-dark{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
-.btn.light{background:#fff;color:#0f1d33}
+.btn.on-dark{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn.on-dark:hover{border-color:var(--gold)}
+.btn.light{background:#fff;color:#111111}
 .btn.glass{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.5);backdrop-filter:blur(6px)}
 
 /* Nav */
@@ -54,7 +51,7 @@ section{padding-block:88px 0}
 .links a:hover{background:var(--accent-soft)}
 .links a.hv{margin-left:6px;border:1.5px solid var(--gold);border-radius:999px;font-weight:700;color:var(--gold-ink);padding:8px 14px}
 .links a.hv:hover{background:var(--gold-soft)}
-.links a.btn{margin-left:6px;padding:10px 16px;font-size:14.5px;color:#0f1d33}
+.links a.btn{margin-left:6px;padding:10px 16px;font-size:14.5px;color:#111111}
 .links a.btn:hover{background:var(--gold)}
 @media (min-width:1181px){.brand{flex:none}}
 @media (min-width:1181px){.brand small{display:none}}
@@ -81,8 +78,7 @@ input[type=range]{width:100%;accent-color:var(--gold)}
 textarea{min-height:110px;resize:vertical}
 .seg{display:flex;gap:6px;flex-wrap:wrap}
 .seg button{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:7px 14px;cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
-@media (prefers-color-scheme:dark){.seg button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#0f1d33}}
+.seg button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .req{color:var(--err)}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)}
@@ -98,17 +94,17 @@ textarea{min-height:110px;resize:vertical}
 /* Calculator */
 .calc{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .calc-in{padding:30px;display:grid;gap:18px;align-content:start}
-.calc-out{background:var(--navy);color:var(--on-navy);padding:30px;display:flex;flex-direction:column;gap:18px}
+.calc-out{background:var(--navy);border-left:1px solid var(--line);color:var(--on-navy);padding:30px;display:flex;flex-direction:column;gap:18px}
 .calc-out .eyebrow{color:var(--gold)}
 .pay{font-family:var(--display);font-weight:800;font-size:clamp(40px,6vw,60px);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
 .pay small{font-family:var(--body);font-size:16px;font-weight:500;color:var(--on-navy-muted);letter-spacing:0}
-.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.12)}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;background:rgba(0,0,0,.08)}
 .bar i{display:block;height:100%;transition:width .3s}
 .legend{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .legend li{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
 .legend li span{display:flex;align-items:center;gap:8px;color:var(--on-navy-muted)}
 .legend li span::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--c)}
-.legend li.net{border-top:1px solid rgba(255,255,255,.15);padding-top:10px;font-weight:700}
+.legend li.net{border-top:1px solid var(--line);padding-top:10px;font-weight:700}
 .legend li.net span{color:var(--on-navy)}
 .legend li.net span::before{display:none}
 .calc-note{font-size:13px;color:var(--on-navy-muted);margin:0}
@@ -128,7 +124,7 @@ textarea{min-height:110px;resize:vertical}
 .agent .line a{text-decoration:none}
 
 /* Footer */
-footer{margin-top:96px;background:var(--navy);color:var(--on-navy-muted);font-size:14px}
+footer{margin-top:96px;background:var(--navy);border-top:1px solid var(--line);color:var(--on-navy-muted);font-size:14px}
 footer .wrap{padding-block:44px 48px;display:grid;gap:22px}
 footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 32px}
 footer .logo{height:64px;width:auto;display:block}

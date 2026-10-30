@@ -11,22 +11,22 @@
 {{HEAD_COMMON}}
 <style>
 {{CSS}}
-.phero{background:var(--navy);color:var(--on-navy)}
+.phero{background:var(--navy);border-bottom:1px solid var(--line);color:var(--on-navy)}
 .phero .wrap{padding-block:60px 52px}
 .phero .eyebrow{color:var(--gold)}
-.phero h1{font-weight:800;font-size:clamp(38px,5.6vw,66px);line-height:1;color:#fff}
+.phero h1{font-weight:800;font-size:clamp(38px,5.6vw,66px);line-height:1;color:var(--on-navy)}
 .phero p{color:var(--on-navy-muted);font-size:19px;max-width:60ch;margin:18px 0 0}
 .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:20px}
 .tcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
-.tcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,29,51,.12)}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
 .tcard img{width:100%;aspect-ratio:1;object-fit:cover;object-position:50% 22%;background:#e9ecef;display:block}
 .tcard .tb{padding:18px 20px 20px;display:grid;gap:2px}
 .tcard .tb b{font-family:var(--display);font-size:21px}
 .tcard .tb span{color:var(--muted);font-size:15px}
 .tcard .tb small{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .tcard .tb i{font-style:normal;font-weight:700;color:var(--gold-ink);margin-top:8px}
-.tcard.join{background:var(--navy);color:var(--on-navy);border-color:var(--navy);padding:28px;gap:10px;justify-content:center}
-.tcard.join b{font-family:var(--display);font-size:24px;color:#fff}
+.tcard.join{background:var(--navy);color:var(--on-navy);border-color:var(--gold);padding:28px;gap:10px;justify-content:center}
+.tcard.join b{font-family:var(--display);font-size:24px;color:var(--on-navy)}
 .tcard.join span{color:var(--on-navy-muted)}
 .tcard.join i{font-style:normal;font-weight:700;color:var(--gold)}
 .jicon{width:52px;height:52px;border-radius:999px;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:28px;font-weight:300}

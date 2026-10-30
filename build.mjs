@@ -26,7 +26,7 @@ fs.cpSync(path.join(ROOT, "src/assets"), path.join(OUT, "assets"), { recursive: 
 const HEAD_COMMON = `<link rel="icon" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
-<meta name="theme-color" content="#0f1d33">`;
+<meta name="theme-color" content="#ffffff">`;
 
 const licLine = site.licenses.map(([k, v]) => `<span>${esc(k)} <b>${esc(v)}</b></span>`).join("");
 const socials = Object.entries(site.social).map(([k, v]) => `<a href="${esc(v)}" target="_blank" rel="noopener">${esc(k)}</a>`).join("");
@@ -229,7 +229,7 @@ const LISTING_CARDS = active.length
   ? `<div class="lcards${active.length === 1 ? " solo" : ""}">${active.map((L) => {
       const [label] = STATUS[L.status] || STATUS.active;
       return `<a class="lcard" href="${L.url}">
-  <div class="ph"><img src="${L.url}/photos/${esc(L.cardPhoto || "01.jpg")}" alt="${esc(L.address)}" loading="lazy"><span class="pill ${esc(L.status)}">${esc(label)}</span>${L.openHouse ? `<span class="pill" style="top:52px;background:#fff;color:#0f1d33" data-ends="${esc(L.openHouse.ends)}">${esc(L.openHouse.short)}</span>` : ""}</div>
+  <div class="ph"><img src="${L.url}/photos/${esc(L.cardPhoto || "01.jpg")}" alt="${esc(L.address)}" loading="lazy"><span class="pill ${esc(L.status)}">${esc(label)}</span>${L.openHouse ? `<span class="pill" style="top:52px;background:#fff;color:#111111" data-ends="${esc(L.openHouse.ends)}">${esc(L.openHouse.short)}</span>` : ""}</div>
   <div class="body">${L.showPrice !== false && L.price ? `<div class="price">${usd(L.price)}</div>` : ""}
     <div class="addr">${esc(L.address)}</div><div class="city">${esc([L.neighborhood, `${L.city}, ${L.state} ${L.zip}`].filter(Boolean).join(" · "))}</div>
     <div class="facts">${[L.type && `<span><b>${esc(L.type)}</b></span>`, L.beds && `<span><b>${esc(L.beds)}</b> bd</span>`, L.baths && `<span><b>${esc(L.baths)}</b> ba</span>`, L.sqft && `<span><b>${esc(L.sqft)}</b> sq ft</span>`].filter(Boolean).join("")}</div>

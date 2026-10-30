@@ -11,24 +11,24 @@
 {{HEAD_COMMON}}
 <style>
 {{CSS}}
-.phero{background:var(--navy);color:var(--on-navy)}
+.phero{background:var(--navy);border-bottom:1px solid var(--line);color:var(--on-navy)}
 .phero .wrap{padding-block:56px 48px}
 .phero .eyebrow{color:var(--gold)}
-.phero h1{font-weight:800;font-size:clamp(38px,5.4vw,64px);line-height:1;color:#fff}
+.phero h1{font-weight:800;font-size:clamp(38px,5.4vw,64px);line-height:1;color:var(--on-navy)}
 .phero p{color:var(--on-navy-muted);font-size:18px;max-width:62ch;margin:18px 0 0}
 .calcwrap{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start;padding-top:48px}
 .clist{position:sticky;top:92px;display:grid;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px}
 .clist button{font:inherit;text-align:left;border:0;background:none;color:var(--fg);padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:600;font-size:15px;display:flex;gap:10px;align-items:center}
 .clist button small{display:block;font-weight:500;color:var(--muted);font-size:12.5px}
-.clist button[aria-selected="true"]{background:var(--navy);color:#fff}
-.clist button[aria-selected="true"] small{color:var(--on-navy-muted)}
+.clist button[aria-selected="true"]{background:var(--ink);color:#fff}
+.clist button[aria-selected="true"] small{color:#cccccc}
 .clist .grp{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--gold-ink);padding:12px 12px 4px}
 .ctitle{margin-bottom:6px}
 .cdesc{color:var(--muted);margin:0 0 20px;max-width:62ch}
 .big{font-family:var(--display);font-weight:800;font-size:clamp(38px,5.4vw,56px);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
 .big.good{color:#8fdcae}.big.warn{color:#f3c76b}.big.bad{color:#f39a9a}
 .rows{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.rows li{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px}
+.rows li{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(0,0,0,.1);padding-bottom:8px}
 .rows li span{color:var(--on-navy-muted)}
 .rows li.tot{font-weight:700}
 .rows li.tot span{color:var(--on-navy)}
