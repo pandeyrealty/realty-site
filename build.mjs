@@ -284,4 +284,16 @@ for (const m of team.filter((x) => !x.founder)) {
 const urls = ["/", "/home-value", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url), ...listings.filter((l) => l.story).map((l) => l.story)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://www.pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
 write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://www.pandey.realty/sitemap.xml\n");
+// Vercel Web Analytics (private visitor counts in the Vercel dashboard; no cookies)
+const VA = `<script defer src="/_vercel/insights/script.js"></script>`;
+(function addAnalytics(dir) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const f = path.join(dir, e.name);
+    if (e.isDirectory()) { if (e.name !== "assets") addAnalytics(f); continue; }
+    if (!e.name.endsWith(".html")) continue;
+    const h = fs.readFileSync(f, "utf8");
+    if (h.includes("/_vercel/insights/") || !h.includes("</head>")) continue;
+    fs.writeFileSync(f, h.replace("</head>", `${VA}\n</head>`));
+  }
+})(OUT);
 console.log(`Built ${listings.length} listing(s): ${listings.map((l) => l.url).join(", ")}`);
