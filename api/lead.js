@@ -1,4 +1,4 @@
-// Vercel serverless function: receives contact / showing forms from pandey.realty and emails the lead via Resend.
+// Vercel serverless function: receives contact / showing forms from pandey.realty, saves the lead in the CRM, and emails it via Resend.
 // Environment variables (Vercel → Project → Settings → Environment Variables):
 //   RESEND_API_KEY   (required)  Resend API key
 //   LEAD_TO_EMAIL    (optional)  comma-separated recipients. Default: pandeyrealty7@gmail.com
@@ -8,6 +8,7 @@ const clean = (v, max) => String(v ?? "").replace(/[\u0000-\u001f\u007f]/g, " ")
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TEAM = require("../data/team.json");
+const crm = require("../lib/crm");
 
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
@@ -44,10 +45,14 @@ module.exports = async (req, res) => {
     return res.status(400).json({ ok: false, error: "Please enter your name, phone number, and a valid email." });
   }
 
+  // Save the lead in the CRM first (new contact, deal, and a call-back follow-up). Email still goes out if this fails.
+  let saved = false;
+  try { await crm.ingestLead(lead); saved = true; } catch (err) { console.error("CRM save failed", err); }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error("RESEND_API_KEY is not set");
-    return res.status(500).json({ ok: false, error: "Email is not configured yet." });
+    return saved ? res.status(200).json({ ok: true }) : res.status(500).json({ ok: false, error: "Email is not configured yet." });
   }
   const recipients = (process.env.LEAD_TO_EMAIL || "pandeyrealty7@gmail.com").split(",").map((s) => s.trim()).filter(Boolean);
   // Also notify the listing agent (looked up from data/team.json, never from the request).
@@ -78,7 +83,7 @@ module.exports = async (req, res) => {
   <table cellpadding="8" style="border-collapse:collapse">
     ${rows.map(([k, v]) => `<tr><td style="border-bottom:1px solid #e4e7ec;color:#5b6577;vertical-align:top;white-space:nowrap">${k}</td><td style="border-bottom:1px solid #e4e7ec;white-space:pre-wrap">${esc(v)}</td></tr>`).join("")}
   </table>
-  <p style="margin-top:16px;color:#5b6577">Reply to this email to respond to ${esc(lead.name)} directly.</p>
+  <p style="margin-top:16px;color:#5b6577">Reply to this email to respond to ${esc(lead.name)} directly.${saved ? ' This lead is also in your CRM: <a href="https://www.pandey.realty/crm">pandey.realty/crm</a>' : ""}</p>
 </div>`;
   const text = `New lead: ${about} (${lead.topic})\nSubmitted ${submitted} PT\n\n` + rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
@@ -97,11 +102,13 @@ module.exports = async (req, res) => {
     });
     if (!r.ok) {
       console.error("Resend error", r.status, await r.text());
+      if (saved) return res.status(200).json({ ok: true });
       return res.status(502).json({ ok: false, error: "Could not send email." });
     }
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error("Lead send failed", err);
+    if (saved) return res.status(200).json({ ok: true });
     return res.status(502).json({ ok: false, error: "Could not send email." });
   }
 };

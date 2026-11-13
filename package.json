@@ -1,0 +1,9 @@
+{
+  "name": "realty-site",
+  "private": true,
+  "description": "Pandey Realty website + CRM. Vercel installs these packages for the /api functions.",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@vercel/blob": "latest"
+  }
+}

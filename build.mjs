@@ -281,15 +281,17 @@ for (const m of team.filter((x) => !x.founder)) {
     LEAD_FORM: leadForm(["Buying a home", "Selling a home", "Financing or refinancing", "Other"]),
   }));
 }
+// ---------- CRM (private app at /crm; not linked, not indexed, no analytics) ----------
+write("crm/index.html", read("src/crm.html").replace("{{CRM_TEAM}}", JSON.stringify(team.map((m) => ({ slug: m.slug, name: m.name }))).replace(/</g, "\\u003c")));
 const urls = ["/", "/home-value", "/mortgage", "/calculators", "/team", "/founder", "/join", ...team.filter((m) => !m.founder).map((m) => `/team/${m.slug}`), ...listings.map((l) => l.url), ...listings.filter((l) => l.story).map((l) => l.story)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://www.pandey.realty${u}</loc></url>`).join("")}</urlset>\n`);
-write("robots.txt", "User-agent: *\nAllow: /\nSitemap: https://www.pandey.realty/sitemap.xml\n");
+write("robots.txt", "User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: https://www.pandey.realty/sitemap.xml\n");
 // Vercel Web Analytics (private visitor counts in the Vercel dashboard; no cookies)
 const VA = `<script defer src="/_vercel/insights/script.js"></script>`;
 (function addAnalytics(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const f = path.join(dir, e.name);
-    if (e.isDirectory()) { if (e.name !== "assets") addAnalytics(f); continue; }
+    if (e.isDirectory()) { if (e.name !== "assets" && e.name !== "crm") addAnalytics(f); continue; }
     if (!e.name.endsWith(".html")) continue;
     const h = fs.readFileSync(f, "utf8");
     if (h.includes("/_vercel/insights/") || !h.includes("</head>")) continue;
