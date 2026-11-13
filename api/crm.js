@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
   try {
     if (req.method === "GET") {
       // Health check: confirms storage works (creates the database on first run). Reveals no data.
+      if (new URL(req.url, "http://x").searchParams.get("a") === "diag") return res.status(200).json(await require("../lib/crm-store").diag());
       if (new URL(req.url, "http://x").searchParams.get("a") === "health") { await crm.health(); return res.status(200).json({ ok: true, storage: "ready" }); }
       const s = await crm.sessionUser(readCookie(req));
       if (!s) return res.status(401).json({ ok: false, error: "Please sign in." });
