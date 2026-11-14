@@ -720,6 +720,7 @@ function userForm(u) {
       <label class="chk"><input type="checkbox" name="canClaim" ${u.canClaim ? "checked" : ""}> Lead pool: can see unassigned website leads and take them</label>
       <label class="chk"><input type="checkbox" name="canSeeAll" ${u.canSeeAll ? "checked" : ""}> Manager: can see and assign all contacts (not logins)</label>
     </div>
+    <label class="chk"><input type="checkbox" name="digest" ${u.digest !== false ? "checked" : ""}> Morning email: today's follow-ups, new leads, closings, and rate locks (sent to the email above around 6–7 AM)</label>
     <label class="f">Website profile <small>(optional) Leads from this person's listing pages go straight to them</small>${sel("slug", (window.__TEAM || []).map((m) => [m.slug, m.name]), u.slug, "None")}</label>
     ${u.id && !self ? `<label class="chk"><input type="checkbox" name="active" ${u.active ? "checked" : ""}> Can sign in (uncheck to turn off this login; their contacts stay in the CRM)</label>` : `<input type="hidden" name="active" value="on">`}`,
     null,

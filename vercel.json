@@ -111,5 +111,11 @@
       "source": "/",
       "destination": "/home"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/crm-digest",
+      "schedule": "0 14 * * *"
+    }
   ]
 }

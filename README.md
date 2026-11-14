@@ -61,3 +61,4 @@ Private real estate + mortgage CRM. Not linked from the site and not indexed.
 - Env vars: `BLOB_READ_WRITE_TOKEN` (from the store), `CRM_SECRET` (signs sessions; changing it signs everyone out), `CRM_BROKER_INIT_HASH` (starting broker password, used only when the database is first created).
 - Local test: `CRM_LOCAL_DB=/tmp/crm.json` uses a local file instead of Blob (starting password `local-password-123`).
 - Health check: `/api/crm?a=health` → `{"ok":true,"storage":"ready"}`.
+- Morning email: `api/crm-digest.js`, run daily by Vercel Cron at 14:00 UTC (6 AM PST / 7 AM PDT; on the Hobby plan it can run any time in that hour). Each active login with an email and "Morning email" checked gets their follow-ups due today or overdue, new leads, closings in 7 days, and rate locks ending in 3 days. Nothing is sent to someone with nothing due. Protected by `CRON_SECRET`; sent through Resend with `LEAD_FROM_EMAIL`.
